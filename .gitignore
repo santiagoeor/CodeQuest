@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.backup
+.env.production
+*.env.local
+
+# Dependencies
+/backend/vendor/
+/frontend/node_modules/
+/frontend/.angular/
+
+# Builds & compiled assets
+/frontend/dist/
+/backend/bootstrap/cache/
+/backend/storage/framework/cache/*
+!/backend/storage/framework/cache/.gitkeep
+/backend/storage/framework/sessions/*
+!/backend/storage/framework/sessions/.gitkeep
+/backend/storage/framework/views/*
+!/backend/storage/framework/views/.gitkeep
+/backend/storage/logs/*
+!/backend/storage/logs/.gitkeep
+
+# Docker volumes
+.docker-data/
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

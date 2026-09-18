@@ -28,7 +28,7 @@ _(none detected)_
 
 ## Infrastructure
 
-_(none detected)_
+- docker-compose.yml
 
 ## Tests
 
@@ -40,6 +40,22 @@ _(none detected)_
 
 - No test directory detected — confidence: high
   - Review: Confirm how this project is validated before production changes.
+
+### Security
+
+- Secret-bearing environment variables — confidence: medium
+  - Evidence: `APP_KEY`, `DB_PASSWORD`, `DB_ROOT_PASSWORD`, `DISCORD_CLIENT_SECRET`
+  - Review: Confirm secret rotation and endpoint protection strategy.
+
+### Infrastructure
+
+- Docker Compose — confidence: high
+  - Evidence: `docker-compose.yml`
+
+### Environment
+
+- 19 environment variable(s) detected — confidence: high
+  - Evidence: `APP_DEBUG`, `APP_ENV`, `APP_KEY`, `APP_NAME`, `APP_URL`, `BACKEND_PORT`, `DB_CONNECTION`, `DB_DATABASE`, `DB_HOST`, `DB_PASSWORD`, `DB_PORT`, `DB_ROOT_PASSWORD`, `DB_USERNAME`, `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_FRONTEND_REDIRECT`, `DISCORD_REDIRECT_URI`, `FRONTEND_PORT`, `FRONTEND_URL`
 
 ## Possible Domains
 

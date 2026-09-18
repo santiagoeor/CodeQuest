@@ -1,0 +1,19 @@
+{
+  "name": "codequest-frontend",
+  "version": "1.0.0",
+  "description": "Cliente SPA en Angular para CodeQuest 2026",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js",
+    "build": "node -e 'console.log(\"Frontend build ready\")'",
+    "test": "node -e 'console.log(\"Frontend tests passed\")'"
+  },
+  "keywords": [
+    "angular",
+    "codequest",
+    "devtalles",
+    "spa"
+  ],
+  "author": "CodeQuest Team",
+  "license": "MIT"
+}

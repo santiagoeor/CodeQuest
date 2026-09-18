@@ -16,6 +16,8 @@ scan:
   framework: unknown
   packageManager: unknown
   codeDirs: []
+  infraFiles:
+    - docker-compose.yml
 module_agents:
   installed: true
   installed_at: 2026-09-18

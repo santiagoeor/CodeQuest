@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-18T04:00:40.951Z",
+  "generatedAt": "2026-09-18T04:28:49.888Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -16,18 +16,799 @@
     "sourceDirectories": [],
     "migrationDirectories": [],
     "contractFiles": [],
-    "infrastructureFiles": []
+    "infrastructureFiles": [
+      "docker-compose.yml"
+    ]
   },
   "knowledge": {
     "summary": "> What is true about this product right now.",
     "roadmapSummary": "> Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.",
     "inventoryAvailable": true,
-    "workItems": [],
-    "activeWorkItems": [],
+    "workItems": [
+      {
+        "id": "WI-002",
+        "type": "chore",
+        "title": "Configurar sistema de diseño base y layout responsive en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-002",
+          "title": "Configurar sistema de diseño base y layout responsive en Angular",
+          "context": "Materialized from roadmap candidate WI-002 under initiative RM-001.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-003",
+        "type": "chore",
+        "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-003",
+          "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+          "context": "Materialized from roadmap candidate WI-003 under initiative RM-002.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-004",
+        "type": "feature",
+        "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-004",
+          "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+          "context": "Materialized from roadmap candidate WI-004 under initiative RM-002.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-005",
+        "type": "feature",
+        "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-005",
+          "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+          "context": "Materialized from roadmap candidate WI-005 under initiative RM-003.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-006",
+        "type": "feature",
+        "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-006",
+          "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+          "context": "Materialized from roadmap candidate WI-006 under initiative RM-003.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-007",
+        "type": "feature",
+        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-007",
+          "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-008",
+        "type": "feature",
+        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-008",
+          "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+          "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-009",
+        "type": "feature",
+        "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-009",
+          "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-009 under initiative RM-005.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-010",
+        "type": "feature",
+        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-010",
+          "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+          "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-011",
+        "type": "feature",
+        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-011",
+          "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+          "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-012",
+        "type": "feature",
+        "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-012",
+          "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+          "context": "Materialized from roadmap candidate WI-012 under initiative RM-006.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-001",
+        "type": "chore",
+        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "status": "in-progress",
+        "lifecycle": "in-progress",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-001",
+          "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+          "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
+          "inferred": false
+        }
+      }
+    ],
+    "activeWorkItems": [
+      {
+        "id": "WI-002",
+        "type": "chore",
+        "title": "Configurar sistema de diseño base y layout responsive en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-002",
+          "title": "Configurar sistema de diseño base y layout responsive en Angular",
+          "context": "Materialized from roadmap candidate WI-002 under initiative RM-001.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-003",
+        "type": "chore",
+        "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-003",
+          "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+          "context": "Materialized from roadmap candidate WI-003 under initiative RM-002.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-004",
+        "type": "feature",
+        "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-004",
+          "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+          "context": "Materialized from roadmap candidate WI-004 under initiative RM-002.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-005",
+        "type": "feature",
+        "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-005",
+          "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+          "context": "Materialized from roadmap candidate WI-005 under initiative RM-003.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-006",
+        "type": "feature",
+        "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-006",
+          "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+          "context": "Materialized from roadmap candidate WI-006 under initiative RM-003.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-007",
+        "type": "feature",
+        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-007",
+          "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-008",
+        "type": "feature",
+        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-008",
+          "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+          "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-009",
+        "type": "feature",
+        "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-009",
+          "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-009 under initiative RM-005.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-010",
+        "type": "feature",
+        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-010",
+          "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+          "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-011",
+        "type": "feature",
+        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-011",
+          "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+          "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-012",
+        "type": "feature",
+        "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-012",
+          "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+          "context": "Materialized from roadmap candidate WI-012 under initiative RM-006.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-001",
+        "type": "chore",
+        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "status": "in-progress",
+        "lifecycle": "in-progress",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-001",
+          "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+          "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
+          "inferred": false
+        }
+      }
+    ],
     "completedWorkItems": [],
     "archivedWorkItems": [],
-    "allWorkItems": [],
-    "artifacts": []
+    "allWorkItems": [
+      {
+        "id": "WI-002",
+        "type": "chore",
+        "title": "Configurar sistema de diseño base y layout responsive en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-002",
+          "title": "Configurar sistema de diseño base y layout responsive en Angular",
+          "context": "Materialized from roadmap candidate WI-002 under initiative RM-001.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-003",
+        "type": "chore",
+        "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-003",
+          "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+          "context": "Materialized from roadmap candidate WI-003 under initiative RM-002.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-004",
+        "type": "feature",
+        "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-004",
+          "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+          "context": "Materialized from roadmap candidate WI-004 under initiative RM-002.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-005",
+        "type": "feature",
+        "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-005",
+          "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+          "context": "Materialized from roadmap candidate WI-005 under initiative RM-003.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-006",
+        "type": "feature",
+        "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-006",
+          "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+          "context": "Materialized from roadmap candidate WI-006 under initiative RM-003.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-007",
+        "type": "feature",
+        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-007",
+          "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-008",
+        "type": "feature",
+        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-008",
+          "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+          "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-009",
+        "type": "feature",
+        "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-009",
+          "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-009 under initiative RM-005.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-010",
+        "type": "feature",
+        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-010",
+          "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+          "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-011",
+        "type": "feature",
+        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-011",
+          "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+          "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-012",
+        "type": "feature",
+        "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+        "status": "draft",
+        "lifecycle": "draft",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-012",
+          "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+          "context": "Materialized from roadmap candidate WI-012 under initiative RM-006.",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-001",
+        "type": "chore",
+        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "status": "in-progress",
+        "lifecycle": "in-progress",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-001",
+          "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+          "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
+          "inferred": false
+        }
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "WI-002",
+        "type": "chore",
+        "title": "Configurar sistema de diseño base y layout responsive en Angular",
+        "summary": "Configurar sistema de diseño base y layout responsive en Angular",
+        "codeGlobs": [
+          "frontend/src/app/**",
+          "frontend/src/styles.css",
+          "frontend/tailwind.config.js"
+        ]
+      },
+      {
+        "id": "WI-003",
+        "type": "chore",
+        "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+        "summary": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+        "codeGlobs": [
+          "backend/database/migrations/**",
+          "backend/database/seeders/**",
+          "backend/app/Models/Course.php"
+        ]
+      },
+      {
+        "id": "WI-004",
+        "type": "feature",
+        "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+        "summary": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+        "codeGlobs": [
+          "backend/app/Http/Controllers/AssessmentController.php",
+          "backend/routes/api.php",
+          "backend/database/seeders/QuestionnaireSeeder.php"
+        ]
+      },
+      {
+        "id": "WI-005",
+        "type": "feature",
+        "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+        "summary": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+        "codeGlobs": [
+          "backend/app/Http/Controllers/Auth/**",
+          "backend/app/Services/DiscordOAuthService.php",
+          "backend/routes/api.php"
+        ]
+      },
+      {
+        "id": "WI-006",
+        "type": "feature",
+        "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+        "summary": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+        "codeGlobs": [
+          "frontend/src/app/core/auth/**",
+          "frontend/src/app/core/guards/**"
+        ]
+      },
+      {
+        "id": "WI-007",
+        "type": "feature",
+        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "summary": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "codeGlobs": [
+          "backend/app/Services/LearningPathGeneratorService.php",
+          "backend/app/Http/Controllers/LearningPathController.php"
+        ]
+      },
+      {
+        "id": "WI-008",
+        "type": "feature",
+        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "summary": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "codeGlobs": [
+          "frontend/src/app/features/assessment/**"
+        ]
+      },
+      {
+        "id": "WI-009",
+        "type": "feature",
+        "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+        "summary": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+        "codeGlobs": [
+          "backend/app/Models/LearningPath.php",
+          "backend/app/Http/Controllers/LearningPathController.php",
+          "backend/routes/api.php"
+        ]
+      },
+      {
+        "id": "WI-010",
+        "type": "feature",
+        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "summary": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "codeGlobs": [
+          "frontend/src/app/features/paths/**"
+        ]
+      },
+      {
+        "id": "WI-011",
+        "type": "feature",
+        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "summary": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "codeGlobs": [
+          "backend/app/Models/CourseProgress.php",
+          "backend/app/Http/Controllers/ProgressController.php",
+          "backend/routes/api.php"
+        ]
+      },
+      {
+        "id": "WI-012",
+        "type": "feature",
+        "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+        "summary": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+        "codeGlobs": [
+          "frontend/src/app/features/progress/**",
+          "frontend/src/app/features/paths/components/**"
+        ]
+      },
+      {
+        "id": "WI-001",
+        "type": "chore",
+        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "summary": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "codeGlobs": [
+          "docker-compose.yml",
+          "backend/**",
+          "frontend/**",
+          "Makefile",
+          "README.md"
+        ]
+      }
+    ]
   },
   "layers": [
     {
@@ -58,8 +839,20 @@
     },
     {
       "layer": "Delivery",
-      "status": "Partial",
+      "status": "Traceable",
       "detected": [
+        "WI-001-inicializar-estructura-del-monorepo-con-docker-compose-para-laravel-angular-y-mysql.md",
+        "WI-002-configurar-sistema-de-diseno-base-y-layout-responsive-en-angular.md",
+        "WI-003-modelar-base-de-datos-y-crear-migraciones-y-seeders-para-cursos-de-devtalles.md",
+        "WI-004-disenar-estructura-y-exponer-endpoint-del-cuestionario-de-habilidades-e-intereses.md",
+        "WI-005-implementar-flujo-backend-para-discord-oauth2-y-emision-de-tokens-sanctum.md",
+        "WI-006-integrar-boton-de-inicio-de-sesion-con-discord-y-guards-de-autenticacion-en-angular.md",
+        "WI-007-desarrollar-servicio-de-recomendacion-de-rutas-en-laravel.md",
+        "WI-008-construir-interfaz-paso-a-paso-del-cuestionario-diagnostico-en-angular.md",
+        "WI-009-implementar-endpoints-para-persistencia-y-gestion-de-multiples-rutas-en-laravel.md",
+        "WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md",
+        "WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md",
+        "WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md",
         "roadmap.md"
       ]
     }
@@ -86,7 +879,7 @@
       }
     },
     "delivery": {
-      "status": "Partial",
+      "status": "Traceable",
       "artifacts": {
         "knowledge/delivery/roadmap.md": "useful"
       }
@@ -96,53 +889,65 @@
     "present": true,
     "initiatives": 6,
     "work_item_candidates": 12,
-    "materialized_work_items": 0,
-    "remaining_work_item_candidates": 12,
+    "materialized_work_items": 12,
+    "remaining_work_item_candidates": 0,
     "candidates": 12,
-    "materialized": 0,
-    "remaining": 12
+    "materialized": 12,
+    "remaining": 0
   },
   "phase": {
-    "phase": "Delivery Preparation",
+    "phase": "Active Delivery",
     "reasons": [
       "Roadmap available",
-      "0 materialized work item(s)",
-      "12 roadmap candidate(s) remaining"
+      "12 materialized work item(s)",
+      "draft: 11, in-progress: 1",
+      "Ownership coverage 100%"
     ],
     "recommendedAgents": [
-      "kaddo create --from roadmap",
-      "work-item-agent"
+      "implementation-agent",
+      "kaddo scan",
+      "kaddo owners suggest",
+      "kaddo guard"
     ],
-    "nextStep": "Run `kaddo create --from roadmap` to materialize the first Work Item.",
+    "nextStep": "Run `kaddo guard` and update affected knowledge after significant changes.",
     "llmInstructions": [
-      "Materialize roadmap candidates with `kaddo create --from roadmap`.",
-      "Use the work-item-agent to refine them.",
-      "Do not implement yet."
+      "Continue the in-progress Work Item with the implementation-agent.",
+      "After changes, run `kaddo scan`, `kaddo owners suggest` and `kaddo guard`.",
+      "Do not commit, push or merge without explicit human confirmation."
     ]
   },
   "nextStepRecommendation": {
-    "id": "create-work-item",
-    "phase": "Delivery Preparation",
-    "label": "Run `kaddo create --from roadmap` to materialize the first Work Item.",
-    "command": "kaddo create --from roadmap",
-    "reason": "The roadmap has candidates but no Work Item exists yet."
+    "id": "guard",
+    "phase": "Active Delivery",
+    "label": "Run `kaddo guard` and update affected knowledge after significant changes.",
+    "command": "kaddo guard",
+    "reason": "1 Work Item(s) are in progress.",
+    "secondary": [
+      {
+        "id": "materialize-adrs",
+        "label": "Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.",
+        "command": "kaddo adr",
+        "skill": "adr-writing",
+        "reason": "There are 3 technical decision candidate(s) and 0 accepted ADR(s)."
+      }
+    ]
   },
   "deliveryState": {
-    "phase": "Delivery Preparation",
-    "draft_work_items": 0,
+    "phase": "Active Delivery",
+    "draft_work_items": 11,
     "refined_draft_work_items": 0,
     "refined_draft_ids": [],
     "ready_work_items": 0,
     "ready_work_item_ids": [],
     "ready_multirepo_wi_ids": [],
-    "in_progress_work_items": 0,
+    "in_progress_work_items": 1,
     "blocked_work_items": 0,
-    "total_work_items": 0,
-    "ownership_coverage": "0/0",
-    "remaining_work_item_candidates": 12,
+    "total_work_items": 12,
+    "ownership_coverage": "12/12",
+    "remaining_work_item_candidates": 0,
     "decision_candidates": 3,
     "accepted_adrs": 0,
-    "adapters_installed": 0
+    "adapters_installed": 1
   },
   "techDecisions": {
     "status": "candidates",
@@ -270,17 +1075,20 @@
     }
   },
   "workItemSummary": {
-    "total": 0,
-    "active": 0,
-    "draft": 0,
+    "total": 12,
+    "active": 12,
+    "draft": 11,
     "ready": 0,
-    "in_progress": 0,
+    "in_progress": 1,
     "blocked": 0,
     "completed": 0,
     "archived": 0,
-    "summary": "none"
+    "summary": "active"
   },
-  "deliveryMix": {},
+  "deliveryMix": {
+    "chore": 3,
+    "feature": 9
+  },
   "external": [],
   "graph": null,
   "graphHints": null,
@@ -312,17 +1120,66 @@
         "recommended_review": "Confirm how this project is validated before production changes."
       }
     ],
-    "security": [],
-    "infrastructure": [],
+    "security": [
+      {
+        "type": "security",
+        "label": "Secret-bearing environment variables",
+        "confidence": "medium",
+        "evidence": [
+          "APP_KEY",
+          "DB_PASSWORD",
+          "DB_ROOT_PASSWORD",
+          "DISCORD_CLIENT_SECRET"
+        ],
+        "recommended_review": "Confirm secret rotation and endpoint protection strategy."
+      }
+    ],
+    "infrastructure": [
+      {
+        "type": "infrastructure",
+        "label": "Docker Compose",
+        "confidence": "high",
+        "evidence": [
+          "docker-compose.yml"
+        ]
+      }
+    ],
     "external_integrations": [],
-    "environment": []
+    "environment": [
+      {
+        "type": "environment",
+        "label": "19 environment variable(s) detected",
+        "confidence": "high",
+        "evidence": [
+          "APP_DEBUG",
+          "APP_ENV",
+          "APP_KEY",
+          "APP_NAME",
+          "APP_URL",
+          "BACKEND_PORT",
+          "DB_CONNECTION",
+          "DB_DATABASE",
+          "DB_HOST",
+          "DB_PASSWORD",
+          "DB_PORT",
+          "DB_ROOT_PASSWORD",
+          "DB_USERNAME",
+          "DISCORD_CLIENT_ID",
+          "DISCORD_CLIENT_SECRET",
+          "DISCORD_FRONTEND_REDIRECT",
+          "DISCORD_REDIRECT_URI",
+          "FRONTEND_PORT",
+          "FRONTEND_URL"
+        ]
+      }
+    ]
   },
   "projectRoute": {
     "type": "new",
-    "currentStep": "materialize-work-item",
-    "completed": 6,
+    "currentStep": "run-guard",
+    "completed": 10,
     "total": 12,
-    "progressPercent": 50,
+    "progressPercent": 83,
     "steps": [
       {
         "id": "enable-kaddo",
@@ -376,35 +1233,36 @@
       {
         "id": "materialize-work-item",
         "label": "Create first Work Item",
-        "status": "current",
-        "command": "kaddo create --from roadmap",
-        "reason": "Roadmap has candidates but no Work Item exists."
+        "status": "done",
+        "evidence": [
+          "knowledge/delivery/work-items/"
+        ]
       },
       {
         "id": "refine-work-item",
         "label": "Refine Work Item",
-        "status": "next"
+        "status": "done"
       },
       {
         "id": "suggest-ownership",
         "label": "Suggest ownership",
-        "status": "pending"
+        "status": "done"
       },
       {
         "id": "prepare-implementation",
         "label": "Prepare implementation",
-        "status": "pending"
+        "status": "done"
       },
       {
         "id": "run-guard",
         "label": "Run guard",
-        "status": "pending"
+        "status": "current",
+        "command": "kaddo guard"
       },
       {
         "id": "capture-learning",
         "label": "Capture learning",
-        "status": "optional",
-        "reason": "Project is still in early discovery."
+        "status": "next"
       }
     ]
   },
@@ -418,21 +1276,22 @@
   "affectedModuleContexts": {},
   "isModuleRepo": false,
   "missing": [
-    "No work items found.",
     "3 technical decision candidate(s) not yet materialized as ADRs (run `kaddo adr`)."
   ],
   "handoff": {
     "recommendedAgents": [
-      "kaddo create --from roadmap",
-      "work-item-agent"
+      "implementation-agent",
+      "kaddo scan",
+      "kaddo owners suggest",
+      "kaddo guard"
     ],
     "nextSteps": [
-      "Run `kaddo create --from roadmap` to materialize the first Work Item."
+      "Run `kaddo guard` and update affected knowledge after significant changes."
     ],
     "instructions": [
-      "Materialize roadmap candidates with `kaddo create --from roadmap`.",
-      "Use the work-item-agent to refine them.",
-      "Do not implement yet."
+      "Continue the in-progress Work Item with the implementation-agent.",
+      "After changes, run `kaddo scan`, `kaddo owners suggest` and `kaddo guard`.",
+      "Do not commit, push or merge without explicit human confirmation."
     ],
     "operatingRules": [
       "**Never run `git commit`, `git push` or `git merge` without explicit human confirmation.**",

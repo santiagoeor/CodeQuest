@@ -20,46 +20,51 @@
 
 ## Current Phase
 
-Phase: Delivery Preparation
+Phase: Active Delivery
 
 Reason:
 
 - Roadmap available
-- 0 materialized work item(s)
-- 12 roadmap candidate(s) remaining
+- 12 materialized work item(s)
+- draft: 11, in-progress: 1
+- Ownership coverage 100%
 
-Recommended next: kaddo create --from roadmap, work-item-agent
+Recommended next: implementation-agent, kaddo scan, kaddo owners suggest, kaddo guard
 
-Next step: Run `kaddo create --from roadmap` to materialize the first Work Item.
+Next step: Run `kaddo guard` and update affected knowledge after significant changes.
 
 ## Delivery State
 
-- Phase: Delivery Preparation
-- Draft Work Items: 0
+- Phase: Active Delivery
+- Draft Work Items: 11
 - Ready Work Items: 0
-- In-progress Work Items: 0
-- Ownership coverage: 0/0
-- Remaining Work Item candidates: 12
+- In-progress Work Items: 1
+- Ownership coverage: 12/12
+- Remaining Work Item candidates: 0
 
 ## Next Step Recommendation
 
-- Run `kaddo create --from roadmap` to materialize the first Work Item.
-  - id: create-work-item
-  - reason: The roadmap has candidates but no Work Item exists yet.
-  - command: `kaddo create --from roadmap`
+- Run `kaddo guard` and update affected knowledge after significant changes.
+  - id: guard
+  - reason: 1 Work Item(s) are in progress.
+  - command: `kaddo guard`
+
+Also (secondary):
+
+- Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
 
 ## Project Route
 
-Route: new · Progress: 6/12
+Route: new · Progress: 10/12
 
 Current:
-- Create first Work Item
+- Run guard
 
 ## Knowledge Layers
 
 Project knowledge is organized in four layers: **Business → Product → Tech → Delivery**.
 
-Knowledge maturity — Business: Consolidated · Product: Structured · Tech: Structured · Delivery: Partial
+Knowledge maturity — Business: Consolidated · Product: Structured · Tech: Structured · Delivery: Traceable
 
 ### Business — Consolidated
 - ✓ business.md
@@ -75,7 +80,19 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 - ✓ decision-candidates.md
 - ✓ knowledge.md
 
-### Delivery — Partial
+### Delivery — Traceable
+- ✓ WI-001-inicializar-estructura-del-monorepo-con-docker-compose-para-laravel-angular-y-mysql.md
+- ✓ WI-002-configurar-sistema-de-diseno-base-y-layout-responsive-en-angular.md
+- ✓ WI-003-modelar-base-de-datos-y-crear-migraciones-y-seeders-para-cursos-de-devtalles.md
+- ✓ WI-004-disenar-estructura-y-exponer-endpoint-del-cuestionario-de-habilidades-e-intereses.md
+- ✓ WI-005-implementar-flujo-backend-para-discord-oauth2-y-emision-de-tokens-sanctum.md
+- ✓ WI-006-integrar-boton-de-inicio-de-sesion-con-discord-y-guards-de-autenticacion-en-angular.md
+- ✓ WI-007-desarrollar-servicio-de-recomendacion-de-rutas-en-laravel.md
+- ✓ WI-008-construir-interfaz-paso-a-paso-del-cuestionario-diagnostico-en-angular.md
+- ✓ WI-009-implementar-endpoints-para-persistencia-y-gestion-de-multiples-rutas-en-laravel.md
+- ✓ WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md
+- ✓ WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md
+- ✓ WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md
 - ✓ roadmap.md
 
 ## Technical Inventory
@@ -83,10 +100,15 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 - Language: unknown
 - Framework: unknown
 - Package manager: unknown
+- Infrastructure:
+  - docker-compose.yml
 
 ## Scan Signals
 
 - Tests: No test directory detected
+- Security: Secret-bearing environment variables
+- Infrastructure: Docker Compose
+- Environment: 19 environment variable(s) detected
 
 ## Current Knowledge
 
@@ -96,10 +118,8 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 - Initiatives: 6
 - Work Item candidates: 12
-- Materialized Work Items: 0
-- Remaining Work Item candidates: 12
-
-Work Item candidates are not yet Work Items. Materialize them with `kaddo create --from roadmap`.
+- Materialized Work Items: 12
+- Remaining Work Item candidates: 0
 
 > Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.
 
@@ -120,11 +140,52 @@ Work Item Candidates:
 
 ## Active Work Items
 
-No active work items found.
+- WI-002 [chore] [K2] (draft) — Configurar sistema de diseño base y layout responsive en Angular · domains: Experiencia de Usuario (User Experience)
+  - Source: roadmap · WI-002
+- WI-003 [chore] [K2] (draft) — Modelar base de datos y crear migraciones y seeders para cursos de DevTalles · domains: Catálogo Académico (Course Catalog)
+  - Source: roadmap · WI-003
+- WI-004 [feature] [K2] (draft) — Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses · domains: Catálogo Académico (Course Catalog)
+  - Source: roadmap · WI-004
+- WI-005 [feature] [K3] (draft) — Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum · domains: Identidad y Acceso (Identity & Access)
+  - Source: roadmap · WI-005
+- WI-006 [feature] [K2] (draft) — Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular · domains: Identidad y Acceso (Identity & Access)
+  - Source: roadmap · WI-006
+- WI-007 [feature] [K3] (draft) — Desarrollar servicio de recomendación de rutas en Laravel · domains: Motor de Recomendación (Recommendation Engine)
+  - Source: roadmap · WI-007
+- WI-008 [feature] [K2] (draft) — Construir interfaz paso a paso del cuestionario diagnóstico en Angular · domains: Motor de Recomendación (Recommendation Engine)
+  - Source: roadmap · WI-008
+- WI-009 [feature] [K2] (draft) — Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel · domains: Gestión de Rutas (Path Management)
+  - Source: roadmap · WI-009
+- WI-010 [feature] [K2] (draft) — Crear vista interactiva de Roadmap y tarjetas de cursos en Angular · domains: Gestión de Rutas (Path Management)
+  - Source: roadmap · WI-010
+- WI-011 [feature] [K2] (draft) — Desarrollar endpoints para registrar el progreso de cursos por usuario · domains: Seguimiento de Aprendizaje (Learning Tracking)
+  - Source: roadmap · WI-011
+- WI-012 [feature] [K2] (draft) — Integrar barra de progreso reactiva e indicadores de completitud en la SPA · domains: Seguimiento de Aprendizaje (Learning Tracking)
+  - Source: roadmap · WI-012
+- WI-001 [chore] [K2] (in-progress) — Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL · domains: Experiencia de Usuario (User Experience)
+  - Source: roadmap · WI-001
+
+## Delivery Mix
+
+Active Work Items by type:
+
+- Features: 9
+- Chores: 3
 
 ## Artifacts and Ownership
 
-No artifacts declare code ownership yet.
+- WI-002 [chore] owns: frontend/src/app/**, frontend/src/styles.css, frontend/tailwind.config.js
+- WI-003 [chore] owns: backend/database/migrations/**, backend/database/seeders/**, backend/app/Models/Course.php
+- WI-004 [feature] owns: backend/app/Http/Controllers/AssessmentController.php, backend/routes/api.php, backend/database/seeders/QuestionnaireSeeder.php
+- WI-005 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/app/Services/DiscordOAuthService.php, backend/routes/api.php
+- WI-006 [feature] owns: frontend/src/app/core/auth/**, frontend/src/app/core/guards/**
+- WI-007 [feature] owns: backend/app/Services/LearningPathGeneratorService.php, backend/app/Http/Controllers/LearningPathController.php
+- WI-008 [feature] owns: frontend/src/app/features/assessment/**
+- WI-009 [feature] owns: backend/app/Models/LearningPath.php, backend/app/Http/Controllers/LearningPathController.php, backend/routes/api.php
+- WI-010 [feature] owns: frontend/src/app/features/paths/**
+- WI-011 [feature] owns: backend/app/Models/CourseProgress.php, backend/app/Http/Controllers/ProgressController.php, backend/routes/api.php
+- WI-012 [feature] owns: frontend/src/app/features/progress/**, frontend/src/app/features/paths/components/**
+- WI-001 [chore] owns: docker-compose.yml, backend/**, frontend/**, Makefile, README.md
 
 ## Skills
 
@@ -142,22 +203,23 @@ Read full skill definitions in `knowledge/skills/` or via the Kaddo MCP server (
 
 ## Missing Context
 
-- No work items found.
 - 3 technical decision candidate(s) not yet materialized as ADRs (run `kaddo adr`).
 
 ## Recommended Agent Handoff
 
-Recommended next for the **Delivery Preparation** phase:
+Recommended next for the **Active Delivery** phase:
 
-1. kaddo create --from roadmap
-2. work-item-agent
+1. implementation-agent
+2. kaddo scan
+3. kaddo owners suggest
+4. kaddo guard
 
 Next step:
 
-- Run `kaddo create --from roadmap` to materialize the first Work Item.
+- Run `kaddo guard` and update affected knowledge after significant changes.
 
 ## Instructions for the LLM
 
-- Materialize roadmap candidates with `kaddo create --from roadmap`.
-- Use the work-item-agent to refine them.
-- Do not implement yet.
+- Continue the in-progress Work Item with the implementation-agent.
+- After changes, run `kaddo scan`, `kaddo owners suggest` and `kaddo guard`.
+- Do not commit, push or merge without explicit human confirmation.

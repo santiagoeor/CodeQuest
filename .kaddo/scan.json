@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-18T03:07:36.001Z",
+  "generatedAt": "2026-09-18T04:27:59.103Z",
   "project": {
     "state": "new",
     "structure": "monorepo",
@@ -13,7 +13,9 @@
     "sourceDirectories": [],
     "migrationDirectories": [],
     "contractFiles": [],
-    "infrastructureFiles": [],
+    "infrastructureFiles": [
+      "docker-compose.yml"
+    ],
     "testDirectories": []
   },
   "signals": {
@@ -35,10 +37,59 @@
         "recommended_review": "Confirm how this project is validated before production changes."
       }
     ],
-    "security": [],
-    "infrastructure": [],
+    "security": [
+      {
+        "type": "security",
+        "label": "Secret-bearing environment variables",
+        "confidence": "medium",
+        "evidence": [
+          "APP_KEY",
+          "DB_PASSWORD",
+          "DB_ROOT_PASSWORD",
+          "DISCORD_CLIENT_SECRET"
+        ],
+        "recommended_review": "Confirm secret rotation and endpoint protection strategy."
+      }
+    ],
+    "infrastructure": [
+      {
+        "type": "infrastructure",
+        "label": "Docker Compose",
+        "confidence": "high",
+        "evidence": [
+          "docker-compose.yml"
+        ]
+      }
+    ],
     "external_integrations": [],
-    "environment": []
+    "environment": [
+      {
+        "type": "environment",
+        "label": "19 environment variable(s) detected",
+        "confidence": "high",
+        "evidence": [
+          "APP_DEBUG",
+          "APP_ENV",
+          "APP_KEY",
+          "APP_NAME",
+          "APP_URL",
+          "BACKEND_PORT",
+          "DB_CONNECTION",
+          "DB_DATABASE",
+          "DB_HOST",
+          "DB_PASSWORD",
+          "DB_PORT",
+          "DB_ROOT_PASSWORD",
+          "DB_USERNAME",
+          "DISCORD_CLIENT_ID",
+          "DISCORD_CLIENT_SECRET",
+          "DISCORD_FRONTEND_REDIRECT",
+          "DISCORD_REDIRECT_URI",
+          "FRONTEND_PORT",
+          "FRONTEND_URL"
+        ]
+      }
+    ]
   },
   "suggestions": {
     "possibleDomains": [],

@@ -1,0 +1,12 @@
+/* CodeQuest Global Styles */
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: #0d1117;
+  color: #f0f6fc;
+}

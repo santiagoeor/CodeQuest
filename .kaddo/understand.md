@@ -12,24 +12,69 @@
 
 ## Current Phase
 
-- Phase: Delivery Preparation
-- Next step: Run `kaddo create --from roadmap` to materialize the first Work Item.
-- Reason: The roadmap has candidates but no Work Item exists yet.
+- Phase: Active Delivery
+- Next step: Run `kaddo guard` and update affected knowledge after significant changes.
+- Reason: 1 Work Item(s) are in progress.
+
+## Delivery State
+
+- Draft Work Items: 11
+- Ready Work Items: 0
+- In-progress Work Items: 1
+- Blocked Work Items: 0
+- Ownership coverage: 12/12
+- Remaining Work Item candidates: 0
+- Technical decision candidates: 3
+- Accepted ADRs: 0
+- Installed adapters: 1
 
 ## Project Route
 
-Route: new · Progress: 6/12
+Route: new · Progress: 10/12
 
 Current:
-- Create first Work Item
+- Run guard
 
 ## Recommended Agent Flow
 
+1. adr-writing skill
+
 ## Primary Recommendation
 
-- id: create-work-item
-- command: `kaddo create --from roadmap`
-- reason: The roadmap has candidates but no Work Item exists yet.
+- id: guard
+- command: `kaddo guard`
+- reason: 1 Work Item(s) are in progress.
+
+## Secondary Recommendations
+
+1. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
+
+## Active Work Items
+
+- WI-002 [chore] draft — Configurar sistema de diseño base y layout responsive en Angular
+  - Source: roadmap · WI-002
+- WI-003 [chore] draft — Modelar base de datos y crear migraciones y seeders para cursos de DevTalles
+  - Source: roadmap · WI-003
+- WI-004 [feature] draft — Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses
+  - Source: roadmap · WI-004
+- WI-005 [feature] draft — Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum
+  - Source: roadmap · WI-005
+- WI-006 [feature] draft — Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular
+  - Source: roadmap · WI-006
+- WI-007 [feature] draft — Desarrollar servicio de recomendación de rutas en Laravel
+  - Source: roadmap · WI-007
+- WI-008 [feature] draft — Construir interfaz paso a paso del cuestionario diagnóstico en Angular
+  - Source: roadmap · WI-008
+- WI-009 [feature] draft — Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel
+  - Source: roadmap · WI-009
+- WI-010 [feature] draft — Crear vista interactiva de Roadmap y tarjetas de cursos en Angular
+  - Source: roadmap · WI-010
+- WI-011 [feature] draft — Desarrollar endpoints para registrar el progreso de cursos por usuario
+  - Source: roadmap · WI-011
+- WI-012 [feature] draft — Integrar barra de progreso reactiva e indicadores de completitud en la SPA
+  - Source: roadmap · WI-012
+- WI-001 [chore] in-progress — Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL
+  - Source: roadmap · WI-001
 
 ## Context Pack
 
@@ -43,7 +88,7 @@ Use `.kaddo/context-pack.md` as the primary input.
 
 The LLM should produce:
 
-- A new Work Item under `knowledge/delivery/work-items/`.
+- Updated knowledge artifacts reflecting recent code changes.
 
 ## Copy/Paste Instructions
 
@@ -51,5 +96,6 @@ Paste `.kaddo/context-pack.md` into your LLM chat.
 
 ## Next Steps
 
-1. Run `kaddo create --from roadmap` to materialize the first Work Item.
-2. Re-run `kaddo explain`.
+1. Run `kaddo guard` and update affected knowledge after significant changes.
+2. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
+3. Re-run `kaddo explain`.
