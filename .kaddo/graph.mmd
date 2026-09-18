@@ -1,0 +1,107 @@
+flowchart LR
+  business_business["Business"]
+  product_product["Product"]
+  tech_tech["Tech"]
+  delivery_delivery["Delivery"]
+  wi_WI_002["WI-002 Configurar sistema de diseño base y layout responsive en Angular"]
+  code_frontend_src_app["frontend/src/app/**"]
+  code_frontend_src_styles_css["frontend/src/styles.css"]
+  code_frontend_tailwind_config_js["frontend/tailwind.config.js"]
+  initiative_configuraci_n_de_infraestructura_y_monorepo["Configuración de Infraestructura y Monorepo"]
+  candidate_WI_002["WI-002"]
+  wi_WI_003["WI-003 Modelar base de datos y crear migraciones y seeders para cursos de DevTalles"]
+  code_backend_database_migrations["backend/database/migrations/**"]
+  code_backend_database_seeders["backend/database/seeders/**"]
+  code_backend_app_Models_Course_php["backend/app/Models/Course.php"]
+  initiative_cat_logo_acad_mico_de_devtalles_y_banco_de_evaluaci_n["Catálogo Académico de DevTalles y Banco de Evaluación"]
+  candidate_WI_003["WI-003"]
+  wi_WI_004["WI-004 Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses"]
+  code_backend_app_Http_Controllers_AssessmentController_php["backend/app/Http/Controllers/AssessmentController.php"]
+  code_backend_routes_api_php["backend/routes/api.php"]
+  code_backend_database_seeders_QuestionnaireSeeder_php["backend/database/seeders/QuestionnaireSeeder.php"]
+  candidate_WI_004["WI-004"]
+  wi_WI_005["WI-005 Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum"]
+  code_backend_app_Http_Controllers_Auth["backend/app/Http/Controllers/Auth/**"]
+  code_backend_app_Services_DiscordOAuthService_php["backend/app/Services/DiscordOAuthService.php"]
+  initiative_autenticaci_n_e_identidad_con_discord_oauth2["Autenticación e Identidad con Discord OAuth2"]
+  candidate_WI_005["WI-005"]
+  wi_WI_006["WI-006 Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular"]
+  code_frontend_src_app_core_auth["frontend/src/app/core/auth/**"]
+  code_frontend_src_app_core_guards["frontend/src/app/core/guards/**"]
+  candidate_WI_006["WI-006"]
+  wi_WI_007["WI-007 Desarrollar servicio de recomendación de rutas en Laravel"]
+  code_backend_app_Services_LearningPathGeneratorService_php["backend/app/Services/LearningPathGeneratorService.php"]
+  code_backend_app_Http_Controllers_LearningPathController_php["backend/app/Http/Controllers/LearningPathController.php"]
+  initiative_motor_de_recomendaci_n_y_generaci_n_de_rutas["Motor de Recomendación y Generación de Rutas"]
+  candidate_WI_007["WI-007"]
+  wi_WI_008["WI-008 Construir interfaz paso a paso del cuestionario diagnóstico en Angular"]
+  code_frontend_src_app_features_assessment["frontend/src/app/features/assessment/**"]
+  candidate_WI_008["WI-008"]
+  wi_WI_009["WI-009 Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel"]
+  code_backend_app_Models_LearningPath_php["backend/app/Models/LearningPath.php"]
+  initiative_gesti_n_persistencia_y_visualizaci_n_de_rutas["Gestión, Persistencia y Visualización de Rutas"]
+  candidate_WI_009["WI-009"]
+  wi_WI_010["WI-010 Crear vista interactiva de Roadmap y tarjetas de cursos en Angular"]
+  code_frontend_src_app_features_paths["frontend/src/app/features/paths/**"]
+  candidate_WI_010["WI-010"]
+  wi_WI_011["WI-011 Desarrollar endpoints para registrar el progreso de cursos por usuario"]
+  code_backend_app_Models_CourseProgress_php["backend/app/Models/CourseProgress.php"]
+  code_backend_app_Http_Controllers_ProgressController_php["backend/app/Http/Controllers/ProgressController.php"]
+  initiative_seguimiento_de_progreso_y_m_tricas_de_completitud["Seguimiento de Progreso y Métricas de Completitud"]
+  candidate_WI_011["WI-011"]
+  wi_WI_012["WI-012 Integrar barra de progreso reactiva e indicadores de completitud en la SPA"]
+  code_frontend_src_app_features_progress["frontend/src/app/features/progress/**"]
+  code_frontend_src_app_features_paths_components["frontend/src/app/features/paths/components/**"]
+  candidate_WI_012["WI-012"]
+
+  business_business -->|informs| product_product
+  product_product -->|informs| tech_tech
+  tech_tech -->|informs| delivery_delivery
+  wi_WI_002 -->|owns| code_frontend_src_app
+  wi_WI_002 -->|owns| code_frontend_src_styles_css
+  wi_WI_002 -->|owns| code_frontend_tailwind_config_js
+  wi_WI_002 -->|belongs_to| initiative_configuraci_n_de_infraestructura_y_monorepo
+  candidate_WI_002 -->|materialized_as| wi_WI_002
+  wi_WI_003 -->|owns| code_backend_database_migrations
+  wi_WI_003 -->|owns| code_backend_database_seeders
+  wi_WI_003 -->|owns| code_backend_app_Models_Course_php
+  wi_WI_003 -->|belongs_to| initiative_cat_logo_acad_mico_de_devtalles_y_banco_de_evaluaci_n
+  candidate_WI_003 -->|materialized_as| wi_WI_003
+  wi_WI_004 -->|owns| code_backend_app_Http_Controllers_AssessmentController_php
+  wi_WI_004 -->|owns| code_backend_routes_api_php
+  wi_WI_004 -->|owns| code_backend_database_seeders_QuestionnaireSeeder_php
+  wi_WI_004 -->|belongs_to| initiative_cat_logo_acad_mico_de_devtalles_y_banco_de_evaluaci_n
+  candidate_WI_004 -->|materialized_as| wi_WI_004
+  wi_WI_005 -->|owns| code_backend_app_Http_Controllers_Auth
+  wi_WI_005 -->|owns| code_backend_app_Services_DiscordOAuthService_php
+  wi_WI_005 -->|owns| code_backend_routes_api_php
+  wi_WI_005 -->|belongs_to| initiative_autenticaci_n_e_identidad_con_discord_oauth2
+  candidate_WI_005 -->|materialized_as| wi_WI_005
+  wi_WI_006 -->|owns| code_frontend_src_app_core_auth
+  wi_WI_006 -->|owns| code_frontend_src_app_core_guards
+  wi_WI_006 -->|belongs_to| initiative_autenticaci_n_e_identidad_con_discord_oauth2
+  candidate_WI_006 -->|materialized_as| wi_WI_006
+  wi_WI_007 -->|owns| code_backend_app_Services_LearningPathGeneratorService_php
+  wi_WI_007 -->|owns| code_backend_app_Http_Controllers_LearningPathController_php
+  wi_WI_007 -->|belongs_to| initiative_motor_de_recomendaci_n_y_generaci_n_de_rutas
+  candidate_WI_007 -->|materialized_as| wi_WI_007
+  wi_WI_008 -->|owns| code_frontend_src_app_features_assessment
+  wi_WI_008 -->|belongs_to| initiative_motor_de_recomendaci_n_y_generaci_n_de_rutas
+  candidate_WI_008 -->|materialized_as| wi_WI_008
+  wi_WI_009 -->|owns| code_backend_app_Models_LearningPath_php
+  wi_WI_009 -->|owns| code_backend_app_Http_Controllers_LearningPathController_php
+  wi_WI_009 -->|owns| code_backend_routes_api_php
+  wi_WI_009 -->|belongs_to| initiative_gesti_n_persistencia_y_visualizaci_n_de_rutas
+  candidate_WI_009 -->|materialized_as| wi_WI_009
+  wi_WI_010 -->|owns| code_frontend_src_app_features_paths
+  wi_WI_010 -->|belongs_to| initiative_gesti_n_persistencia_y_visualizaci_n_de_rutas
+  candidate_WI_010 -->|materialized_as| wi_WI_010
+  wi_WI_011 -->|owns| code_backend_app_Models_CourseProgress_php
+  wi_WI_011 -->|owns| code_backend_app_Http_Controllers_ProgressController_php
+  wi_WI_011 -->|owns| code_backend_routes_api_php
+  wi_WI_011 -->|belongs_to| initiative_seguimiento_de_progreso_y_m_tricas_de_completitud
+  candidate_WI_011 -->|materialized_as| wi_WI_011
+  wi_WI_012 -->|owns| code_frontend_src_app_features_progress
+  wi_WI_012 -->|owns| code_frontend_src_app_features_paths_components
+  wi_WI_012 -->|belongs_to| initiative_seguimiento_de_progreso_y_m_tricas_de_completitud
+  candidate_WI_012 -->|materialized_as| wi_WI_012

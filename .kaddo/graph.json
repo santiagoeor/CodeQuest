@@ -1,0 +1,586 @@
+{
+  "generated_at": "2026-09-18T04:52:25.782Z",
+  "project": {
+    "name": "CodeQuest",
+    "state": "new",
+    "structure": "monorepo"
+  },
+  "scope": "active",
+  "scope_reason": "Active Work Items only; completed and archived are excluded.",
+  "included_statuses": [
+    "draft",
+    "ready",
+    "in-progress",
+    "blocked"
+  ],
+  "excluded_statuses": [
+    "completed",
+    "archived"
+  ],
+  "nodes": [
+    {
+      "id": "business:business",
+      "type": "business",
+      "label": "Business",
+      "path": "knowledge/business/business.md"
+    },
+    {
+      "id": "product:product",
+      "type": "product",
+      "label": "Product",
+      "path": "knowledge/product/product.md"
+    },
+    {
+      "id": "tech:tech",
+      "type": "tech",
+      "label": "Tech",
+      "path": "knowledge/tech/current-state.md"
+    },
+    {
+      "id": "delivery:delivery",
+      "type": "delivery",
+      "label": "Delivery",
+      "path": "knowledge/delivery/roadmap.md"
+    },
+    {
+      "id": "wi:WI-002",
+      "type": "work-item",
+      "label": "WI-002 Configurar sistema de diseño base y layout responsive en Angular",
+      "path": "knowledge/delivery/work-items/draft/WI-002-configurar-sistema-de-diseno-base-y-layout-responsive-en-angular.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/app/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/**"
+    },
+    {
+      "id": "code:frontend/src/styles.css",
+      "type": "code-glob",
+      "label": "frontend/src/styles.css"
+    },
+    {
+      "id": "code:frontend/tailwind.config.js",
+      "type": "code-glob",
+      "label": "frontend/tailwind.config.js"
+    },
+    {
+      "id": "initiative:configuraci-n-de-infraestructura-y-monorepo",
+      "type": "initiative",
+      "label": "Configuración de Infraestructura y Monorepo"
+    },
+    {
+      "id": "candidate:WI-002",
+      "type": "roadmap-candidate",
+      "label": "WI-002"
+    },
+    {
+      "id": "wi:WI-003",
+      "type": "work-item",
+      "label": "WI-003 Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+      "path": "knowledge/delivery/work-items/draft/WI-003-modelar-base-de-datos-y-crear-migraciones-y-seeders-para-cursos-de-devtalles.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:backend/database/migrations/**",
+      "type": "code-glob",
+      "label": "backend/database/migrations/**"
+    },
+    {
+      "id": "code:backend/database/seeders/**",
+      "type": "code-glob",
+      "label": "backend/database/seeders/**"
+    },
+    {
+      "id": "code:backend/app/Models/Course.php",
+      "type": "code-glob",
+      "label": "backend/app/Models/Course.php"
+    },
+    {
+      "id": "initiative:cat-logo-acad-mico-de-devtalles-y-banco-de-evaluaci-n",
+      "type": "initiative",
+      "label": "Catálogo Académico de DevTalles y Banco de Evaluación"
+    },
+    {
+      "id": "candidate:WI-003",
+      "type": "roadmap-candidate",
+      "label": "WI-003"
+    },
+    {
+      "id": "wi:WI-004",
+      "type": "work-item",
+      "label": "WI-004 Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+      "path": "knowledge/delivery/work-items/draft/WI-004-disenar-estructura-y-exponer-endpoint-del-cuestionario-de-habilidades-e-intereses.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:backend/app/Http/Controllers/AssessmentController.php",
+      "type": "code-glob",
+      "label": "backend/app/Http/Controllers/AssessmentController.php"
+    },
+    {
+      "id": "code:backend/routes/api.php",
+      "type": "code-glob",
+      "label": "backend/routes/api.php"
+    },
+    {
+      "id": "code:backend/database/seeders/QuestionnaireSeeder.php",
+      "type": "code-glob",
+      "label": "backend/database/seeders/QuestionnaireSeeder.php"
+    },
+    {
+      "id": "candidate:WI-004",
+      "type": "roadmap-candidate",
+      "label": "WI-004"
+    },
+    {
+      "id": "wi:WI-005",
+      "type": "work-item",
+      "label": "WI-005 Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+      "path": "knowledge/delivery/work-items/draft/WI-005-implementar-flujo-backend-para-discord-oauth2-y-emision-de-tokens-sanctum.md",
+      "status": "draft",
+      "knowledge_level": "K3"
+    },
+    {
+      "id": "code:backend/app/Http/Controllers/Auth/**",
+      "type": "code-glob",
+      "label": "backend/app/Http/Controllers/Auth/**"
+    },
+    {
+      "id": "code:backend/app/Services/DiscordOAuthService.php",
+      "type": "code-glob",
+      "label": "backend/app/Services/DiscordOAuthService.php"
+    },
+    {
+      "id": "initiative:autenticaci-n-e-identidad-con-discord-oauth2",
+      "type": "initiative",
+      "label": "Autenticación e Identidad con Discord OAuth2"
+    },
+    {
+      "id": "candidate:WI-005",
+      "type": "roadmap-candidate",
+      "label": "WI-005"
+    },
+    {
+      "id": "wi:WI-006",
+      "type": "work-item",
+      "label": "WI-006 Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+      "path": "knowledge/delivery/work-items/draft/WI-006-integrar-boton-de-inicio-de-sesion-con-discord-y-guards-de-autenticacion-en-angular.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/app/core/auth/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/core/auth/**"
+    },
+    {
+      "id": "code:frontend/src/app/core/guards/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/core/guards/**"
+    },
+    {
+      "id": "candidate:WI-006",
+      "type": "roadmap-candidate",
+      "label": "WI-006"
+    },
+    {
+      "id": "wi:WI-007",
+      "type": "work-item",
+      "label": "WI-007 Desarrollar servicio de recomendación de rutas en Laravel",
+      "path": "knowledge/delivery/work-items/draft/WI-007-desarrollar-servicio-de-recomendacion-de-rutas-en-laravel.md",
+      "status": "draft",
+      "knowledge_level": "K3"
+    },
+    {
+      "id": "code:backend/app/Services/LearningPathGeneratorService.php",
+      "type": "code-glob",
+      "label": "backend/app/Services/LearningPathGeneratorService.php"
+    },
+    {
+      "id": "code:backend/app/Http/Controllers/LearningPathController.php",
+      "type": "code-glob",
+      "label": "backend/app/Http/Controllers/LearningPathController.php"
+    },
+    {
+      "id": "initiative:motor-de-recomendaci-n-y-generaci-n-de-rutas",
+      "type": "initiative",
+      "label": "Motor de Recomendación y Generación de Rutas"
+    },
+    {
+      "id": "candidate:WI-007",
+      "type": "roadmap-candidate",
+      "label": "WI-007"
+    },
+    {
+      "id": "wi:WI-008",
+      "type": "work-item",
+      "label": "WI-008 Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+      "path": "knowledge/delivery/work-items/draft/WI-008-construir-interfaz-paso-a-paso-del-cuestionario-diagnostico-en-angular.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/app/features/assessment/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/features/assessment/**"
+    },
+    {
+      "id": "candidate:WI-008",
+      "type": "roadmap-candidate",
+      "label": "WI-008"
+    },
+    {
+      "id": "wi:WI-009",
+      "type": "work-item",
+      "label": "WI-009 Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+      "path": "knowledge/delivery/work-items/draft/WI-009-implementar-endpoints-para-persistencia-y-gestion-de-multiples-rutas-en-laravel.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:backend/app/Models/LearningPath.php",
+      "type": "code-glob",
+      "label": "backend/app/Models/LearningPath.php"
+    },
+    {
+      "id": "initiative:gesti-n-persistencia-y-visualizaci-n-de-rutas",
+      "type": "initiative",
+      "label": "Gestión, Persistencia y Visualización de Rutas"
+    },
+    {
+      "id": "candidate:WI-009",
+      "type": "roadmap-candidate",
+      "label": "WI-009"
+    },
+    {
+      "id": "wi:WI-010",
+      "type": "work-item",
+      "label": "WI-010 Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+      "path": "knowledge/delivery/work-items/draft/WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/app/features/paths/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/features/paths/**"
+    },
+    {
+      "id": "candidate:WI-010",
+      "type": "roadmap-candidate",
+      "label": "WI-010"
+    },
+    {
+      "id": "wi:WI-011",
+      "type": "work-item",
+      "label": "WI-011 Desarrollar endpoints para registrar el progreso de cursos por usuario",
+      "path": "knowledge/delivery/work-items/draft/WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:backend/app/Models/CourseProgress.php",
+      "type": "code-glob",
+      "label": "backend/app/Models/CourseProgress.php"
+    },
+    {
+      "id": "code:backend/app/Http/Controllers/ProgressController.php",
+      "type": "code-glob",
+      "label": "backend/app/Http/Controllers/ProgressController.php"
+    },
+    {
+      "id": "initiative:seguimiento-de-progreso-y-m-tricas-de-completitud",
+      "type": "initiative",
+      "label": "Seguimiento de Progreso y Métricas de Completitud"
+    },
+    {
+      "id": "candidate:WI-011",
+      "type": "roadmap-candidate",
+      "label": "WI-011"
+    },
+    {
+      "id": "wi:WI-012",
+      "type": "work-item",
+      "label": "WI-012 Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+      "path": "knowledge/delivery/work-items/draft/WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md",
+      "status": "draft",
+      "knowledge_level": "K2"
+    },
+    {
+      "id": "code:frontend/src/app/features/progress/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/features/progress/**"
+    },
+    {
+      "id": "code:frontend/src/app/features/paths/components/**",
+      "type": "code-glob",
+      "label": "frontend/src/app/features/paths/components/**"
+    },
+    {
+      "id": "candidate:WI-012",
+      "type": "roadmap-candidate",
+      "label": "WI-012"
+    }
+  ],
+  "edges": [
+    {
+      "from": "business:business",
+      "to": "product:product",
+      "type": "informs"
+    },
+    {
+      "from": "product:product",
+      "to": "tech:tech",
+      "type": "informs"
+    },
+    {
+      "from": "tech:tech",
+      "to": "delivery:delivery",
+      "type": "informs"
+    },
+    {
+      "from": "wi:WI-002",
+      "to": "code:frontend/src/app/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-002",
+      "to": "code:frontend/src/styles.css",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-002",
+      "to": "code:frontend/tailwind.config.js",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-002",
+      "to": "initiative:configuraci-n-de-infraestructura-y-monorepo",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-002",
+      "to": "wi:WI-002",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-003",
+      "to": "code:backend/database/migrations/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-003",
+      "to": "code:backend/database/seeders/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-003",
+      "to": "code:backend/app/Models/Course.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-003",
+      "to": "initiative:cat-logo-acad-mico-de-devtalles-y-banco-de-evaluaci-n",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-003",
+      "to": "wi:WI-003",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-004",
+      "to": "code:backend/app/Http/Controllers/AssessmentController.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-004",
+      "to": "code:backend/routes/api.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-004",
+      "to": "code:backend/database/seeders/QuestionnaireSeeder.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-004",
+      "to": "initiative:cat-logo-acad-mico-de-devtalles-y-banco-de-evaluaci-n",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-004",
+      "to": "wi:WI-004",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-005",
+      "to": "code:backend/app/Http/Controllers/Auth/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-005",
+      "to": "code:backend/app/Services/DiscordOAuthService.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-005",
+      "to": "code:backend/routes/api.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-005",
+      "to": "initiative:autenticaci-n-e-identidad-con-discord-oauth2",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-005",
+      "to": "wi:WI-005",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-006",
+      "to": "code:frontend/src/app/core/auth/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-006",
+      "to": "code:frontend/src/app/core/guards/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-006",
+      "to": "initiative:autenticaci-n-e-identidad-con-discord-oauth2",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-006",
+      "to": "wi:WI-006",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-007",
+      "to": "code:backend/app/Services/LearningPathGeneratorService.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-007",
+      "to": "code:backend/app/Http/Controllers/LearningPathController.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-007",
+      "to": "initiative:motor-de-recomendaci-n-y-generaci-n-de-rutas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-007",
+      "to": "wi:WI-007",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-008",
+      "to": "code:frontend/src/app/features/assessment/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-008",
+      "to": "initiative:motor-de-recomendaci-n-y-generaci-n-de-rutas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-008",
+      "to": "wi:WI-008",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "code:backend/app/Models/LearningPath.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "code:backend/app/Http/Controllers/LearningPathController.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "code:backend/routes/api.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-009",
+      "to": "initiative:gesti-n-persistencia-y-visualizaci-n-de-rutas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-009",
+      "to": "wi:WI-009",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-010",
+      "to": "code:frontend/src/app/features/paths/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-010",
+      "to": "initiative:gesti-n-persistencia-y-visualizaci-n-de-rutas",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-010",
+      "to": "wi:WI-010",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "code:backend/app/Models/CourseProgress.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "code:backend/app/Http/Controllers/ProgressController.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "code:backend/routes/api.php",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-011",
+      "to": "initiative:seguimiento-de-progreso-y-m-tricas-de-completitud",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-011",
+      "to": "wi:WI-011",
+      "type": "materialized_as"
+    },
+    {
+      "from": "wi:WI-012",
+      "to": "code:frontend/src/app/features/progress/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-012",
+      "to": "code:frontend/src/app/features/paths/components/**",
+      "type": "owns"
+    },
+    {
+      "from": "wi:WI-012",
+      "to": "initiative:seguimiento-de-progreso-y-m-tricas-de-completitud",
+      "type": "belongs_to"
+    },
+    {
+      "from": "candidate:WI-012",
+      "to": "wi:WI-012",
+      "type": "materialized_as"
+    }
+  ]
+}

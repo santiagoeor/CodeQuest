@@ -1,0 +1,374 @@
+{
+  "generated_at": "2026-09-18T04:52:25.823Z",
+  "scope": "active",
+  "scope_reason": "Active Work Items only; completed and archived are excluded.",
+  "quality": "partial",
+  "summary": {
+    "nodes": 54,
+    "edges": 51,
+    "hints": 24
+  },
+  "metrics": {
+    "nodes_count": 54,
+    "edges_count": 51,
+    "connected_nodes_count": 54,
+    "isolated_nodes_count": 0,
+    "active_work_items_without_code": 0,
+    "active_work_items_without_capabilities": 11,
+    "work_items_without_source": 0,
+    "adrs_without_code": 0,
+    "capsules_without_related_work_items": 0
+  },
+  "hints": [
+    {
+      "artifact_id": "WI-002",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-002-configurar-sistema-de-diseno-base-y-layout-responsive-en-angular.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-002 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-003",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-003-modelar-base-de-datos-y-crear-migraciones-y-seeders-para-cursos-de-devtalles.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-003 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-004",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-004-disenar-estructura-y-exponer-endpoint-del-cuestionario-de-habilidades-e-intereses.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-004 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-005",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-005-implementar-flujo-backend-para-discord-oauth2-y-emision-de-tokens-sanctum.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-005 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-006",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-006-integrar-boton-de-inicio-de-sesion-con-discord-y-guards-de-autenticacion-en-angular.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-006 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-007",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-007-desarrollar-servicio-de-recomendacion-de-rutas-en-laravel.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-007 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-008",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-008-construir-interfaz-paso-a-paso-del-cuestionario-diagnostico-en-angular.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-008 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-009",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-009-implementar-endpoints-para-persistencia-y-gestion-de-multiples-rutas-en-laravel.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-009 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-010",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-010 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-011",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-011 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "WI-012",
+      "artifact_type": "work-item",
+      "path": "knowledge/delivery/work-items/draft/WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md",
+      "severity": "info",
+      "missing": [
+        "capabilities",
+        "decisions"
+      ],
+      "reason": "Active Work Item has limited graph relationships.",
+      "message": "WI-012 has no linked capability, linked decision.",
+      "suggested_front_matter": {
+        "capabilities": [
+          "<capability>"
+        ],
+        "decisions": [
+          "ADR-XXX"
+        ]
+      }
+    },
+    {
+      "artifact_id": "Planned capabilities",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Planned capabilities\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Capability Map",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Capability Map\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Autenticación e Identidad vía Discord OAuth2",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Autenticación e Identidad vía Discord OAuth2\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Cuestionario Interactivo de Diagnóstico y Metas",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Cuestionario Interactivo de Diagnóstico y Metas\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Catálogo Estructurado de Cursos DevTalles",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Catálogo Estructurado de Cursos DevTalles\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Motor de Generación y Recomendación de Rutas de Aprendizaje",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Motor de Generación y Recomendación de Rutas de Aprendizaje\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Gestión y Persistencia de Múltiples Rutas por Usuario",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Gestión y Persistencia de Múltiples Rutas por Usuario\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Seguimiento de Progreso y Métricas de Completitud",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Seguimiento de Progreso y Métricas de Completitud\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Visualización Interactiva de Ruta (Roadmap View)",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Visualización Interactiva de Ruta (Roadmap View)\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Cross-cutting Concerns",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Cross-cutting Concerns\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Risks",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Risks\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Open Questions",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Open Questions\" is not linked to any Work Item."
+    },
+    {
+      "artifact_id": "Suggested Next Step",
+      "artifact_type": "capability",
+      "severity": "info",
+      "missing": [
+        "work-item"
+      ],
+      "reason": "This capability is declared but no Work Item references it yet.",
+      "message": "Capability \"Suggested Next Step\" is not linked to any Work Item."
+    }
+  ]
+}
