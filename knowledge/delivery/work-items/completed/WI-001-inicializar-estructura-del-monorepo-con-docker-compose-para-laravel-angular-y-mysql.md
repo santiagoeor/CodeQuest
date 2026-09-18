@@ -5,7 +5,7 @@ title: >-
   Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y
   MySQL
 knowledge_level: K2
-status: in-progress
+status: completed
 phase: now
 initiative: Configuración de Infraestructura y Monorepo
 domains:

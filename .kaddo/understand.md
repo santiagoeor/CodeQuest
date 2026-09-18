@@ -13,14 +13,16 @@
 ## Current Phase
 
 - Phase: Active Delivery
-- Next step: Run `kaddo guard` and update affected knowledge after significant changes.
-- Reason: 1 Work Item(s) are in progress.
+- Recommended agent: work-item-agent
+- Recommended skill: work-item-refinement
+- Next step: Refine the existing draft Work Item with the work-item-agent.
+- Reason: There are 11 draft Work Items. Refine before defining roadmap candidates.
 
 ## Delivery State
 
 - Draft Work Items: 11
 - Ready Work Items: 0
-- In-progress Work Items: 1
+- In-progress Work Items: 0
 - Blocked Work Items: 0
 - Ownership coverage: 12/12
 - Remaining Work Item candidates: 0
@@ -30,20 +32,19 @@
 
 ## Project Route
 
-Route: new · Progress: 10/12
-
-Current:
-- Run guard
+Route: new · Progress: 11/12
 
 ## Recommended Agent Flow
 
-1. adr-writing skill
+1. work-item-agent
+2. adr-writing skill
 
 ## Primary Recommendation
 
-- id: guard
-- command: `kaddo guard`
-- reason: 1 Work Item(s) are in progress.
+- id: refine-work-item
+- agent: work-item-agent
+- skill: work-item-refinement
+- reason: There are 11 draft Work Items. Refine before defining roadmap candidates.
 
 ## Secondary Recommendations
 
@@ -73,8 +74,6 @@ Current:
   - Source: roadmap · WI-011
 - WI-012 [feature] draft — Integrar barra de progreso reactiva e indicadores de completitud en la SPA
   - Source: roadmap · WI-012
-- WI-001 [chore] in-progress — Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL
-  - Source: roadmap · WI-001
 
 ## Context Pack
 
@@ -82,20 +81,30 @@ Use `.kaddo/context-pack.md` as the primary input.
 
 ## Agent Prompts
 
+Use:
+
+- `knowledge/agents/delivery/work-item-agent.md`
+- `knowledge/skills/work-item-refinement/skill.md`
 - `.kaddo/context-pack.md`
 
 ## Expected Outputs
 
 The LLM should produce:
 
-- Updated knowledge artifacts reflecting recent code changes.
+- Refined Work Item content.
 
 ## Copy/Paste Instructions
 
-Paste `.kaddo/context-pack.md` into your LLM chat.
+Paste the following into your LLM chat:
+
+1. `knowledge/agents/delivery/work-item-agent.md`
+2. `knowledge/skills/work-item-refinement/skill.md`
+3. `.kaddo/context-pack.md`
+
+Ask the LLM to follow the work-item-agent instructions.
 
 ## Next Steps
 
-1. Run `kaddo guard` and update affected knowledge after significant changes.
+1. Refine the existing draft Work Item with the work-item-agent.
 2. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
 3. Re-run `kaddo explain`.

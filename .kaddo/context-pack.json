@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-18T04:28:49.888Z",
+  "generatedAt": "2026-09-18T04:50:13.269Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -222,24 +222,6 @@
           "context": "Materialized from roadmap candidate WI-012 under initiative RM-006.",
           "inferred": false
         }
-      },
-      {
-        "id": "WI-001",
-        "type": "chore",
-        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-        "status": "in-progress",
-        "lifecycle": "in-progress",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Experiencia de Usuario (User Experience)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-001",
-          "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-          "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
-          "inferred": false
-        }
       }
     ],
     "activeWorkItems": [
@@ -440,13 +422,15 @@
           "context": "Materialized from roadmap candidate WI-012 under initiative RM-006.",
           "inferred": false
         }
-      },
+      }
+    ],
+    "completedWorkItems": [
       {
         "id": "WI-001",
         "type": "chore",
         "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-        "status": "in-progress",
-        "lifecycle": "in-progress",
+        "status": "completed",
+        "lifecycle": "completed",
         "knowledgeLevel": "K2",
         "domains": [
           "Experiencia de Usuario (User Experience)"
@@ -457,12 +441,35 @@
           "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
           "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
           "inferred": false
-        }
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       }
     ],
-    "completedWorkItems": [],
     "archivedWorkItems": [],
     "allWorkItems": [
+      {
+        "id": "WI-001",
+        "type": "chore",
+        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "status": "completed",
+        "lifecycle": "completed",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-001",
+          "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+          "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
+          "inferred": false
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
+      },
       {
         "id": "WI-002",
         "type": "chore",
@@ -660,27 +667,22 @@
           "context": "Materialized from roadmap candidate WI-012 under initiative RM-006.",
           "inferred": false
         }
-      },
+      }
+    ],
+    "artifacts": [
       {
         "id": "WI-001",
         "type": "chore",
         "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-        "status": "in-progress",
-        "lifecycle": "in-progress",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Experiencia de Usuario (User Experience)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-001",
-          "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-          "context": "Materialized from roadmap candidate WI-001 under initiative RM-001.",
-          "inferred": false
-        }
-      }
-    ],
-    "artifacts": [
+        "summary": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "codeGlobs": [
+          "docker-compose.yml",
+          "backend/**",
+          "frontend/**",
+          "Makefile",
+          "README.md"
+        ]
+      },
       {
         "id": "WI-002",
         "type": "chore",
@@ -794,19 +796,6 @@
           "frontend/src/app/features/progress/**",
           "frontend/src/app/features/paths/components/**"
         ]
-      },
-      {
-        "id": "WI-001",
-        "type": "chore",
-        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-        "summary": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
-        "codeGlobs": [
-          "docker-compose.yml",
-          "backend/**",
-          "frontend/**",
-          "Makefile",
-          "README.md"
-        ]
       }
     ]
   },
@@ -900,28 +889,26 @@
     "reasons": [
       "Roadmap available",
       "12 materialized work item(s)",
-      "draft: 11, in-progress: 1",
+      "draft: 11",
       "Ownership coverage 100%"
     ],
     "recommendedAgents": [
-      "implementation-agent",
-      "kaddo scan",
-      "kaddo owners suggest",
-      "kaddo guard"
+      "work-item-agent"
     ],
-    "nextStep": "Run `kaddo guard` and update affected knowledge after significant changes.",
+    "nextStep": "Refine the existing draft Work Item with the work-item-agent.",
     "llmInstructions": [
-      "Continue the in-progress Work Item with the implementation-agent.",
-      "After changes, run `kaddo scan`, `kaddo owners suggest` and `kaddo guard`.",
-      "Do not commit, push or merge without explicit human confirmation."
+      "Refine draft Work Items to ready.",
+      "Use the work-item-agent.",
+      "Do not implement unless the user explicitly asks."
     ]
   },
   "nextStepRecommendation": {
-    "id": "guard",
+    "id": "refine-work-item",
     "phase": "Active Delivery",
-    "label": "Run `kaddo guard` and update affected knowledge after significant changes.",
-    "command": "kaddo guard",
-    "reason": "1 Work Item(s) are in progress.",
+    "label": "Refine the existing draft Work Item with the work-item-agent.",
+    "agent": "work-item-agent",
+    "skill": "work-item-refinement",
+    "reason": "There are 11 draft Work Items. Refine before defining roadmap candidates.",
     "secondary": [
       {
         "id": "materialize-adrs",
@@ -940,7 +927,7 @@
     "ready_work_items": 0,
     "ready_work_item_ids": [],
     "ready_multirepo_wi_ids": [],
-    "in_progress_work_items": 1,
+    "in_progress_work_items": 0,
     "blocked_work_items": 0,
     "total_work_items": 12,
     "ownership_coverage": "12/12",
@@ -1076,17 +1063,17 @@
   },
   "workItemSummary": {
     "total": 12,
-    "active": 12,
+    "active": 11,
     "draft": 11,
     "ready": 0,
-    "in_progress": 1,
+    "in_progress": 0,
     "blocked": 0,
-    "completed": 0,
+    "completed": 1,
     "archived": 0,
-    "summary": "active"
+    "summary": "draft-only"
   },
   "deliveryMix": {
-    "chore": 3,
+    "chore": 2,
     "feature": 9
   },
   "external": [],
@@ -1177,9 +1164,9 @@
   "projectRoute": {
     "type": "new",
     "currentStep": "run-guard",
-    "completed": 10,
+    "completed": 11,
     "total": 12,
-    "progressPercent": 83,
+    "progressPercent": 92,
     "steps": [
       {
         "id": "enable-kaddo",
@@ -1256,13 +1243,12 @@
       {
         "id": "run-guard",
         "label": "Run guard",
-        "status": "current",
-        "command": "kaddo guard"
+        "status": "pending"
       },
       {
         "id": "capture-learning",
         "label": "Capture learning",
-        "status": "next"
+        "status": "done"
       }
     ]
   },
@@ -1280,18 +1266,15 @@
   ],
   "handoff": {
     "recommendedAgents": [
-      "implementation-agent",
-      "kaddo scan",
-      "kaddo owners suggest",
-      "kaddo guard"
+      "work-item-agent"
     ],
     "nextSteps": [
-      "Run `kaddo guard` and update affected knowledge after significant changes."
+      "Refine the existing draft Work Item with the work-item-agent."
     ],
     "instructions": [
-      "Continue the in-progress Work Item with the implementation-agent.",
-      "After changes, run `kaddo scan`, `kaddo owners suggest` and `kaddo guard`.",
-      "Do not commit, push or merge without explicit human confirmation."
+      "Refine draft Work Items to ready.",
+      "Use the work-item-agent.",
+      "Do not implement unless the user explicitly asks."
     ],
     "operatingRules": [
       "**Never run `git commit`, `git push` or `git merge` without explicit human confirmation.**",

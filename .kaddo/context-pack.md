@@ -26,28 +26,29 @@ Reason:
 
 - Roadmap available
 - 12 materialized work item(s)
-- draft: 11, in-progress: 1
+- draft: 11
 - Ownership coverage 100%
 
-Recommended next: implementation-agent, kaddo scan, kaddo owners suggest, kaddo guard
+Recommended next: work-item-agent
 
-Next step: Run `kaddo guard` and update affected knowledge after significant changes.
+Next step: Refine the existing draft Work Item with the work-item-agent.
 
 ## Delivery State
 
 - Phase: Active Delivery
 - Draft Work Items: 11
 - Ready Work Items: 0
-- In-progress Work Items: 1
+- In-progress Work Items: 0
 - Ownership coverage: 12/12
 - Remaining Work Item candidates: 0
 
 ## Next Step Recommendation
 
-- Run `kaddo guard` and update affected knowledge after significant changes.
-  - id: guard
-  - reason: 1 Work Item(s) are in progress.
-  - command: `kaddo guard`
+- Refine the existing draft Work Item with the work-item-agent.
+  - id: refine-work-item
+  - reason: There are 11 draft Work Items. Refine before defining roadmap candidates.
+  - agent: work-item-agent
+  - skill: work-item-refinement
 
 Also (secondary):
 
@@ -55,10 +56,7 @@ Also (secondary):
 
 ## Project Route
 
-Route: new · Progress: 10/12
-
-Current:
-- Run guard
+Route: new · Progress: 11/12
 
 ## Knowledge Layers
 
@@ -162,18 +160,17 @@ Work Item Candidates:
   - Source: roadmap · WI-011
 - WI-012 [feature] [K2] (draft) — Integrar barra de progreso reactiva e indicadores de completitud en la SPA · domains: Seguimiento de Aprendizaje (Learning Tracking)
   - Source: roadmap · WI-012
-- WI-001 [chore] [K2] (in-progress) — Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL · domains: Experiencia de Usuario (User Experience)
-  - Source: roadmap · WI-001
 
 ## Delivery Mix
 
 Active Work Items by type:
 
 - Features: 9
-- Chores: 3
+- Chores: 2
 
 ## Artifacts and Ownership
 
+- WI-001 [chore] owns: docker-compose.yml, backend/**, frontend/**, Makefile, README.md
 - WI-002 [chore] owns: frontend/src/app/**, frontend/src/styles.css, frontend/tailwind.config.js
 - WI-003 [chore] owns: backend/database/migrations/**, backend/database/seeders/**, backend/app/Models/Course.php
 - WI-004 [feature] owns: backend/app/Http/Controllers/AssessmentController.php, backend/routes/api.php, backend/database/seeders/QuestionnaireSeeder.php
@@ -185,7 +182,6 @@ Active Work Items by type:
 - WI-010 [feature] owns: frontend/src/app/features/paths/**
 - WI-011 [feature] owns: backend/app/Models/CourseProgress.php, backend/app/Http/Controllers/ProgressController.php, backend/routes/api.php
 - WI-012 [feature] owns: frontend/src/app/features/progress/**, frontend/src/app/features/paths/components/**
-- WI-001 [chore] owns: docker-compose.yml, backend/**, frontend/**, Makefile, README.md
 
 ## Skills
 
@@ -209,17 +205,14 @@ Read full skill definitions in `knowledge/skills/` or via the Kaddo MCP server (
 
 Recommended next for the **Active Delivery** phase:
 
-1. implementation-agent
-2. kaddo scan
-3. kaddo owners suggest
-4. kaddo guard
+1. work-item-agent
 
 Next step:
 
-- Run `kaddo guard` and update affected knowledge after significant changes.
+- Refine the existing draft Work Item with the work-item-agent.
 
 ## Instructions for the LLM
 
-- Continue the in-progress Work Item with the implementation-agent.
-- After changes, run `kaddo scan`, `kaddo owners suggest` and `kaddo guard`.
-- Do not commit, push or merge without explicit human confirmation.
+- Refine draft Work Items to ready.
+- Use the work-item-agent.
+- Do not implement unless the user explicitly asks.
