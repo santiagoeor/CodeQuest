@@ -1,0 +1,1031 @@
+{
+  "project": {
+    "name": "CodeQuest",
+    "state": "new",
+    "teamSize": "small",
+    "structure": "monorepo",
+    "language": "Spanish"
+  },
+  "stack": {
+    "sourceDirectories": [],
+    "migrationDirectories": [],
+    "contractFiles": [],
+    "infrastructureFiles": [
+      "docker-compose.yml"
+    ]
+  },
+  "knowledge": {
+    "hasScan": true,
+    "hasInventory": true,
+    "hasContextPack": true,
+    "hasUnderstand": true,
+    "hasBusiness": true,
+    "hasProduct": true,
+    "hasCapabilities": true,
+    "hasArchitecture": true,
+    "hasRoadmap": true,
+    "hasAgents": true,
+    "hasSkills": true
+  },
+  "workItems": {
+    "total": 12,
+    "inProgress": 0,
+    "done": 0,
+    "cancelled": 0,
+    "byState": {
+      "draft": 11,
+      "ready": 0,
+      "in-progress": 0,
+      "blocked": 0,
+      "completed": 1,
+      "archived": 0
+    },
+    "byType": {
+      "chore": 3,
+      "feature": 9
+    },
+    "initiatives": [
+      {
+        "name": "Autenticación e Identidad con Discord OAuth2",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
+          "archived": 0
+        }
+      },
+      {
+        "name": "Catálogo Académico de DevTalles y Banco de Evaluación",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
+          "archived": 0
+        }
+      },
+      {
+        "name": "Configuración de Infraestructura y Monorepo",
+        "states": {
+          "draft": 1,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 1,
+          "archived": 0
+        }
+      },
+      {
+        "name": "Gestión, Persistencia y Visualización de Rutas",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
+          "archived": 0
+        }
+      },
+      {
+        "name": "Motor de Recomendación y Generación de Rutas",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
+          "archived": 0
+        }
+      },
+      {
+        "name": "Seguimiento de Progreso y Métricas de Completitud",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
+          "archived": 0
+        }
+      }
+    ],
+    "items": [
+      {
+        "id": "WI-001",
+        "title": "Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
+        "type": "chore",
+        "status": "completed",
+        "lifecycle": "completed",
+        "initiative": "Configuración de Infraestructura y Monorepo",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-001",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-002",
+        "title": "Configurar sistema de diseño base y layout responsive en Angular",
+        "type": "chore",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Configuración de Infraestructura y Monorepo",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Experiencia de Usuario (User Experience)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-002",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-003",
+        "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
+        "type": "chore",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Catálogo Académico de DevTalles y Banco de Evaluación",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-003",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-004",
+        "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Catálogo Académico de DevTalles y Banco de Evaluación",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-004",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-005",
+        "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Autenticación e Identidad con Discord OAuth2",
+        "knowledgeLevel": "K3",
+        "hasOwnership": true,
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-005",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-006",
+        "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Autenticación e Identidad con Discord OAuth2",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-006",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-007",
+        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Motor de Recomendación y Generación de Rutas",
+        "knowledgeLevel": "K3",
+        "hasOwnership": true,
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-007",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-008",
+        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Motor de Recomendación y Generación de Rutas",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-008",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-009",
+        "title": "Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Gestión, Persistencia y Visualización de Rutas",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-009",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-010",
+        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Gestión, Persistencia y Visualización de Rutas",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-010",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-011",
+        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Seguimiento de Progreso y Métricas de Completitud",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-011",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-012",
+        "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Seguimiento de Progreso y Métricas de Completitud",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-012",
+          "inferred": false
+        }
+      }
+    ]
+  },
+  "ownership": {
+    "workItemsTotal": 12,
+    "workItemsWithOwnership": 12,
+    "workItemsMissingOwnership": 0
+  },
+  "domains": [
+    "Experiencia de Usuario (User Experience)",
+    "Catálogo Académico (Course Catalog)",
+    "Identidad y Acceso (Identity & Access)",
+    "Motor de Recomendación (Recommendation Engine)",
+    "Gestión de Rutas (Path Management)",
+    "Seguimiento de Aprendizaje (Learning Tracking)"
+  ],
+  "duplicateWorkItems": [],
+  "externalCapsules": [],
+  "graph": {
+    "generatedAt": "2026-09-18T04:52:25.782Z",
+    "scope": "active",
+    "scopeReason": "Active Work Items only; completed and archived are excluded.",
+    "includedStatuses": [
+      "draft",
+      "ready",
+      "in-progress",
+      "blocked"
+    ],
+    "excludedStatuses": [
+      "completed",
+      "archived"
+    ],
+    "nodes": 54,
+    "edges": 51,
+    "activeWorkItemsConnectedToCode": 11
+  },
+  "graphHints": {
+    "scope": "active",
+    "scopeReason": "Active Work Items only; completed and archived are excluded.",
+    "quality": "partial",
+    "totalHints": 24,
+    "activeWorkItemHints": 11,
+    "messages": [
+      "WI-002 has no linked capability, linked decision.",
+      "WI-003 has no linked capability, linked decision.",
+      "WI-004 has no linked capability, linked decision.",
+      "WI-005 has no linked capability, linked decision.",
+      "WI-006 has no linked capability, linked decision.",
+      "WI-007 has no linked capability, linked decision.",
+      "WI-008 has no linked capability, linked decision.",
+      "WI-009 has no linked capability, linked decision.",
+      "WI-010 has no linked capability, linked decision.",
+      "WI-011 has no linked capability, linked decision.",
+      "WI-012 has no linked capability, linked decision.",
+      "Capability \"Planned capabilities\" is not linked to any Work Item.",
+      "Capability \"Capability Map\" is not linked to any Work Item.",
+      "Capability \"Autenticación e Identidad vía Discord OAuth2\" is not linked to any Work Item.",
+      "Capability \"Cuestionario Interactivo de Diagnóstico y Metas\" is not linked to any Work Item.",
+      "Capability \"Catálogo Estructurado de Cursos DevTalles\" is not linked to any Work Item.",
+      "Capability \"Motor de Generación y Recomendación de Rutas de Aprendizaje\" is not linked to any Work Item.",
+      "Capability \"Gestión y Persistencia de Múltiples Rutas por Usuario\" is not linked to any Work Item.",
+      "Capability \"Seguimiento de Progreso y Métricas de Completitud\" is not linked to any Work Item.",
+      "Capability \"Visualización Interactiva de Ruta (Roadmap View)\" is not linked to any Work Item.",
+      "Capability \"Cross-cutting Concerns\" is not linked to any Work Item.",
+      "Capability \"Risks\" is not linked to any Work Item.",
+      "Capability \"Open Questions\" is not linked to any Work Item.",
+      "Capability \"Suggested Next Step\" is not linked to any Work Item."
+    ]
+  },
+  "skills": {
+    "total": 7,
+    "byGroup": {
+      "tech": 4,
+      "delivery": 3
+    }
+  },
+  "layers": [
+    {
+      "layer": "Business",
+      "status": "Consolidated",
+      "detected": [
+        "business.md"
+      ]
+    },
+    {
+      "layer": "Product",
+      "status": "Structured",
+      "detected": [
+        "capabilities.md",
+        "product.md"
+      ]
+    },
+    {
+      "layer": "Tech",
+      "status": "Structured",
+      "detected": [
+        "architecture-notes.md",
+        "codebase.md",
+        "current-state.md",
+        "decision-candidates.md",
+        "knowledge.md"
+      ]
+    },
+    {
+      "layer": "Delivery",
+      "status": "Traceable",
+      "detected": [
+        "WI-001-inicializar-estructura-del-monorepo-con-docker-compose-para-laravel-angular-y-mysql.md",
+        "WI-002-configurar-sistema-de-diseno-base-y-layout-responsive-en-angular.md",
+        "WI-003-modelar-base-de-datos-y-crear-migraciones-y-seeders-para-cursos-de-devtalles.md",
+        "WI-004-disenar-estructura-y-exponer-endpoint-del-cuestionario-de-habilidades-e-intereses.md",
+        "WI-005-implementar-flujo-backend-para-discord-oauth2-y-emision-de-tokens-sanctum.md",
+        "WI-006-integrar-boton-de-inicio-de-sesion-con-discord-y-guards-de-autenticacion-en-angular.md",
+        "WI-007-desarrollar-servicio-de-recomendacion-de-rutas-en-laravel.md",
+        "WI-008-construir-interfaz-paso-a-paso-del-cuestionario-diagnostico-en-angular.md",
+        "WI-009-implementar-endpoints-para-persistencia-y-gestion-de-multiples-rutas-en-laravel.md",
+        "WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md",
+        "WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md",
+        "WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md",
+        "roadmap.md"
+      ]
+    }
+  ],
+  "roadmap": {
+    "present": true,
+    "initiatives": 6,
+    "work_item_candidates": 12,
+    "materialized_work_items": 12,
+    "remaining_work_item_candidates": 0,
+    "candidates": 12,
+    "materialized": 12,
+    "remaining": 0
+  },
+  "missingKnowledge": [],
+  "suggestedNextSteps": [],
+  "readiness": {
+    "project_name": "CodeQuest",
+    "project_type": "new",
+    "overall": "not-applicable",
+    "signals": {
+      "scan": "missing",
+      "understand": "missing",
+      "bootstrap_baseline": "incomplete",
+      "agents": "missing",
+      "skills": "missing",
+      "current_state": "missing",
+      "codebase": "missing",
+      "capabilities": "missing",
+      "product": "missing",
+      "business": "missing",
+      "roadmap": "missing",
+      "work_items": "none",
+      "adapters": [],
+      "blocking_open_questions": 0,
+      "assumed_questions": 0,
+      "resolved_questions": 0,
+      "deferred_questions": 0
+    },
+    "recommended_next_step": {
+      "label": "This project uses the standard new-project Kaddo flow."
+    },
+    "nextStepRecommendation": {
+      "id": "refine-work-item",
+      "phase": "Active Delivery",
+      "label": "Refine the existing draft Work Item with the work-item-agent.",
+      "agent": "work-item-agent",
+      "skill": "work-item-refinement",
+      "reason": "There are 11 draft Work Items. Refine before defining roadmap candidates.",
+      "secondary": [
+        {
+          "id": "materialize-adrs",
+          "label": "Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.",
+          "command": "kaddo adr",
+          "skill": "adr-writing",
+          "reason": "There are 3 technical decision candidate(s) and 0 accepted ADR(s)."
+        }
+      ]
+    }
+  },
+  "nextStepRecommendation": {
+    "id": "refine-work-item",
+    "phase": "Active Delivery",
+    "label": "Refine the existing draft Work Item with the work-item-agent.",
+    "agent": "work-item-agent",
+    "skill": "work-item-refinement",
+    "reason": "There are 11 draft Work Items. Refine before defining roadmap candidates.",
+    "secondary": [
+      {
+        "id": "materialize-adrs",
+        "label": "Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.",
+        "command": "kaddo adr",
+        "skill": "adr-writing",
+        "reason": "There are 3 technical decision candidate(s) and 0 accepted ADR(s)."
+      }
+    ]
+  },
+  "techDecisions": {
+    "status": "candidates",
+    "candidates": 3,
+    "adrs": 0,
+    "draft_adrs": 0,
+    "accepted_adrs": 0,
+    "candidate_list": [
+      {
+        "title": "DC-001: Autenticación API mediante Laravel Sanctum",
+        "source": "knowledge/tech/discovery/decision-candidates.md",
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
+      },
+      {
+        "title": "DC-002: Algoritmo Determinista de Recomendación en Backend",
+        "source": "knowledge/tech/discovery/decision-candidates.md",
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
+      },
+      {
+        "title": "DC-003: Renderizado de Rutas de Aprendizaje en Angular",
+        "source": "knowledge/tech/discovery/decision-candidates.md",
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-003-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
+      }
+    ],
+    "candidates_source": "knowledge/tech/discovery/decision-candidates.md",
+    "candidates_legacy_location": false,
+    "candidates_both_exist": false
+  },
+  "techKnowledge": {
+    "core": {
+      "currentState": true,
+      "codebase": true
+    },
+    "discovery": {
+      "architectureNotes": true,
+      "decisionCandidates": true,
+      "legacyLocation": false
+    }
+  },
+  "installedAssets": {
+    "version": "3.68.0",
+    "agents": {
+      "total": 20,
+      "up_to_date": 11,
+      "outdated": 0,
+      "missing": 9,
+      "unknown_version": 0,
+      "modified": 0,
+      "items": [
+        {
+          "name": "capability-agent",
+          "path": "knowledge/agents/product/capability-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "architecture-agent",
+          "path": "knowledge/agents/tech/architecture-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "roadmap-agent",
+          "path": "knowledge/agents/delivery/roadmap-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "legacy-agent",
+          "path": "knowledge/agents/utilities/legacy-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "adr-agent",
+          "path": "knowledge/agents/tech/adr-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "work-item-agent",
+          "path": "knowledge/agents/delivery/work-item-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "git-strategy-agent",
+          "path": "knowledge/agents/delivery/git-strategy-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "security-agent",
+          "path": "knowledge/agents/tech/security-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "standards-agent",
+          "path": "knowledge/agents/tech/standards-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "stack-agent",
+          "path": "knowledge/agents/tech/stack-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "module-design-agent",
+          "path": "knowledge/agents/tech/module-design-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "module-context-agent",
+          "path": "knowledge/agents/tech/module-context-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "business-agent",
+          "path": "knowledge/agents/business/business-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "bootstrap-agent",
+          "path": "knowledge/agents/product/bootstrap-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "codebase-agent",
+          "path": "knowledge/agents/tech/codebase-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "implementation-agent",
+          "path": "knowledge/agents/delivery/implementation-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "backlog-agent",
+          "path": "knowledge/agents/delivery/backlog-agent.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "ownership-agent",
+          "path": "knowledge/agents/delivery/ownership-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "capsule-agent",
+          "path": "knowledge/agents/tech/capsule-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "graph-agent",
+          "path": "knowledge/agents/tech/graph-agent.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        }
+      ]
+    },
+    "skills": {
+      "total": 8,
+      "up_to_date": 7,
+      "outdated": 0,
+      "missing": 1,
+      "unknown_version": 0,
+      "modified": 0,
+      "items": [
+        {
+          "name": "adr-writing",
+          "path": "knowledge/skills/adr-writing/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "work-item-refinement",
+          "path": "knowledge/skills/work-item-refinement/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "ownership-suggestion",
+          "path": "knowledge/skills/ownership-suggestion/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "graph-metadata-review",
+          "path": "knowledge/skills/graph-metadata-review/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "capsule-writing",
+          "path": "knowledge/skills/capsule-writing/skill.md",
+          "available": "3.68.0",
+          "installed": null,
+          "state": "missing"
+        },
+        {
+          "name": "learning-capture",
+          "path": "knowledge/skills/learning-capture/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "implementation-planning",
+          "path": "knowledge/skills/implementation-planning/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        },
+        {
+          "name": "module-context-refinement",
+          "path": "knowledge/skills/module-context-refinement/skill.md",
+          "available": "3.68.0",
+          "installed": "3.68.0",
+          "state": "up-to-date"
+        }
+      ]
+    }
+  },
+  "roadmapQuality": {
+    "initiatives": {
+      "total": 6,
+      "grounded": 6,
+      "with_related_domain": 6,
+      "with_related_capability": 6,
+      "with_source_signals": 6,
+      "needs_refinement": false,
+      "items": [
+        {
+          "id": "RM-001",
+          "title": "Configuración de Infraestructura y Monorepo",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        },
+        {
+          "id": "RM-002",
+          "title": "Catálogo Académico de DevTalles y Banco de Evaluación",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        },
+        {
+          "id": "RM-003",
+          "title": "Autenticación e Identidad con Discord OAuth2",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        },
+        {
+          "id": "RM-004",
+          "title": "Motor de Recomendación y Generación de Rutas",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        },
+        {
+          "id": "RM-005",
+          "title": "Gestión, Persistencia y Visualización de Rutas",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        },
+        {
+          "id": "RM-006",
+          "title": "Seguimiento de Progreso y Métricas de Completitud",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        }
+      ]
+    },
+    "work_item_candidates": {
+      "total": 12,
+      "with_source_initiative": 12,
+      "with_related_domain": 0,
+      "with_related_capability": 0
+    }
+  },
+  "projectRoute": {
+    "type": "new",
+    "currentStep": "run-guard",
+    "completed": 11,
+    "total": 12,
+    "progressPercent": 92,
+    "steps": [
+      {
+        "id": "enable-kaddo",
+        "label": "Enable Kaddo",
+        "status": "done",
+        "evidence": [
+          ".kaddo/config.yml"
+        ]
+      },
+      {
+        "id": "define-business",
+        "label": "Define business context",
+        "status": "done",
+        "evidence": [
+          "knowledge/business/business.md"
+        ]
+      },
+      {
+        "id": "define-product",
+        "label": "Define product context",
+        "status": "done",
+        "evidence": [
+          "knowledge/product/product.md"
+        ]
+      },
+      {
+        "id": "discover-capabilities",
+        "label": "Define initial capabilities",
+        "status": "done",
+        "evidence": [
+          "knowledge/product/capabilities.md"
+        ]
+      },
+      {
+        "id": "describe-architecture",
+        "label": "Define initial architecture",
+        "status": "done",
+        "evidence": [
+          "knowledge/tech/current-state.md",
+          "knowledge/tech/codebase.md"
+        ]
+      },
+      {
+        "id": "create-work-source",
+        "label": "Create initial work source",
+        "status": "done",
+        "evidence": [
+          "knowledge/delivery/roadmap.md"
+        ]
+      },
+      {
+        "id": "materialize-work-item",
+        "label": "Create first Work Item",
+        "status": "done",
+        "evidence": [
+          "knowledge/delivery/work-items/"
+        ]
+      },
+      {
+        "id": "refine-work-item",
+        "label": "Refine Work Item",
+        "status": "done"
+      },
+      {
+        "id": "suggest-ownership",
+        "label": "Suggest ownership",
+        "status": "done"
+      },
+      {
+        "id": "prepare-implementation",
+        "label": "Prepare implementation",
+        "status": "done"
+      },
+      {
+        "id": "run-guard",
+        "label": "Run guard",
+        "status": "pending"
+      },
+      {
+        "id": "capture-learning",
+        "label": "Capture learning",
+        "status": "done"
+      }
+    ]
+  },
+  "scanSignals": {
+    "auth": [],
+    "payments": [],
+    "webhooks": [],
+    "storage": [],
+    "background_jobs": [],
+    "email": [],
+    "database": [],
+    "migrations": [],
+    "api_routes": [],
+    "tests": [
+      {
+        "type": "tests",
+        "label": "No test directory detected",
+        "confidence": "high",
+        "evidence": [],
+        "recommended_review": "Confirm how this project is validated before production changes."
+      }
+    ],
+    "security": [
+      {
+        "type": "security",
+        "label": "Secret-bearing environment variables",
+        "confidence": "medium",
+        "evidence": [
+          "APP_KEY",
+          "DB_PASSWORD",
+          "DB_ROOT_PASSWORD",
+          "DISCORD_CLIENT_SECRET"
+        ],
+        "recommended_review": "Confirm secret rotation and endpoint protection strategy."
+      }
+    ],
+    "infrastructure": [
+      {
+        "type": "infrastructure",
+        "label": "Docker Compose",
+        "confidence": "high",
+        "evidence": [
+          "docker-compose.yml"
+        ]
+      }
+    ],
+    "external_integrations": [],
+    "environment": [
+      {
+        "type": "environment",
+        "label": "19 environment variable(s) detected",
+        "confidence": "high",
+        "evidence": [
+          "APP_DEBUG",
+          "APP_ENV",
+          "APP_KEY",
+          "APP_NAME",
+          "APP_URL",
+          "BACKEND_PORT",
+          "DB_CONNECTION",
+          "DB_DATABASE",
+          "DB_HOST",
+          "DB_PASSWORD",
+          "DB_PORT",
+          "DB_ROOT_PASSWORD",
+          "DB_USERNAME",
+          "DISCORD_CLIENT_ID",
+          "DISCORD_CLIENT_SECRET",
+          "DISCORD_FRONTEND_REDIRECT",
+          "DISCORD_REDIRECT_URI",
+          "FRONTEND_PORT",
+          "FRONTEND_URL"
+        ]
+      }
+    ]
+  },
+  "metadataHealth": {
+    "findings": [],
+    "healthy": 6,
+    "drifted": 0
+  },
+  "isModuleRepo": false,
+  "deliverySummary": {
+    "completedWorkItems": 1,
+    "archivedWorkItems": 0,
+    "activeWorkItems": 11,
+    "implementationCompleted": 0,
+    "releaseBlocked": 0,
+    "releaseReady": 0
+  },
+  "scopeCoverage": [],
+  "implementationEvidence": [],
+  "mapped_modules": []
+}
