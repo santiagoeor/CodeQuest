@@ -1,0 +1,27 @@
+version: 1
+project:
+  name: CodeQuest
+  state: new
+  structure: monorepo
+  language: es
+  domains: []
+team:
+  size: small
+knowledge:
+  default_level: K2
+guard:
+  silent_without_ownership: true
+scan:
+  language: unknown
+  framework: unknown
+  packageManager: unknown
+  codeDirs: []
+module_agents:
+  installed: true
+  installed_at: 2026-09-18
+modules:
+  - agents
+  - skills
+module_skills:
+  installed: true
+  installed_at: 2026-09-18
