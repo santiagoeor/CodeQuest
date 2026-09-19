@@ -16,11 +16,11 @@
 - Recommended agent: work-item-agent
 - Recommended skill: work-item-refinement
 - Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 11 draft Work Items. Refine before defining roadmap candidates.
+- Reason: There are 9 draft Work Items. Refine before defining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 11
+- Draft Work Items: 9
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
@@ -44,7 +44,7 @@ Route: new · Progress: 11/12
 - id: refine-work-item
 - agent: work-item-agent
 - skill: work-item-refinement
-- reason: There are 11 draft Work Items. Refine before defining roadmap candidates.
+- reason: There are 9 draft Work Items. Refine before defining roadmap candidates.
 
 ## Secondary Recommendations
 
@@ -52,10 +52,6 @@ Route: new · Progress: 11/12
 
 ## Active Work Items
 
-- WI-002 [chore] draft — Configurar sistema de diseño base y layout responsive en Angular
-  - Source: roadmap · WI-002
-- WI-003 [chore] draft — Modelar base de datos y crear migraciones y seeders para cursos de DevTalles
-  - Source: roadmap · WI-003
 - WI-004 [feature] draft — Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses
   - Source: roadmap · WI-004
 - WI-005 [feature] draft — Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum
