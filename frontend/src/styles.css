@@ -1,12 +1,64 @@
-/* CodeQuest Global Styles */
-:root {
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cq-bg: #0d1117;
+    --cq-surface: #161b22;
+    --cq-border: #30363d;
+    --cq-text: #f0f6fc;
+    --cq-muted: #8b949e;
+    --cq-primary: #5865f2;
+    --cq-accent: #00d26a;
+    --cq-warning: #f1e05a;
+  }
+
+  body {
+    @apply bg-cq-bg text-cq-text font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cq-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cq-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cq-muted;
+  }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-  background-color: #0d1117;
-  color: #f0f6fc;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-cq-primary text-white px-5 py-2.5 rounded-lg
+           font-semibold transition-colors duration-200 hover:bg-cq-primary-hover
+           focus:outline-none focus:ring-2 focus:ring-cq-primary focus:ring-offset-2 focus:ring-offset-cq-bg;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-cq-border text-cq-text px-5 py-2.5
+           rounded-lg font-semibold transition-colors duration-200 hover:bg-cq-surface-hover
+           focus:outline-none focus:ring-2 focus:ring-cq-border focus:ring-offset-2 focus:ring-offset-cq-bg;
+  }
+
+  .card {
+    @apply bg-cq-surface border border-cq-border rounded-xl p-6 transition-colors duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:border-cq-primary/40 hover:bg-cq-surface-hover;
+  }
 }

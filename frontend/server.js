@@ -3,7 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 4200;
-const PUBLIC_DIR = path.join(__dirname, 'src');
+
+// Serve from Angular build output in production, fallback to src/ for legacy
+const DIST_DIR = path.join(__dirname, 'dist', 'codequest-frontend', 'browser');
+const SRC_DIR = path.join(__dirname, 'src');
+const PUBLIC_DIR = fs.existsSync(DIST_DIR) ? DIST_DIR : SRC_DIR;
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -13,7 +17,10 @@ const MIME_TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
 };
 
 const server = http.createServer((req, res) => {
@@ -28,7 +35,8 @@ const server = http.createServer((req, res) => {
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
     res.writeHead(200, {
       'Content-Type': contentType,
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000',
     });
     fs.createReadStream(filePath).pipe(res);
     return;
@@ -39,7 +47,8 @@ const server = http.createServer((req, res) => {
   if (fs.existsSync(indexPath)) {
     res.writeHead(200, {
       'Content-Type': 'text/html; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache',
     });
     fs.createReadStream(indexPath).pipe(res);
     return;
@@ -50,5 +59,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
+  console.log(`[CodeQuest Frontend] Serving from: ${PUBLIC_DIR}`);
   console.log(`[CodeQuest Frontend] Servidor SPA escuchando en http://0.0.0.0:${PORT}`);
 });
