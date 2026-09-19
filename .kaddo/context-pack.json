@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-18T04:50:13.269Z",
+  "generatedAt": "2026-09-19T00:22:08.682Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -1077,8 +1077,57 @@
     "feature": 9
   },
   "external": [],
-  "graph": null,
-  "graphHints": null,
+  "graph": {
+    "generatedAt": "2026-09-18T04:52:25.782Z",
+    "scope": "active",
+    "scopeReason": "Active Work Items only; completed and archived are excluded.",
+    "includedStatuses": [
+      "draft",
+      "ready",
+      "in-progress",
+      "blocked"
+    ],
+    "excludedStatuses": [
+      "completed",
+      "archived"
+    ],
+    "nodes": 54,
+    "edges": 51,
+    "activeWorkItemsConnectedToCode": 11
+  },
+  "graphHints": {
+    "scope": "active",
+    "scopeReason": "Active Work Items only; completed and archived are excluded.",
+    "quality": "partial",
+    "totalHints": 24,
+    "activeWorkItemHints": 11,
+    "messages": [
+      "WI-002 has no linked capability, linked decision.",
+      "WI-003 has no linked capability, linked decision.",
+      "WI-004 has no linked capability, linked decision.",
+      "WI-005 has no linked capability, linked decision.",
+      "WI-006 has no linked capability, linked decision.",
+      "WI-007 has no linked capability, linked decision.",
+      "WI-008 has no linked capability, linked decision.",
+      "WI-009 has no linked capability, linked decision.",
+      "WI-010 has no linked capability, linked decision.",
+      "WI-011 has no linked capability, linked decision.",
+      "WI-012 has no linked capability, linked decision.",
+      "Capability \"Planned capabilities\" is not linked to any Work Item.",
+      "Capability \"Capability Map\" is not linked to any Work Item.",
+      "Capability \"Autenticación e Identidad vía Discord OAuth2\" is not linked to any Work Item.",
+      "Capability \"Cuestionario Interactivo de Diagnóstico y Metas\" is not linked to any Work Item.",
+      "Capability \"Catálogo Estructurado de Cursos DevTalles\" is not linked to any Work Item.",
+      "Capability \"Motor de Generación y Recomendación de Rutas de Aprendizaje\" is not linked to any Work Item.",
+      "Capability \"Gestión y Persistencia de Múltiples Rutas por Usuario\" is not linked to any Work Item.",
+      "Capability \"Seguimiento de Progreso y Métricas de Completitud\" is not linked to any Work Item.",
+      "Capability \"Visualización Interactiva de Ruta (Roadmap View)\" is not linked to any Work Item.",
+      "Capability \"Cross-cutting Concerns\" is not linked to any Work Item.",
+      "Capability \"Risks\" is not linked to any Work Item.",
+      "Capability \"Open Questions\" is not linked to any Work Item.",
+      "Capability \"Suggested Next Step\" is not linked to any Work Item."
+    ]
+  },
   "skills": [
     "adr-writing",
     "graph-metadata-review",

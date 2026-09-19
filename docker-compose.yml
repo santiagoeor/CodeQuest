@@ -15,7 +15,7 @@ services:
     environment:
       - APP_ENV=${APP_ENV:-local}
       - APP_DEBUG=${APP_DEBUG:-true}
-      - APP_KEY=${APP_KEY:-base64:XG8+T0dIeTZqZXQ0d2t3cXF2YmtzZGV2dGFsbGVzMjAyNg==}
+      - APP_KEY=${APP_KEY:-base64:r96WLDGpwDbV1c19efgb2pMQ3hPiPJEZFecWJONOuws=}
       - APP_URL=${APP_URL:-http://localhost:8000}
       - FRONTEND_URL=${FRONTEND_URL:-http://localhost:4200}
       - DB_CONNECTION=mysql
@@ -50,8 +50,8 @@ services:
     image: mysql:8.0
     container_name: codequest_db
     restart: unless-stopped
-    ports:
-      - "${DB_PORT:-3306}:3306"
+    # Port not exposed to host to avoid conflict with local MySQL.
+    # Backend connects via Docker internal network (host: db, port: 3306).
     environment:
       MYSQL_DATABASE: ${DB_DATABASE:-codequest}
       MYSQL_USER: ${DB_USERNAME:-codequest}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "kaddo": {
+      "command": "sh",
+      "args": ["-c", "cd /home/valu/Documentos/CodeQuest && npx -y @kaddo/mcp"],
+      "env": {}
+    }
+  }
+}

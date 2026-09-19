@@ -11,6 +11,8 @@ help:
 	@echo "  make ps             Verificar estado de los contenedores"
 	@echo "  make backend-shell  Abrir sesión interactiva en el contenedor backend"
 	@echo "  make frontend-shell Abrir sesión interactiva en el contenedor frontend"
+	@echo "  make migrate        Ejecutar migraciones en el backend"
+	@echo "  make seed           Poblar base de datos con seeders"
 	@echo "  make test           Ejecutar pruebas del backend"
 
 up:
@@ -36,6 +38,12 @@ backend-shell:
 
 frontend-shell:
 	docker compose exec frontend sh
+
+migrate:
+	docker compose exec backend php artisan migrate
+
+seed:
+	docker compose exec backend php artisan db:seed
 
 test:
 	docker compose exec backend php artisan test

@@ -183,6 +183,30 @@ Active Work Items by type:
 - WI-011 [feature] owns: backend/app/Models/CourseProgress.php, backend/app/Http/Controllers/ProgressController.php, backend/routes/api.php
 - WI-012 [feature] owns: frontend/src/app/features/progress/**, frontend/src/app/features/paths/components/**
 
+## Knowledge Graph
+
+- Available: yes
+- Scope: active
+- Nodes: 54
+- Edges: 51
+- Quality: partial
+- Active Work Items connected to code: 11
+- Reason: Active Work Items only; completed and archived are excluded.
+
+Full graph: `.kaddo/graph.json` / `.kaddo/graph.mmd` (run `kaddo graph export` to refresh).
+
+## Graph Hints
+
+Graph relationship quality: partial
+Active hints: 11
+Suggested agent: graph-agent
+
+- WI-002 has no linked capability, linked decision.
+- WI-003 has no linked capability, linked decision.
+- WI-004 has no linked capability, linked decision.
+
+(+21 more in `.kaddo/graph-hints.md`)
+
 ## Skills
 
 Available reusable skills (agents apply these; content is not inlined):

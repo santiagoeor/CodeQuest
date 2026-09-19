@@ -21,5 +21,5 @@ WORKDIR /var/www/html
 # Expose port
 EXPOSE 8000
 
-# Start server (supports standard PHP built-in router or Laravel artisan serve)
-CMD ["sh", "-c", "if [ ! -f vendor/autoload.php ]; then composer install --no-interaction --prefer-dist 2>/dev/null || true; fi && php -S 0.0.0.0:8000 -t public public/index.php"]
+# Start Laravel development server
+CMD ["sh", "-c", "if [ ! -f vendor/autoload.php ]; then composer install --no-interaction --prefer-dist 2>/dev/null || true; fi && php artisan serve --host=0.0.0.0 --port=8000"]
