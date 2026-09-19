@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "kaddo": {
+      "command": "npx",
+      "args": ["@kaddo/mcp"],
+      "env": {
+        "KADDO_PROJECT_DIR": "c:/Users/USUARIO/Documents/antigravity/charming-turing"
+      },
+      "cwd": "c:/Users/USUARIO/Documents/antigravity/charming-turing"
+    }
+  }
+}

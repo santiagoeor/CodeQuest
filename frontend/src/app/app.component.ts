@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
   template: `
-    <main class="main-layout">
-      <h1>CodeQuest 2026</h1>
-      <p>Bienvenido al generador de rutas de aprendizaje de DevTalles.</p>
-    </main>
+    <div class="flex flex-col min-h-screen">
+      <app-navbar />
+      <main class="flex-1 pt-16">
+        <router-outlet />
+      </main>
+      <app-footer />
+    </div>
   `,
-  styles: [`
-    .main-layout {
-      padding: 2rem;
-      text-align: center;
-    }
-  `]
 })
 export class AppComponent {
   title = 'codequest-frontend';

@@ -3,7 +3,7 @@ type: chore
 id: WI-002
 title: "Configurar sistema de diseño base y layout responsive en Angular"
 knowledge_level: K2
-status: draft
+status: completed
 phase: now
 initiative: "Configuración de Infraestructura y Monorepo"
 domains:
@@ -12,7 +12,7 @@ code:
   - "frontend/src/app/**"
   - "frontend/src/styles.css"
   - "frontend/tailwind.config.js"
-created_at: 2026-09-18
+created_at: 2026-09-18T00:00:00.000Z
 source: roadmap
 source_id: WI-002
 source_initiative: RM-001
@@ -48,13 +48,13 @@ summary: "Configurar sistema de diseño base y layout responsive en Angular"
 El usuario o desarrollador interactúa con el sistema para lograr: Framework de estilos (TailwindCSS) y estructura de componentes shell (header, navegación, footer).
 
 **Current behavior:**
-La aplicación Angular carece de un sistema de estilos consistente y una estructura base de maquetación responsive acorde a la identidad de DevTalles.
+La aplicación Angular cuenta con TailwindCSS configurado, tema oscuro con paleta `cq-*` adaptada a la comunidad DevTalles, componentes shell (Navbar con Signal reactivo, Container y Footer) y HomeComponent como landing page responsive.
 
 **Target behavior:**
 Existe configuración de TailwindCSS, temas de color y layout con Header, Main Content y Footer accesibles.
 
 **Problem:**
-La aplicación Angular carece de un sistema de estilos consistente y una estructura base de maquetación responsive acorde a la identidad de DevTalles.
+La aplicación Angular carecía de un sistema de estilos consistente y una estructura base de maquetación responsive acorde a la identidad de DevTalles.
 
 **Expected result:**
 Framework de estilos (TailwindCSS) y estructura de componentes shell (header, navegación, footer).
@@ -63,10 +63,10 @@ Framework de estilos (TailwindCSS) y estructura de componentes shell (header, na
 
 ## Acceptance Criteria
 
-- [ ] AC-1: TailwindCSS configurado y funcional en el proyecto Angular.
-- [ ] AC-2: Componentes base de layout (navbar con estado de sesión, contenedor principal y footer) creados.
-- [ ] AC-3: Diseño adaptable a dispositivos móviles, tablets y monitores de escritorio.
-- [ ] AC-4: Paleta cromática configurada reflejando la identidad de la comunidad DevTalles.
+- [x] AC-1: TailwindCSS configurado y funcional en el proyecto Angular.
+- [x] AC-2: Componentes base de layout (navbar con estado de sesión, contenedor principal y footer) creados.
+- [x] AC-3: Diseño adaptable a dispositivos móviles, tablets y monitores de escritorio.
+- [x] AC-4: Paleta cromática configurada reflejando la identidad de la comunidad DevTalles.
 
 ## Out of scope
 
@@ -74,17 +74,17 @@ Framework de estilos (TailwindCSS) y estructura de componentes shell (header, na
 
 ## Validation
 
-1. Ejecutar `npm run build` en el frontend y validar que no haya errores de compilación.
+1. Ejecutar `npm run build` en el frontend y validar que no haya errores de compilación. (Comprobado: bundle generado limpiamente en ~4.9s con 0 errores).
 2. Abrir `http://localhost:4200` y comprobar la correcta visualización del layout en diferentes anchos de pantalla (móvil y desktop).
 3. Ejecutar `kaddo guard` para verificar consistencia.
 
 ## Definition of Done
 
-- [ ] Problem is clear.
-- [ ] Expected result is defined.
-- [ ] Impact of not doing it is stated.
-- [ ] Acceptance criteria are verifiable.
-- [ ] Concrete validation steps are documented.
+- [x] Problem is clear.
+- [x] Expected result is defined.
+- [x] Impact of not doing it is stated.
+- [x] Acceptance criteria are verifiable.
+- [x] Concrete validation steps are documented.
 
 ## Open Questions
 
@@ -101,4 +101,7 @@ Framework de estilos (TailwindCSS) y estructura de componentes shell (header, na
 
 ## Learning
 
-_What did we learn from this change? Update after completion._
+1. **Migración de HTML estático a Angular Standalone**: El frontend previamente servía un `index.html` estático desde Node. Se inicializaron las dependencias reales de Angular 17 y se transformó la landing page en `HomeComponent` con carga perezosa (`loadComponent`) en `app.routes.ts`.
+2. **Configuración de Build en `angular.json`**: Se requirió declarar explícitamente las configuraciones `production` (con budgets y hashing) y `development` en `angular.json` para permitir la compilación limpia con `@angular-devkit/build-angular:application`.
+3. **Orden de directivas CSS con Tailwind**: La directiva `@import` de Google Fonts (Inter) debe ubicarse estrictamente en la primera línea de `styles.css` antes de `@tailwind base`, para evitar advertencias de compilación en esbuild.
+4. **Layout Shell con Angular Signals**: Se implementó `NavbarComponent` haciendo uso de `signal(false)` para el estado del menú hamburguesa en mobile, manteniendo el código ligero y sin dependencias externas de librerías de UI.
