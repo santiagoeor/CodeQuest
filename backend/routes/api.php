@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -82,3 +83,22 @@ Route::get('/courses/{slug}', function (string $slug) {
 });
 
 Route::get('/assessment/questions', [AssessmentController::class, 'index']);
+
+/**
+ * Authentication Routes (Discord OAuth2 & Laravel Sanctum)
+ */
+Route::prefix('auth')->group(function () {
+    // Public OAuth2 flow
+    Route::get('/discord/redirect', [AuthController::class, 'redirectToDiscord']);
+    Route::get('/discord/callback', [AuthController::class, 'handleDiscordCallback']);
+
+    // Local dev mock authentication
+    Route::get('/mock-login', [AuthController::class, 'mockLogin']);
+
+    // Protected routes
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/user', [AuthController::class, 'user']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
+});
+
