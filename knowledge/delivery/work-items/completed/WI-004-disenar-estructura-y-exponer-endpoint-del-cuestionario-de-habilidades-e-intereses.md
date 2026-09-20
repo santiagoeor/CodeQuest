@@ -3,8 +3,8 @@ type: feature
 id: WI-004
 title: "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses"
 knowledge_level: K2
-status: draft
-phase: next
+status: completed
+phase: completed
 initiative: "Catálogo Académico de DevTalles y Banco de Evaluación"
 domains:
   - "Catálogo Académico (Course Catalog)"
@@ -12,7 +12,13 @@ code:
   - "backend/app/Http/Controllers/AssessmentController.php"
   - "backend/routes/api.php"
   - "backend/database/seeders/QuestionnaireSeeder.php"
+  - "backend/app/Models/Question.php"
+  - "backend/app/Models/QuestionOption.php"
+  - "backend/database/migrations/2026_09_20_000001_create_questions_table.php"
+  - "backend/database/migrations/2026_09_20_000002_create_question_options_table.php"
+  - "backend/tests/Feature/AssessmentTest.php"
 created_at: 2026-09-18
+completed_at: 2026-09-19
 source: roadmap
 source_id: WI-004
 source_initiative: RM-002
@@ -63,10 +69,10 @@ Endpoint /api/assessment/questions que proporciona las preguntas y opciones de d
 
 ## Acceptance Criteria
 
-- [ ] AC-1: Modelo y seeder para preguntas y opciones de diagnóstico.
-- [ ] AC-2: Controlador AssessmentController con método index.
-- [ ] AC-3: Ruta pública GET /api/assessment/questions retornando JSON estandarizado.
-- [ ] AC-4: Respuesta HTTP 200 con listado ordenado de preguntas.
+- [x] AC-1: Modelo y seeder para preguntas y opciones de diagnóstico.
+- [x] AC-2: Controlador AssessmentController con método index.
+- [x] AC-3: Ruta pública GET /api/assessment/questions retornando JSON estandarizado.
+- [x] AC-4: Respuesta HTTP 200 con listado ordenado de preguntas.
 
 ## Out of scope
 
@@ -80,11 +86,11 @@ Endpoint /api/assessment/questions que proporciona las preguntas y opciones de d
 
 ## Definition of Done
 
-- [ ] Problem is clear.
-- [ ] Expected result is defined.
-- [ ] Impact of not doing it is stated.
-- [ ] Acceptance criteria are verifiable.
-- [ ] Concrete validation steps are documented.
+- [x] Problem is clear.
+- [x] Expected result is defined.
+- [x] Impact of not doing it is stated.
+- [x] Acceptance criteria are verifiable.
+- [x] Concrete validation steps are documented.
 
 ## Open Questions
 
@@ -101,4 +107,6 @@ Endpoint /api/assessment/questions que proporciona las preguntas y opciones de d
 
 ## Learning
 
-_What did we learn from this change? Update after completion._
+- Las opciones del cuestionario incorporan un campo JSON `weight` con ponderaciones específicas hacia los tags de los cursos DevTalles existentes.
+- La pregunta de tecnologías conocidas utiliza pesos negativos para deprioritizar temáticas que el estudiante ya domina al generar la recomendación.
+- Se implementaron 3 pruebas de Feature en Laravel para garantizar la estructura, orden y presencia de ponderaciones.

@@ -33,11 +33,11 @@
     "done": 0,
     "cancelled": 0,
     "byState": {
-      "draft": 11,
+      "draft": 8,
       "ready": 0,
       "in-progress": 0,
       "blocked": 0,
-      "completed": 1,
+      "completed": 4,
       "archived": 0
     },
     "byType": {
@@ -59,22 +59,22 @@
       {
         "name": "Catálogo Académico de DevTalles y Banco de Evaluación",
         "states": {
-          "draft": 2,
+          "draft": 0,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 0,
+          "completed": 2,
           "archived": 0
         }
       },
       {
         "name": "Configuración de Infraestructura y Monorepo",
         "states": {
-          "draft": 1,
+          "draft": 0,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 1,
+          "completed": 2,
           "archived": 0
         }
       },
@@ -135,8 +135,8 @@
         "id": "WI-002",
         "title": "Configurar sistema de diseño base y layout responsive en Angular",
         "type": "chore",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Configuración de Infraestructura y Monorepo",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -153,8 +153,8 @@
         "id": "WI-003",
         "title": "Modelar base de datos y crear migraciones y seeders para cursos de DevTalles",
         "type": "chore",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Catálogo Académico de DevTalles y Banco de Evaluación",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -171,8 +171,8 @@
         "id": "WI-004",
         "title": "Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Catálogo Académico de DevTalles y Banco de Evaluación",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -495,7 +495,7 @@
       "label": "Refine the existing draft Work Item with the work-item-agent.",
       "agent": "work-item-agent",
       "skill": "work-item-refinement",
-      "reason": "There are 11 draft Work Items. Refine before defining roadmap candidates.",
+      "reason": "There are 8 draft Work Items. Refine before defining roadmap candidates.",
       "secondary": [
         {
           "id": "materialize-adrs",
@@ -513,7 +513,7 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 11 draft Work Items. Refine before defining roadmap candidates.",
+    "reason": "There are 8 draft Work Items. Refine before defining roadmap candidates.",
     "secondary": [
       {
         "id": "materialize-adrs",
@@ -1018,9 +1018,9 @@
   },
   "isModuleRepo": false,
   "deliverySummary": {
-    "completedWorkItems": 1,
+    "completedWorkItems": 4,
     "archivedWorkItems": 0,
-    "activeWorkItems": 11,
+    "activeWorkItems": 8,
     "implementationCompleted": 0,
     "releaseBlocked": 0,
     "releaseReady": 0

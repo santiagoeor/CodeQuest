@@ -60,11 +60,11 @@
 - Ownership coverage: 12/12 work items
 
 ## Work Items
-- Draft: 11
+- Draft: 8
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 1
+- Completed: 4
 - Archived: 0
 
 ## Work Items by Type
@@ -76,8 +76,8 @@
 
 ## Work Items by Initiative
 - Autenticación e Identidad con Discord OAuth2 — Draft: 2
-- Catálogo Académico de DevTalles y Banco de Evaluación — Draft: 2
-- Configuración de Infraestructura y Monorepo — Draft: 1 · Completed: 1
+- Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
+- Configuración de Infraestructura y Monorepo — Completed: 2
 - Gestión, Persistencia y Visualización de Rutas — Draft: 2
 - Motor de Recomendación y Generación de Rutas — Draft: 2
 - Seguimiento de Progreso y Métricas de Completitud — Draft: 2
@@ -125,13 +125,13 @@ Progress: 11/12
 - Reason:
   - Roadmap available
   - 12 materialized work item(s)
-  - draft: 11
+  - draft: 8
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 1
-- Active Work Items: 11
+- Completed Work Items: 4
+- Active Work Items: 8
 
 ## Suggested Next Steps
 1. Refine the existing draft Work Item with the work-item-agent.
