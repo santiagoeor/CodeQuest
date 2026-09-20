@@ -16,11 +16,11 @@
 - Recommended agent: work-item-agent
 - Recommended skill: work-item-refinement
 - Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 9 draft Work Items. Refine before defining roadmap candidates.
+- Reason: There are 7 draft Work Items. Refine before defining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 9
+- Draft Work Items: 7
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
@@ -44,7 +44,7 @@ Route: new · Progress: 11/12
 - id: refine-work-item
 - agent: work-item-agent
 - skill: work-item-refinement
-- reason: There are 9 draft Work Items. Refine before defining roadmap candidates.
+- reason: There are 7 draft Work Items. Refine before defining roadmap candidates.
 
 ## Secondary Recommendations
 
@@ -52,10 +52,6 @@ Route: new · Progress: 11/12
 
 ## Active Work Items
 
-- WI-004 [feature] draft — Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses
-  - Source: roadmap · WI-004
-- WI-005 [feature] draft — Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum
-  - Source: roadmap · WI-005
 - WI-006 [feature] draft — Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular
   - Source: roadmap · WI-006
 - WI-007 [feature] draft — Desarrollar servicio de recomendación de rutas en Laravel
