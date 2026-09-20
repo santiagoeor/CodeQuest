@@ -16,18 +16,18 @@
 - Recommended agent: work-item-agent
 - Recommended skill: work-item-refinement
 - Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 6 draft Work Items. Refine before defining roadmap candidates.
+- Reason: There are 5 draft Work Items. Refine before defining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 6
+- Draft Work Items: 5
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
 - Ownership coverage: 12/12
 - Remaining Work Item candidates: 0
 - Technical decision candidates: 3
-- Accepted ADRs: 0
+- Accepted ADRs: 1
 - Installed adapters: 1
 
 ## Project Route
@@ -37,23 +37,16 @@ Route: new · Progress: 11/12
 ## Recommended Agent Flow
 
 1. work-item-agent
-2. adr-writing skill
 
 ## Primary Recommendation
 
 - id: refine-work-item
 - agent: work-item-agent
 - skill: work-item-refinement
-- reason: There are 6 draft Work Items. Refine before defining roadmap candidates.
-
-## Secondary Recommendations
-
-1. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
+- reason: There are 5 draft Work Items. Refine before defining roadmap candidates.
 
 ## Active Work Items
 
-- WI-007 [feature] draft — Desarrollar servicio de recomendación de rutas en Laravel
-  - Source: roadmap · WI-007
 - WI-008 [feature] draft — Construir interfaz paso a paso del cuestionario diagnóstico en Angular
   - Source: roadmap · WI-008
 - WI-009 [feature] draft — Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel
@@ -96,5 +89,4 @@ Ask the LLM to follow the work-item-agent instructions.
 ## Next Steps
 
 1. Refine the existing draft Work Item with the work-item-agent.
-2. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
-3. Re-run `kaddo explain`.
+2. Re-run `kaddo explain`.

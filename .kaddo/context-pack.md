@@ -26,7 +26,7 @@ Reason:
 
 - Roadmap available
 - 12 materialized work item(s)
-- draft: 6
+- draft: 5
 - Ownership coverage 100%
 
 Recommended next: work-item-agent
@@ -36,7 +36,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 ## Delivery State
 
 - Phase: Active Delivery
-- Draft Work Items: 6
+- Draft Work Items: 5
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Ownership coverage: 12/12
@@ -46,13 +46,9 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 
 - Refine the existing draft Work Item with the work-item-agent.
   - id: refine-work-item
-  - reason: There are 6 draft Work Items. Refine before defining roadmap candidates.
+  - reason: There are 5 draft Work Items. Refine before defining roadmap candidates.
   - agent: work-item-agent
   - skill: work-item-refinement
-
-Also (secondary):
-
-- Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
 
 ## Project Route
 
@@ -73,6 +69,7 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 ### Tech — Structured
 - ✓ ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md
+- ✓ ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
 - ✓ architecture-notes.md
 - ✓ codebase.md
 - ✓ current-state.md
@@ -139,8 +136,6 @@ Work Item Candidates:
 
 ## Active Work Items
 
-- WI-007 [feature] [K3] (draft) — Desarrollar servicio de recomendación de rutas en Laravel · domains: Motor de Recomendación (Recommendation Engine)
-  - Source: roadmap · WI-007
 - WI-008 [feature] [K2] (draft) — Construir interfaz paso a paso del cuestionario diagnóstico en Angular · domains: Motor de Recomendación (Recommendation Engine)
   - Source: roadmap · WI-008
 - WI-009 [feature] [K2] (draft) — Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel · domains: Gestión de Rutas (Path Management)
@@ -156,7 +151,7 @@ Work Item Candidates:
 
 Active Work Items by type:
 
-- Features: 6
+- Features: 5
 
 ## Artifacts and Ownership
 
@@ -166,7 +161,7 @@ Active Work Items by type:
 - WI-004 [feature] owns: backend/app/Http/Controllers/AssessmentController.php, backend/routes/api.php, backend/database/seeders/QuestionnaireSeeder.php, backend/app/Models/Question.php, backend/app/Models/QuestionOption.php, backend/database/migrations/2026_09_20_000001_create_questions_table.php, backend/database/migrations/2026_09_20_000002_create_question_options_table.php, backend/tests/Feature/AssessmentTest.php
 - WI-005 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/app/Services/DiscordOAuthService.php, backend/routes/api.php, backend/database/migrations/*add_discord_fields_to_users_table.php
 - WI-006 [feature] owns: frontend/src/app/core/auth/**, frontend/src/app/core/guards/**, frontend/src/app/shared/components/navbar/navbar.component.ts, frontend/src/app/features/profile/profile.component.ts, frontend/src/app/app.routes.ts, frontend/src/app/app.config.ts
-- WI-007 [feature] owns: backend/app/Services/LearningPathGeneratorService.php, backend/app/Http/Controllers/LearningPathController.php
+- WI-007 [feature] owns: backend/app/Services/LearningPathGeneratorService.php, backend/app/Http/Controllers/LearningPathController.php, backend/routes/api.php, backend/tests/Unit/LearningPathGeneratorServiceTest.php, backend/tests/Feature/RecommendationTest.php, knowledge/tech/decisions/ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
 - WI-008 [feature] owns: frontend/src/app/features/assessment/**
 - WI-009 [feature] owns: backend/app/Models/LearningPath.php, backend/app/Http/Controllers/LearningPathController.php, backend/routes/api.php
 - WI-010 [feature] owns: frontend/src/app/features/paths/**

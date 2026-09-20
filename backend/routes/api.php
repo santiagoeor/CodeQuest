@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\LearningPathController;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -101,4 +102,10 @@ Route::prefix('auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
     });
 });
+
+/**
+ * Recommendation Routes
+ */
+Route::post('/recommendations/generate', [LearningPathController::class, 'generate']);
+
 

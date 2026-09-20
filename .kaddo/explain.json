@@ -33,11 +33,11 @@
     "done": 0,
     "cancelled": 0,
     "byState": {
-      "draft": 8,
+      "draft": 5,
       "ready": 0,
       "in-progress": 0,
       "blocked": 0,
-      "completed": 4,
+      "completed": 7,
       "archived": 0
     },
     "byType": {
@@ -48,11 +48,11 @@
       {
         "name": "Autenticación e Identidad con Discord OAuth2",
         "states": {
-          "draft": 2,
+          "draft": 0,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 0,
+          "completed": 2,
           "archived": 0
         }
       },
@@ -92,11 +92,11 @@
       {
         "name": "Motor de Recomendación y Generación de Rutas",
         "states": {
-          "draft": 2,
+          "draft": 1,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 0,
+          "completed": 1,
           "archived": 0
         }
       },
@@ -189,8 +189,8 @@
         "id": "WI-005",
         "title": "Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Autenticación e Identidad con Discord OAuth2",
         "knowledgeLevel": "K3",
         "hasOwnership": true,
@@ -207,8 +207,8 @@
         "id": "WI-006",
         "title": "Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Autenticación e Identidad con Discord OAuth2",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -225,8 +225,8 @@
         "id": "WI-007",
         "title": "Desarrollar servicio de recomendación de rutas en Laravel",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Motor de Recomendación y Generación de Rutas",
         "knowledgeLevel": "K3",
         "hasOwnership": true,
@@ -424,6 +424,8 @@
       "layer": "Tech",
       "status": "Structured",
       "detected": [
+        "ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md",
+        "ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md",
         "architecture-notes.md",
         "codebase.md",
         "current-state.md",
@@ -495,16 +497,7 @@
       "label": "Refine the existing draft Work Item with the work-item-agent.",
       "agent": "work-item-agent",
       "skill": "work-item-refinement",
-      "reason": "There are 8 draft Work Items. Refine before defining roadmap candidates.",
-      "secondary": [
-        {
-          "id": "materialize-adrs",
-          "label": "Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.",
-          "command": "kaddo adr",
-          "skill": "adr-writing",
-          "reason": "There are 3 technical decision candidate(s) and 0 accepted ADR(s)."
-        }
-      ]
+      "reason": "There are 5 draft Work Items. Refine before defining roadmap candidates."
     }
   },
   "nextStepRecommendation": {
@@ -513,38 +506,29 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 8 draft Work Items. Refine before defining roadmap candidates.",
-    "secondary": [
-      {
-        "id": "materialize-adrs",
-        "label": "Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.",
-        "command": "kaddo adr",
-        "skill": "adr-writing",
-        "reason": "There are 3 technical decision candidate(s) and 0 accepted ADR(s)."
-      }
-    ]
+    "reason": "There are 5 draft Work Items. Refine before defining roadmap candidates."
   },
   "techDecisions": {
-    "status": "candidates",
+    "status": "accepted-adrs",
     "candidates": 3,
-    "adrs": 0,
-    "draft_adrs": 0,
-    "accepted_adrs": 0,
+    "adrs": 2,
+    "draft_adrs": 1,
+    "accepted_adrs": 1,
     "candidate_list": [
       {
         "title": "DC-001: Autenticación API mediante Laravel Sanctum",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-003-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
       },
       {
         "title": "DC-002: Algoritmo Determinista de Recomendación en Backend",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-004-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
       },
       {
         "title": "DC-003: Renderizado de Rutas de Aprendizaje en Angular",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-003-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-005-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
       }
     ],
     "candidates_source": "knowledge/tech/discovery/decision-candidates.md",
@@ -1018,9 +1002,9 @@
   },
   "isModuleRepo": false,
   "deliverySummary": {
-    "completedWorkItems": 4,
+    "completedWorkItems": 7,
     "archivedWorkItems": 0,
-    "activeWorkItems": 8,
+    "activeWorkItems": 5,
     "implementationCompleted": 0,
     "releaseBlocked": 0,
     "releaseReady": 0
