@@ -24,6 +24,10 @@ services:
       - DB_DATABASE=${DB_DATABASE:-codequest}
       - DB_USERNAME=${DB_USERNAME:-codequest}
       - DB_PASSWORD=${DB_PASSWORD:-codequest_secret}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID:-}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET:-}
+      - DISCORD_REDIRECT_URI=${DISCORD_REDIRECT_URI:-http://localhost:8000/api/auth/discord/callback}
+      - DISCORD_FRONTEND_REDIRECT=${DISCORD_FRONTEND_REDIRECT:-http://localhost:4200/auth/callback}
     depends_on:
       db:
         condition: service_healthy
@@ -40,7 +44,7 @@ services:
       - "${FRONTEND_PORT:-4200}:4200"
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+      - frontend_node_modules:/app/node_modules
     environment:
       - NODE_ENV=development
     networks:
@@ -70,6 +74,8 @@ services:
 
 volumes:
   db_data:
+    driver: local
+  frontend_node_modules:
     driver: local
 
 networks:

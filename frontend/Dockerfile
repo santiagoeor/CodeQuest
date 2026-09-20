@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 4200
 
 # If volume mount overrides /app/node_modules with an empty dir, install deps automatically
-CMD ["sh", "-c", "if [ ! -d node_modules/@angular/cli ]; then echo '[Frontend] Instalando dependencias en el volumen...' && npm install; fi && npx ng serve --host 0.0.0.0 --port 4200 --disable-host-check"]
+CMD ["sh", "-c", "if [ ! -d node_modules/@angular/cli ]; then echo '[Frontend] Instalando dependencias en el volumen...' && npm install; fi && npm start"]
