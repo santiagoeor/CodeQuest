@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
     public function test_redirect_to_discord_endpoint(): void
     {
         $response = $this->getJson('/api/auth/discord/redirect?format=json');
