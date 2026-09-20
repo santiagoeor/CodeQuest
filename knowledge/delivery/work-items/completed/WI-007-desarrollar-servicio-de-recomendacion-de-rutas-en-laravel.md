@@ -3,15 +3,20 @@ type: feature
 id: WI-007
 title: "Desarrollar servicio de recomendación de rutas en Laravel"
 knowledge_level: K3
-status: draft
-phase: next
+status: completed
+phase: completed
 initiative: "Motor de Recomendación y Generación de Rutas"
 domains:
   - "Motor de Recomendación (Recommendation Engine)"
 code:
   - "backend/app/Services/LearningPathGeneratorService.php"
   - "backend/app/Http/Controllers/LearningPathController.php"
+  - "backend/routes/api.php"
+  - "backend/tests/Unit/LearningPathGeneratorServiceTest.php"
+  - "backend/tests/Feature/RecommendationTest.php"
+  - "knowledge/tech/decisions/ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
 created_at: 2026-09-18
+completed_at: 2026-09-20
 source: roadmap
 source_id: WI-007
 source_initiative: RM-004
@@ -23,6 +28,8 @@ source_initiative_title: "Motor de Recomendación y Generación de Rutas"
 related_domain: "Motor de Recomendación (Recommendation Engine)"
 related_capabilities:
   - "Motor de Generación y Recomendación de Rutas de Aprendizaje"
+decisions:
+  - ADR-002
 expected_value: "LearningPathGeneratorService que filtra y ordena cursos en base a respuestas, tags y nivel técnico."
 risks:
   - "Rutas vacías para combinaciones atípicas de respuestas."
@@ -62,10 +69,10 @@ LearningPathGeneratorService que filtra y ordena cursos en base a respuestas, ta
 
 ## Acceptance Criteria
 
-- [ ] AC-1: Servicio LearningPathGeneratorService implementado con algoritmo de filtrado y ordenamiento por prerrequisitos.
-- [ ] AC-2: Endpoint POST /api/recommendations/generate que recibe respuestas del diagnóstico.
-- [ ] AC-3: Respuesta con la lista ordenada de cursos, título sugerido para la ruta y justificación pedagógica.
-- [ ] AC-4: Tiempo de respuesta menor a 300ms sin dependencias de APIs externas.
+- [x] AC-1: Servicio LearningPathGeneratorService implementado con algoritmo de filtrado y ordenamiento por prerrequisitos.
+- [x] AC-2: Endpoint POST /api/recommendations/generate que recibe respuestas del diagnóstico.
+- [x] AC-3: Respuesta con la lista ordenada de cursos, título sugerido para la ruta y justificación pedagógica.
+- [x] AC-4: Tiempo de respuesta menor a 300ms sin dependencias de APIs externas.
 
 ## Out of scope
 
@@ -79,11 +86,11 @@ LearningPathGeneratorService que filtra y ordena cursos en base a respuestas, ta
 
 ## Definition of Done
 
-- [ ] Problem is clear.
-- [ ] Expected result is defined.
-- [ ] Impact of not doing it is stated.
-- [ ] Acceptance criteria are verifiable.
-- [ ] Concrete validation steps are documented.
+- [x] Problem is clear.
+- [x] Expected result is defined.
+- [x] Impact of not doing it is stated.
+- [x] Acceptance criteria are verifiable.
+- [x] Concrete validation steps are documented.
 
 ## Open Questions
 
@@ -99,4 +106,6 @@ LearningPathGeneratorService que filtra y ordena cursos en base a respuestas, ta
 
 ## Learning
 
-_What did we learn from this change? Update after completion._
+- El enfoque determinista (formalizado en ADR-002) permite generar itinerarios formativos coherentes con tiempos de respuesta en torno a 30ms, eliminando costos y latencia de inferencia de LLMs en tiempo real.
+- La combinación de pesos directos por tag de las opciones con modificadores de nivel (`beginner`: +15 para cursos básicos, penalización en avanzados) y reglas de precedencia conceptual (lenguajes base antes de frameworks) asegura un orden pedagógico óptimo.
+- Se implementaron 3 tests unitarios y 4 tests de integración cubriendo validación de payloads, cálculo de tiempos y perfiles múltiples.

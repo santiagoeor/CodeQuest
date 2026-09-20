@@ -16,6 +16,8 @@
 - ✓ product.md
 
 ### Tech — Structured
+- ✓ ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md
+- ✓ ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
 - ✓ architecture-notes.md
 - ✓ codebase.md
 - ✓ current-state.md
@@ -60,11 +62,11 @@
 - Ownership coverage: 12/12 work items
 
 ## Work Items
-- Draft: 8
+- Draft: 5
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 4
+- Completed: 7
 - Archived: 0
 
 ## Work Items by Type
@@ -75,11 +77,11 @@
 - Roadmap: 12
 
 ## Work Items by Initiative
-- Autenticación e Identidad con Discord OAuth2 — Draft: 2
+- Autenticación e Identidad con Discord OAuth2 — Completed: 2
 - Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
 - Configuración de Infraestructura y Monorepo — Completed: 2
 - Gestión, Persistencia y Visualización de Rutas — Draft: 2
-- Motor de Recomendación y Generación de Rutas — Draft: 2
+- Motor de Recomendación y Generación de Rutas — Draft: 1 · Completed: 1
 - Seguimiento de Progreso y Métricas de Completitud — Draft: 2
 
 ## Domains
@@ -125,17 +127,16 @@ Progress: 11/12
 - Reason:
   - Roadmap available
   - 12 materialized work item(s)
-  - draft: 8
+  - draft: 5
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 4
-- Active Work Items: 8
+- Completed Work Items: 7
+- Active Work Items: 5
 
 ## Suggested Next Steps
 1. Refine the existing draft Work Item with the work-item-agent.
-2. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
 
 ## Project Readiness
 - overall: not-applicable
@@ -148,12 +149,10 @@ Core:
 - ✓ current-state.md
 - ✓ codebase.md
 Decisions:
-- ADRs: 0 (draft: 0, accepted: 0) · status: candidates
+- ADRs: 2 (draft: 1, accepted: 1) · status: accepted-adrs
 Discovery:
 - ✓ architecture-notes.md
 - ✓ decision-candidates.md
-
-Use the adr-writing skill to materialize decision candidates into ADRs (`kaddo adr`) before implementing related technical Work Items.
 
 ## Roadmap Status
 - Initiatives: 6

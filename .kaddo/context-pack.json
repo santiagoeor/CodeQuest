@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-20T03:51:56.292Z",
+  "generatedAt": "2026-09-20T19:07:37.462Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -25,24 +25,6 @@
     "roadmapSummary": "> Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.",
     "inventoryAvailable": true,
     "workItems": [
-      {
-        "id": "WI-007",
-        "type": "feature",
-        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K3",
-        "domains": [
-          "Motor de Recomendación (Recommendation Engine)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-007",
-          "title": "Desarrollar servicio de recomendación de rutas en Laravel",
-          "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-008",
         "type": "feature",
@@ -135,24 +117,6 @@
       }
     ],
     "activeWorkItems": [
-      {
-        "id": "WI-007",
-        "type": "feature",
-        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K3",
-        "domains": [
-          "Motor de Recomendación (Recommendation Engine)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-007",
-          "title": "Desarrollar servicio de recomendación de rutas en Laravel",
-          "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-008",
         "type": "feature",
@@ -370,6 +334,27 @@
         "implementationStatus": "not-assessed",
         "validationStatus": "not-assessed",
         "releaseStatus": "not-assessed"
+      },
+      {
+        "id": "WI-007",
+        "type": "feature",
+        "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+        "status": "completed",
+        "lifecycle": "completed",
+        "knowledgeLevel": "K3",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-007",
+          "title": "Desarrollar servicio de recomendación de rutas en Laravel",
+          "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
+          "inferred": false
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       }
     ],
     "archivedWorkItems": [],
@@ -504,8 +489,8 @@
         "id": "WI-007",
         "type": "feature",
         "title": "Desarrollar servicio de recomendación de rutas en Laravel",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "knowledgeLevel": "K3",
         "domains": [
           "Motor de Recomendación (Recommendation Engine)"
@@ -516,7 +501,10 @@
           "title": "Desarrollar servicio de recomendación de rutas en Laravel",
           "context": "Materialized from roadmap candidate WI-007 under initiative RM-004.",
           "inferred": false
-        }
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       },
       {
         "id": "WI-008",
@@ -696,7 +684,11 @@
         "summary": "Desarrollar servicio de recomendación de rutas en Laravel",
         "codeGlobs": [
           "backend/app/Services/LearningPathGeneratorService.php",
-          "backend/app/Http/Controllers/LearningPathController.php"
+          "backend/app/Http/Controllers/LearningPathController.php",
+          "backend/routes/api.php",
+          "backend/tests/Unit/LearningPathGeneratorServiceTest.php",
+          "backend/tests/Feature/RecommendationTest.php",
+          "knowledge/tech/decisions/ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
         ]
       },
       {
@@ -772,6 +764,7 @@
       "status": "Structured",
       "detected": [
         "ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md",
+        "ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md",
         "architecture-notes.md",
         "codebase.md",
         "current-state.md",
@@ -842,7 +835,7 @@
     "reasons": [
       "Roadmap available",
       "12 materialized work item(s)",
-      "draft: 6",
+      "draft: 5",
       "Ownership coverage 100%"
     ],
     "recommendedAgents": [
@@ -861,20 +854,11 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 6 draft Work Items. Refine before defining roadmap candidates.",
-    "secondary": [
-      {
-        "id": "materialize-adrs",
-        "label": "Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.",
-        "command": "kaddo adr",
-        "skill": "adr-writing",
-        "reason": "There are 3 technical decision candidate(s) and 0 accepted ADR(s)."
-      }
-    ]
+    "reason": "There are 5 draft Work Items. Refine before defining roadmap candidates."
   },
   "deliveryState": {
     "phase": "Active Delivery",
-    "draft_work_items": 6,
+    "draft_work_items": 5,
     "refined_draft_work_items": 0,
     "refined_draft_ids": [],
     "ready_work_items": 0,
@@ -886,30 +870,30 @@
     "ownership_coverage": "12/12",
     "remaining_work_item_candidates": 0,
     "decision_candidates": 3,
-    "accepted_adrs": 0,
+    "accepted_adrs": 1,
     "adapters_installed": 1
   },
   "techDecisions": {
-    "status": "draft-adrs",
+    "status": "accepted-adrs",
     "candidates": 3,
-    "adrs": 1,
+    "adrs": 2,
     "draft_adrs": 1,
-    "accepted_adrs": 0,
+    "accepted_adrs": 1,
     "candidate_list": [
       {
         "title": "DC-001: Autenticación API mediante Laravel Sanctum",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-002-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-003-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
       },
       {
         "title": "DC-002: Algoritmo Determinista de Recomendación en Backend",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-003-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-004-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
       },
       {
         "title": "DC-003: Renderizado de Rutas de Aprendizaje en Angular",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-004-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-005-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
       }
     ],
     "candidates_source": "knowledge/tech/discovery/decision-candidates.md",
@@ -922,7 +906,7 @@
       "codebase.md": true
     },
     "decisions": {
-      "adrs": 1,
+      "adrs": 2,
       "dir": true
     },
     "discovery": {
@@ -1016,17 +1000,17 @@
   },
   "workItemSummary": {
     "total": 12,
-    "active": 6,
-    "draft": 6,
+    "active": 5,
+    "draft": 5,
     "ready": 0,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 6,
+    "completed": 7,
     "archived": 0,
     "summary": "draft-only"
   },
   "deliveryMix": {
-    "feature": 6
+    "feature": 5
   },
   "external": [],
   "graph": {
