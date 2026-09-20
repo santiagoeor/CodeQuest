@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssessmentController;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -79,3 +80,5 @@ Route::get('/courses/{slug}', function (string $slug) {
         'data' => $course,
     ]);
 });
+
+Route::get('/assessment/questions', [AssessmentController::class, 'index']);
