@@ -108,4 +108,15 @@ Route::prefix('auth')->group(function () {
  */
 Route::post('/recommendations/generate', [LearningPathController::class, 'generate']);
 
+/**
+ * Learning Paths Routes (Persistence & Management under auth:sanctum)
+ */
+Route::middleware('auth:sanctum')->prefix('learning-paths')->group(function () {
+    Route::get('/', [LearningPathController::class, 'index']);
+    Route::post('/', [LearningPathController::class, 'store']);
+    Route::get('/{id}', [LearningPathController::class, 'show']);
+    Route::delete('/{id}', [LearningPathController::class, 'destroy']);
+});
+
+
 
