@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-20T19:07:37.462Z",
+  "generatedAt": "2026-09-22T14:22:49.518Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -21,28 +21,10 @@
     ]
   },
   "knowledge": {
-    "summary": "> What is true about this product right now.",
-    "roadmapSummary": "> Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.",
+    "summary": "",
+    "roadmapSummary": "> Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.\r\n\r\n# Roadmap\r\n\r\nGenerated with Kaddo Roadmap Agent. Initiatives and work items below are **candidates** for human review — not final commitments.\r\n\r\n## Summary\r\n\r\nEste roadmap establece la secuencia de entrega para el proyecto CodeQuest de cara al hackathon Code Quest 2026 (fecha límite: 28 de septiembre). Organiza las capacidades planificadas y la arquitectura base en 6 iniciativas secuenciales, priorizando la infraestructura mínima viable, la autenticación federada con Discord y el motor determinista de recomendación para garantizar una demo pública funcional y evaluable.\r\n\r\n## Assumptions\r\n\r\n- Se asume que el inicio de sesión vía Discord OAuth2 será el único método de autenticación requerido para el MVP.\r\n- Se asume que el catálogo de cursos de DevTalles se poblará estáticamente a través de seeders en Laravel con datos públicos oficiales.\r\n- Se asume que la generación de rutas empleará un motor determinista en backend basado en etiquetas y niveles sin invocar servicios de pago de LLMs en tiempo de ejecución.\r\n- Se asume que el marcado de progreso será autogestionado por el usuario sin requerir sincronización por webhooks con la plataforma DevTalles en esta fase.\r\n\r\n## Roadmap Principles\r\n\r\n1. **Fundamentos primero:** Asegurar el monorepo y el pipeline de Docker antes de desarrollar componentes visuales.\r\n2. **Prioridad al MVP evaluable:** Construir el flujo principal de punta a punta (Auth Discord → Cuestionario → Ruta recomendada → Guardar → Progreso).\r\n3. **Determinismo y rendimiento:** Evitar latencias o dependencias costosas en la generación de rutas.\r\n4. **Claridad en la trazabilidad:** Cada Work Item se deriva de una capacidad planificada y una necesidad de negocio.\r\n\r\n## Initiatives\r\n\r\n### RM-001: Configuración de Infraestructura y Monorepo\r\n\r\n**Status:** candidate\r\n\r\n**Priority:** high\r\n\r\n**Suggested Knowledge Level:** K2\r\n\r\n**Related domain:** Experiencia de Usuario (User Experience)\r\n\r\n**Related capabilities:**\r\n- Visualización Interactiva de Ruta (Roadmap View)\r\n\r\n**Source signals:**\r\n- Business Goal: Cumplir con los estándares de entrega del hackathon Code Quest 2026 (código funcional, repositorio público y demo desplegada).\r\n- Tech Decision Candidate: Contenedorización para desarrollo y despliegue mediante Docker Compose.\r\n\r\n**Problem / opportunity:**\r\nSe requiere establecer el andamiaje inicial del monorepo para que el frontend en Angular, el backend en Laravel y la base de datos MySQL funcionen de manera integrada y reproducible.\r\n\r\n**Expected value:**\r\nAmbiente de desarrollo local operativo en un solo comando y base lista para el despliegue de la demo.\r\n\r\n**Risks:**\r\nProblemas de configuración de red interna o CORS entre los contenedores de frontend y backend.\r\n\r\n**Dependencies:**\r\nNinguna.\r\n\r\n**Suggested Work Items:**\r\n- WI-001: Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL\r\n  - type: chore\r\n  - suggested knowledge level: K2\r\n  - expected value: Servicios backend, frontend y db levantando simultáneamente con variables de entorno segregadas.\r\n  - notes: Configurar docker-compose.yml, Dockerfiles y scripts de inicio en package.json/Makefile.\r\n- WI-002: Configurar sistema de diseño base y layout responsive en Angular\r\n  - type: chore\r\n  - suggested knowledge level: K2\r\n  - expected value: Framework de estilos (TailwindCSS) y estructura de componentes shell (header, navegación, footer).\r\n  - notes: Aplicar estilo acorde a la identidad de la comunidad DevTalles.\r\n\r\n**Not now:**\r\nConfiguración de clusters Kubernetes o pipelines complejos de multi-staging.\r\n\r\n---\r\n\r\n### RM-002: Catálogo Académico de DevTalles y Banco de Evaluación\r\n\r\n**Status:** candidate\r\n\r\n**Priority:** high\r\n\r\n**Suggested Knowledge Level:** K2\r\n\r\n**Related domain:** Catálogo Académico (Course Catalog)\r\n\r\n**Related capabilities:**\r\n- Catálogo Estructurado de Cursos DevTalles\r\n- Cuestionario Interactivo de Diagnóstico y Metas\r\n\r\n**Source signals:**\r\n- Business Goal: Facilitar el descubrimiento guiado y personalizado del catálogo de cursos de DevTalles.\r\n- Capability Gap: Ausencia de esquema de datos y catálogo de cursos cargado en base de datos.\r\n\r\n**Problem / opportunity:**\r\nEl sistema necesita almacenar la información estructurada de los cursos de DevTalles (niveles, tecnologías, URLs oficiales) y el banco de preguntas del diagnóstico.\r\n\r\n**Expected value:**\r\nBase de datos relacional poblada con cursos reales y endpoints para consultar el catálogo y las preguntas de perfil.\r\n\r\n**Risks:**\r\nMetadatos incompletos en la definición inicial de cursos.\r\n\r\n**Dependencies:**\r\nRM-001\r\n\r\n**Suggested Work Items:**\r\n- WI-003: Modelar base de datos y crear migraciones y seeders para cursos de DevTalles\r\n  - type: chore\r\n  - suggested knowledge level: K2\r\n  - expected value: Tablas de cursos y etiquetas con seeders completos basados en el catálogo oficial de DevTalles.\r\n  - notes: Incluir título, descripción, tecnología, nivel, prerrequisitos y URL externa.\r\n- WI-004: Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Endpoint `/api/assessment/questions` que proporciona las preguntas y opciones de diagnóstico.\r\n  - notes: Categorías de backend, frontend, devops y nivel de experiencia (principiante, intermedio, avanzado).\r\n\r\n**Not now:**\r\nPanel administrativo CMS para que administradores editen cursos en vivo.\r\n\r\n---\r\n\r\n### RM-003: Autenticación e Identidad con Discord OAuth2\r\n\r\n**Status:** candidate\r\n\r\n**Priority:** high\r\n\r\n**Suggested Knowledge Level:** K3\r\n\r\n**Related domain:** Identidad y Acceso (Identity & Access)\r\n\r\n**Related capabilities:**\r\n- Autenticación e Identidad vía Discord OAuth2\r\n\r\n**Source signals:**\r\n- Business Goal: Autenticación obligatoria soportada mediante Discord OAuth2.\r\n- Tech Decision Candidate: DC-001 Autenticación API mediante Laravel Sanctum.\r\n\r\n**Problem / opportunity:**\r\nLos estudiantes y evaluadores deben poder autenticarse con su cuenta de Discord para asociar sus itinerarios y progreso personal.\r\n\r\n**Expected value:**\r\nInicio de sesión seguro mediante Discord OAuth2 con emisión de tokens Bearer protegidos por Laravel Sanctum.\r\n\r\n**Risks:**\r\nGestión de redirecciones y tokens en el cliente SPA ante fallos de conectividad con la API de Discord.\r\n\r\n**Dependencies:**\r\nRM-001\r\n\r\n**Suggested Work Items:**\r\n- WI-005: Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum\r\n  - type: feature\r\n  - suggested knowledge level: K3\r\n  - expected value: Endpoints de redirección y callback que validan el token de Discord y crean/actualizan el usuario local.\r\n  - notes: Almacenar discord_id, username, email y avatar. Proteger rutas con middleware `auth:sanctum`.\r\n- WI-006: Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Interfaz de login con Discord, almacenamiento seguro del token Bearer y AuthService reactivo con `AuthGuard`.\r\n  - notes: Manejo de estados de carga, error y redirección post-autenticación.\r\n\r\n**Not now:**\r\nInicio de sesión con Google, GitHub o correo con contraseña tradicional.\r\n\r\n---\r\n\r\n### RM-004: Motor de Recomendación y Generación de Rutas\r\n\r\n**Status:** candidate\r\n\r\n**Priority:** high\r\n\r\n**Suggested Knowledge Level:** K3\r\n\r\n**Related domain:** Motor de Recomendación (Recommendation Engine)\r\n\r\n**Related capabilities:**\r\n- Motor de Generación y Recomendación de Rutas de Aprendizaje\r\n- Cuestionario Interactivo de Diagnóstico y Metas\r\n\r\n**Source signals:**\r\n- Business Goal: Proporcionar recomendaciones dinámicas y personalizadas según perfil y metas laborales.\r\n- Tech Decision Candidate: DC-002 Algoritmo Determinista de Recomendación en Backend.\r\n\r\n**Problem / opportunity:**\r\nTransformar las respuestas del cuestionario en una ruta de estudio coherente, ordenada pedagógicamente según el nivel y la meta elegida.\r\n\r\n**Expected value:**\r\nServicio de negocio que calcula la secuencia óptima de cursos de DevTalles en milisegundos sin costos externos.\r\n\r\n**Risks:**\r\nReglas de ponderación que generen rutas desbalanceadas para combinaciones inusuales de respuestas.\r\n\r\n**Dependencies:**\r\nRM-002\r\n\r\n**Suggested Work Items:**\r\n- WI-007: Desarrollar servicio de recomendación de rutas en Laravel\r\n  - type: feature\r\n  - suggested knowledge level: K3\r\n  - expected value: `LearningPathGeneratorService` que filtra y ordena cursos en base a respuestas, tags y nivel técnico.\r\n  - notes: Endpoint `/api/recommendations/generate` que recibe respuestas y retorna la ruta sugerida.\r\n- WI-008: Construir interfaz paso a paso del cuestionario diagnóstico en Angular\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Componente wizard interactivo, intuitivo y responsive para completar el cuestionario.\r\n  - notes: Validación en tiempo real y transiciones fluidas entre preguntas.\r\n\r\n**Not now:**\r\nIntegración con modelos de IA generativa para generación de texto libre sobre la ruta.\r\n\r\n---\r\n\r\n### RM-005: Gestión, Persistencia y Visualización de Rutas\r\n\r\n**Status:** candidate\r\n\r\n**Priority:** high\r\n\r\n**Suggested Knowledge Level:** K2\r\n\r\n**Related domain:** Gestión de Rutas (Path Management)\r\n\r\n**Related capabilities:**\r\n- Gestión y Persistencia de Múltiples Rutas por Usuario\r\n- Visualización Interactiva de Ruta (Roadmap View)\r\n\r\n**Source signals:**\r\n- Business Goal: Permitir al estudiante guardar múltiples rutas e itinerarios personalizados.\r\n- Tech Decision Candidate: DC-003 Renderizado de Rutas de Aprendizaje en Angular.\r\n\r\n**Problem / opportunity:**\r\nEl usuario debe poder almacenar sus rutas generadas, visualizarlas en un mapa visual tipo roadmap, renombrarlas o alternar entre varias rutas activas.\r\n\r\n**Expected value:**\r\nPanel de control de itinerarios con visualización gráfica interactiva y redirección a cursos oficiales de DevTalles.\r\n\r\n**Risks:**\r\nDificultades en la adaptabilidad responsive de la vista de grafo o árbol en pantallas pequeñas.\r\n\r\n**Dependencies:**\r\nRM-003, RM-004\r\n\r\n**Suggested Work Items:**\r\n- WI-009: Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Endpoints REST bajo `/api/learning-paths` para guardar, listar, consultar detalle y eliminar rutas.\r\n  - notes: Vincular rutas al usuario autenticado mediante relaciones Eloquent.\r\n- WI-010: Crear vista interactiva de Roadmap y tarjetas de cursos en Angular\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Componente visual de ruta tipo itinerario con enlaces hacia los cursos en DevTalles.\r\n  - notes: Diseño accesible y responsive con TailwindCSS.\r\n\r\n**Not now:**\r\nCompartición pública de rutas en redes sociales o exportación en PDF.\r\n\r\n---\r\n\r\n### RM-006: Seguimiento de Progreso y Métricas de Completitud\r\n\r\n**Status:** candidate\r\n\r\n**Priority:** medium\r\n\r\n**Suggested Knowledge Level:** K2\r\n\r\n**Related domain:** Seguimiento de Aprendizaje (Learning Tracking)\r\n\r\n**Related capabilities:**\r\n- Seguimiento de Progreso y Métricas de Completitud\r\n\r\n**Source signals:**\r\n- Business Goal: Aumentar el compromiso del estudiante midiendo su avance por curso e itinerario.\r\n\r\n**Problem / opportunity:**\r\nLos estudiantes necesitan registrar qué cursos van completando para visualizar su progreso porcentual acumulado.\r\n\r\n**Expected value:**\r\nMétricas claras de avance por ruta y marcado ágil de cursos terminados.\r\n\r\n**Risks:**\r\nComplejidad si el usuario completa un curso que pertenece simultáneamente a múltiples itinerarios guardados.\r\n\r\n**Dependencies:**\r\nRM-005\r\n\r\n**Suggested Work Items:**\r\n- WI-011: Desarrollar endpoints para registrar el progreso de cursos por usuario\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Endpoint `/api/progress` para alternar estado de completitud de cursos y recalcular porcentaje.\r\n  - notes: Actualización atómica en la tabla `course_progress`.\r\n- WI-012: Integrar barra de progreso reactiva e indicadores de completitud en la SPA\r\n  - type: feature\r\n  - suggested knowledge level: K2\r\n  - expected value: Interfaz visual con progreso porcentual dinámico y checkboxes de curso completado.\r\n  - notes: Actualización en tiempo real usando Signals en Angular.\r\n\r\n**Not now:**\r\nGamificación avanzada (medallas, insignias, tablas de clasificación entre usuarios).\r\n\r\n---\r\n\r\n## Suggested Execution Order\r\n\r\n1. **RM-001 (Configuración de Infraestructura y Monorepo):** Establece el entorno de trabajo, Docker y la base de los frameworks.\r\n2. **RM-002 (Catálogo Académico de DevTalles y Banco de Evaluación):** Proporciona los datos y modelos que alimentarán la lógica de negocio.\r\n3. **RM-003 (Autenticación e Identidad con Discord OAuth2):** Habilita la identidad de usuarios antes de procesar persistencia individual.\r\n4. **RM-004 (Motor de Recomendación y Generación de Rutas):** Desarrolla el núcleo funcional de evaluación y algoritmo de sugerencias.\r\n5. **RM-005 (Gestión, Persistencia y Visualización de Rutas):** Permite guardar las rutas generadas y presentarlas visualmente como roadmaps.\r\n6. **RM-006 (Seguimiento de Progreso y Métricas de Completitud):** Añade la funcionalidad de tracking de avance y completitud de cursos.\r\n\r\n## Risks and Constraints\r\n\r\n- **Ventana de entrega estricta:** 28 de septiembre a las 10:00 AM (GMT-6). El alcance de los Work Items está acotado estrictamente a lo esencial para el MVP.\r\n- **Disponibilidad de servicios externos:** Discord OAuth2 es obligatorio; se recomienda implementar un modo de prueba local o mock durante el desarrollo.\r\n- **Calidad de datos iniciales:** La curación del catálogo inicial de cursos debe ser precisa y fiel a DevTalles para asegurar recomendaciones realistas.\r\n\r\n## Not Now\r\n\r\n- Pasarela de pagos o suscripciones de compra de cursos.\r\n- Reproductor de video propio dentro de la plataforma.\r\n- Edición y administración dinámica de catálogo desde la interfaz web.\r\n- Proveedores de autenticación adicionales (GitHub, Google, Email/Password).\r\n- Red social interna o sistema de comentarios entre estudiantes.\r\n- Generación de certificados o diplomas de finalización.\r\n\r\n## Next Recommended Work Item\r\n\r\n- **WI-001:** Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL",
     "inventoryAvailable": true,
     "workItems": [
-      {
-        "id": "WI-008",
-        "type": "feature",
-        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Motor de Recomendación (Recommendation Engine)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-008",
-          "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
-          "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-009",
         "type": "feature",
@@ -117,24 +99,6 @@
       }
     ],
     "activeWorkItems": [
-      {
-        "id": "WI-008",
-        "type": "feature",
-        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Motor de Recomendación (Recommendation Engine)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-008",
-          "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
-          "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-009",
         "type": "feature",
@@ -355,6 +319,27 @@
         "implementationStatus": "not-assessed",
         "validationStatus": "not-assessed",
         "releaseStatus": "not-assessed"
+      },
+      {
+        "id": "WI-008",
+        "type": "feature",
+        "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+        "status": "completed",
+        "lifecycle": "completed",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Motor de Recomendación (Recommendation Engine)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-008",
+          "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
+          "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
+          "inferred": false
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       }
     ],
     "archivedWorkItems": [],
@@ -510,8 +495,8 @@
         "id": "WI-008",
         "type": "feature",
         "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "knowledgeLevel": "K2",
         "domains": [
           "Motor de Recomendación (Recommendation Engine)"
@@ -522,7 +507,10 @@
           "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
           "context": "Materialized from roadmap candidate WI-008 under initiative RM-004.",
           "inferred": false
-        }
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       },
       {
         "id": "WI-009",
@@ -697,7 +685,10 @@
         "title": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
         "summary": "Construir interfaz paso a paso del cuestionario diagnóstico en Angular",
         "codeGlobs": [
-          "frontend/src/app/features/assessment/**"
+          "frontend/src/app/features/assessment/**",
+          "frontend/src/app/app.routes.ts",
+          "frontend/src/app/shared/components/navbar/navbar.component.ts",
+          "frontend/src/app/features/home/home.component.ts"
         ]
       },
       {
@@ -835,7 +826,7 @@
     "reasons": [
       "Roadmap available",
       "12 materialized work item(s)",
-      "draft: 5",
+      "draft: 4",
       "Ownership coverage 100%"
     ],
     "recommendedAgents": [
@@ -854,11 +845,11 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 5 draft Work Items. Refine before defining roadmap candidates."
+    "reason": "There are 4 draft Work Items. Refine before defining roadmap candidates."
   },
   "deliveryState": {
     "phase": "Active Delivery",
-    "draft_work_items": 5,
+    "draft_work_items": 4,
     "refined_draft_work_items": 0,
     "refined_draft_ids": [],
     "ready_work_items": 0,
@@ -988,29 +979,29 @@
       "installed": 11,
       "outdated": 0,
       "unknown_version": 0,
-      "modified": 0
+      "modified": 11
     },
     "skills": {
       "total": 8,
       "installed": 7,
       "outdated": 0,
       "unknown_version": 0,
-      "modified": 0
+      "modified": 7
     }
   },
   "workItemSummary": {
     "total": 12,
-    "active": 5,
-    "draft": 5,
+    "active": 4,
+    "draft": 4,
     "ready": 0,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 7,
+    "completed": 8,
     "archived": 0,
     "summary": "draft-only"
   },
   "deliveryMix": {
-    "feature": 5
+    "feature": 4
   },
   "external": [],
   "graph": {
@@ -1246,7 +1237,9 @@
   "moduleStatuses": {},
   "affectedModuleContexts": {},
   "isModuleRepo": false,
-  "missing": [],
+  "missing": [
+    "No project knowledge summary found yet."
+  ],
   "handoff": {
     "recommendedAgents": [
       "work-item-agent"

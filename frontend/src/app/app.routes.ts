@@ -15,6 +15,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'assessment',
+    loadComponent: () =>
+      import('./features/assessment/assessment.component').then((m) => m.AssessmentComponent),
+  },
+  {
     path: 'profile',
     canActivate: [authGuard],
     loadComponent: () =>
