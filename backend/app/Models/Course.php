@@ -27,4 +27,14 @@ class Course extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    /**
+     * Learning paths that include this course.
+     */
+    public function learningPaths(): BelongsToMany
+    {
+        return $this->belongsToMany(LearningPath::class, 'learning_path_course')
+            ->withPivot('order', 'status')
+            ->withTimestamps();
+    }
 }
