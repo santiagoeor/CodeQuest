@@ -16,11 +16,11 @@
 - Recommended agent: work-item-agent
 - Recommended skill: work-item-refinement
 - Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 2 draft Work Items. Refine before defining roadmap candidates.
+- Reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 2
+- Draft Work Items: 1
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
@@ -32,7 +32,7 @@
 
 ## Project Route
 
-Route: new · Progress: 11/12
+Route: new · Progress: 12/12
 
 ## Recommended Agent Flow
 
@@ -43,12 +43,10 @@ Route: new · Progress: 11/12
 - id: refine-work-item
 - agent: work-item-agent
 - skill: work-item-refinement
-- reason: There are 2 draft Work Items. Refine before defining roadmap candidates.
+- reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
 
 ## Active Work Items
 
-- WI-011 [feature] draft — Desarrollar endpoints para registrar el progreso de cursos por usuario
-  - Source: roadmap · WI-011
 - WI-012 [feature] draft — Integrar barra de progreso reactiva e indicadores de completitud en la SPA
   - Source: roadmap · WI-012
 

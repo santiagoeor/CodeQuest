@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LearningPathController;
+use App\Http\Controllers\ProgressController;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -117,6 +118,15 @@ Route::middleware('auth:sanctum')->prefix('learning-paths')->group(function () {
     Route::get('/{id}', [LearningPathController::class, 'show']);
     Route::delete('/{id}', [LearningPathController::class, 'destroy']);
 });
+
+/**
+ * Progress Tracking Routes (under auth:sanctum)
+ */
+Route::middleware('auth:sanctum')->prefix('progress')->group(function () {
+    Route::get('/', [ProgressController::class, 'index']);
+    Route::post('/toggle', [ProgressController::class, 'toggle']);
+});
+
 
 
 

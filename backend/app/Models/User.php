@@ -57,4 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(LearningPath::class);
     }
+
+    /**
+     * Progress records of courses for this user.
+     */
+    public function courseProgress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CourseProgress::class);
+    }
 }

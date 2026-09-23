@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-23T01:29:37.137Z",
+  "generatedAt": "2026-09-23T01:49:41.187Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -26,24 +26,6 @@
     "inventoryAvailable": true,
     "workItems": [
       {
-        "id": "WI-011",
-        "type": "feature",
-        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Seguimiento de Aprendizaje (Learning Tracking)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-011",
-          "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
-          "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
-          "inferred": false
-        }
-      },
-      {
         "id": "WI-012",
         "type": "feature",
         "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
@@ -63,24 +45,6 @@
       }
     ],
     "activeWorkItems": [
-      {
-        "id": "WI-011",
-        "type": "feature",
-        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Seguimiento de Aprendizaje (Learning Tracking)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-011",
-          "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
-          "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-012",
         "type": "feature",
@@ -310,6 +274,27 @@
         "implementationStatus": "not-assessed",
         "validationStatus": "not-assessed",
         "releaseStatus": "not-assessed"
+      },
+      {
+        "id": "WI-011",
+        "type": "feature",
+        "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+        "status": "completed",
+        "lifecycle": "completed",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Seguimiento de Aprendizaje (Learning Tracking)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-011",
+          "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
+          "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
+          "inferred": false
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       }
     ],
     "archivedWorkItems": [],
@@ -528,8 +513,8 @@
         "id": "WI-011",
         "type": "feature",
         "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "knowledgeLevel": "K2",
         "domains": [
           "Seguimiento de Aprendizaje (Learning Tracking)"
@@ -540,7 +525,10 @@
           "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
           "context": "Materialized from roadmap candidate WI-011 under initiative RM-006.",
           "inferred": false
-        }
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       },
       {
         "id": "WI-012",
@@ -702,8 +690,12 @@
         "summary": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
         "codeGlobs": [
           "backend/app/Models/CourseProgress.php",
+          "backend/app/Models/User.php",
+          "backend/app/Models/Course.php",
           "backend/app/Http/Controllers/ProgressController.php",
-          "backend/routes/api.php"
+          "backend/database/migrations/2026_09_22_000002_create_course_progress_table.php",
+          "backend/routes/api.php",
+          "backend/tests/Feature/ProgressTest.php"
         ]
       },
       {
@@ -811,7 +803,7 @@
     "reasons": [
       "Roadmap available",
       "12 materialized work item(s)",
-      "draft: 2",
+      "draft: 1",
       "Ownership coverage 100%"
     ],
     "recommendedAgents": [
@@ -830,11 +822,11 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 2 draft Work Items. Refine before defining roadmap candidates."
+    "reason": "There is 1 draft Work Item. Refine before defining roadmap candidates."
   },
   "deliveryState": {
     "phase": "Active Delivery",
-    "draft_work_items": 2,
+    "draft_work_items": 1,
     "refined_draft_work_items": 0,
     "refined_draft_ids": [],
     "ready_work_items": 0,
@@ -976,17 +968,17 @@
   },
   "workItemSummary": {
     "total": 12,
-    "active": 2,
-    "draft": 2,
+    "active": 1,
+    "draft": 1,
     "ready": 0,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 10,
+    "completed": 11,
     "archived": 0,
     "summary": "draft-only"
   },
   "deliveryMix": {
-    "feature": 2
+    "feature": 1
   },
   "external": [],
   "graph": {
@@ -1124,10 +1116,10 @@
   },
   "projectRoute": {
     "type": "new",
-    "currentStep": "run-guard",
-    "completed": 11,
+    "currentStep": "complete",
+    "completed": 12,
     "total": 12,
-    "progressPercent": 92,
+    "progressPercent": 100,
     "steps": [
       {
         "id": "enable-kaddo",
@@ -1204,7 +1196,10 @@
       {
         "id": "run-guard",
         "label": "Run guard",
-        "status": "pending"
+        "status": "done",
+        "evidence": [
+          ".kaddo/history/guard-runs.jsonl"
+        ]
       },
       {
         "id": "capture-learning",
