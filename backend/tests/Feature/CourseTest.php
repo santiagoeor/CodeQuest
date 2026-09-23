@@ -7,6 +7,10 @@ use Tests\TestCase;
 
 class CourseTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected bool $seed = true;
+
     public function test_can_list_all_courses(): void
     {
         $response = $this->getJson('/api/courses');

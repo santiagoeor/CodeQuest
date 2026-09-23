@@ -313,6 +313,59 @@ Gamificación avanzada (medallas, insignias, tablas de clasificación entre usua
 
 ---
 
+### RM-007: Administración del Catálogo de Cursos y Resiliencia de Autenticación
+
+**Status:** candidate
+
+**Priority:** high
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Catálogo Académico (Course Catalog)
+
+**Related capabilities:**
+- Catálogo Estructurado de Cursos DevTalles
+- Autenticación Federada con Discord OAuth2
+
+**Source signals:**
+- Operational Need: Evitar pérdida de sesión al recargar la aplicación SPA y permitir actualización dinámica del catálogo de cursos.
+- Capability Gap: Ausencia de persistencia reactiva en cliente tras refresh y falta de operaciones de escritura (crear y editar) en el catálogo de cursos.
+
+**Problem / opportunity:**
+Al recargar la página en el navegador, la sesión de Discord se resetea temporalmente en el cliente generando parpadeos o cierres involuntarios. Adicionalmente, el catálogo de cursos está acoplado a seeders estáticos en backend y no permite agregar o editar cursos desde la aplicación.
+
+**Expected value:**
+Sesión persistente y resiliente al recargar en Angular y capacidad completa de administración (CRUD) para registrar y actualizar cursos de DevTalles en la base de datos y la interfaz.
+
+**Risks:**
+- Autorización insegura en endpoints de escritura si no se validan adecuadamente permisos o tokens.
+- Desincronización del estado de autenticación en localStorage si el token expira en el servidor.
+
+**Dependencies:**
+RM-002, RM-003
+
+**Suggested Work Items:**
+- WI-013: Garantizar persistencia y rehidratación de sesión de Discord al recargar la SPA
+  - type: bugfix
+  - suggested knowledge level: K2
+  - expected value: Mantenimiento ininterrumpido de sesión activa en la SPA al refrescar la página, con rehidratación inmediata de estado.
+  - notes: Implementar persistencia segura de perfil en localStorage o APP_INITIALIZER en Angular y manejo robusto en interceptor HTTP.
+- WI-014: Implementar endpoints backend para creación y edición de cursos de DevTalles
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Endpoints REST `POST /api/courses` y `PUT /api/courses/{id}` protegidos con validación de requests, asignación de tags y actualización en MySQL.
+  - notes: Crear CourseStoreRequest, CourseUpdateRequest y métodos correspondientes en CourseController.
+- WI-015: Construir interfaz de formulario para agregar y editar cursos en Angular
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Vista/modal reactiva con formulario para crear y editar cursos con validación en vivo, gestión de tecnologías y refresco inmediato del catálogo.
+  - notes: Componente en módulo de cursos o administración con feedback visual de guardado.
+
+**Not now:**
+Eliminación física de cursos en cascada con borrado de progreso histórico de usuarios.
+
+---
+
 ## Suggested Execution Order
 
 1. **RM-001 (Configuración de Infraestructura y Monorepo):** Establece el entorno de trabajo, Docker y la base de los frameworks.
@@ -321,6 +374,7 @@ Gamificación avanzada (medallas, insignias, tablas de clasificación entre usua
 4. **RM-004 (Motor de Recomendación y Generación de Rutas):** Desarrolla el núcleo funcional de evaluación y algoritmo de sugerencias.
 5. **RM-005 (Gestión, Persistencia y Visualización de Rutas):** Permite guardar las rutas generadas y presentarlas visualmente como roadmaps.
 6. **RM-006 (Seguimiento de Progreso y Métricas de Completitud):** Añade la funcionalidad de tracking de avance y completitud de cursos.
+7. **RM-007 (Administración del Catálogo de Cursos y Resiliencia de Autenticación):** Resuelve la persistencia de sesión al recargar y habilita el alta y modificación interactiva de cursos.
 
 ## Risks and Constraints
 
@@ -332,11 +386,11 @@ Gamificación avanzada (medallas, insignias, tablas de clasificación entre usua
 
 - Pasarela de pagos o suscripciones de compra de cursos.
 - Reproductor de video propio dentro de la plataforma.
-- Edición y administración dinámica de catálogo desde la interfaz web.
 - Proveedores de autenticación adicionales (GitHub, Google, Email/Password).
 - Red social interna o sistema de comentarios entre estudiantes.
 - Generación de certificados o diplomas de finalización.
 
 ## Next Recommended Work Item
 
-- **WI-001:** Inicializar estructura del monorepo con Docker Compose para Laravel, Angular y MySQL
+- **WI-013:** Garantizar persistencia y rehidratación de sesión de Discord al recargar la SPA
+

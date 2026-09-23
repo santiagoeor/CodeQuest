@@ -12,64 +12,36 @@
 
 ## Current Phase
 
-- Phase: Active Delivery
-- Recommended agent: work-item-agent
-- Recommended skill: work-item-refinement
-- Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 9 draft Work Items. Refine before defining roadmap candidates.
+- Phase: Maintenance
+- Recommended agent: roadmap-agent
+- Next step: Use the roadmap-agent to plan the next initiative.
+- Reason: No active Work Items and no remaining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 9
+- Draft Work Items: 0
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
-- Ownership coverage: 12/12
+- Ownership coverage: 15/15
 - Remaining Work Item candidates: 0
 - Technical decision candidates: 3
-- Accepted ADRs: 0
+- Accepted ADRs: 2
 - Installed adapters: 1
 
 ## Project Route
 
-Route: new · Progress: 11/12
+Route: new · Progress: 12/12
 
 ## Recommended Agent Flow
 
-1. work-item-agent
-2. adr-writing skill
+1. roadmap-agent
 
 ## Primary Recommendation
 
-- id: refine-work-item
-- agent: work-item-agent
-- skill: work-item-refinement
-- reason: There are 9 draft Work Items. Refine before defining roadmap candidates.
-
-## Secondary Recommendations
-
-1. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
-
-## Active Work Items
-
-- WI-004 [feature] draft — Diseñar estructura y exponer endpoint del cuestionario de habilidades e intereses
-  - Source: roadmap · WI-004
-- WI-005 [feature] draft — Implementar flujo backend para Discord OAuth2 y emisión de tokens Sanctum
-  - Source: roadmap · WI-005
-- WI-006 [feature] draft — Integrar botón de inicio de sesión con Discord y guards de autenticación en Angular
-  - Source: roadmap · WI-006
-- WI-007 [feature] draft — Desarrollar servicio de recomendación de rutas en Laravel
-  - Source: roadmap · WI-007
-- WI-008 [feature] draft — Construir interfaz paso a paso del cuestionario diagnóstico en Angular
-  - Source: roadmap · WI-008
-- WI-009 [feature] draft — Implementar endpoints para persistencia y gestión de múltiples rutas en Laravel
-  - Source: roadmap · WI-009
-- WI-010 [feature] draft — Crear vista interactiva de Roadmap y tarjetas de cursos en Angular
-  - Source: roadmap · WI-010
-- WI-011 [feature] draft — Desarrollar endpoints para registrar el progreso de cursos por usuario
-  - Source: roadmap · WI-011
-- WI-012 [feature] draft — Integrar barra de progreso reactiva e indicadores de completitud en la SPA
-  - Source: roadmap · WI-012
+- id: plan-next
+- agent: roadmap-agent
+- reason: No active Work Items and no remaining roadmap candidates.
 
 ## Context Pack
 
@@ -79,28 +51,23 @@ Use `.kaddo/context-pack.md` as the primary input.
 
 Use:
 
-- `knowledge/agents/delivery/work-item-agent.md`
-- `knowledge/skills/work-item-refinement/skill.md`
+- `knowledge/agents/delivery/roadmap-agent.md`
 - `.kaddo/context-pack.md`
 
 ## Expected Outputs
 
-The LLM should produce:
-
-- Refined Work Item content.
+_See the primary recommendation above._
 
 ## Copy/Paste Instructions
 
 Paste the following into your LLM chat:
 
-1. `knowledge/agents/delivery/work-item-agent.md`
-2. `knowledge/skills/work-item-refinement/skill.md`
-3. `.kaddo/context-pack.md`
+1. `knowledge/agents/delivery/roadmap-agent.md`
+2. `.kaddo/context-pack.md`
 
-Ask the LLM to follow the work-item-agent instructions.
+Ask the LLM to follow the roadmap-agent instructions.
 
 ## Next Steps
 
-1. Refine the existing draft Work Item with the work-item-agent.
-2. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
-3. Re-run `kaddo explain`.
+1. Use the roadmap-agent to plan the next initiative.
+2. Re-run `kaddo explain`.

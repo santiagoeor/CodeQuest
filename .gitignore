@@ -31,3 +31,4 @@
 *.swo
 .DS_Store
 Thumbs.db
+.phpunit.result.cache

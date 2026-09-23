@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LearningPathController;
+use App\Http\Controllers\ProgressController;
 use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -54,28 +59,60 @@ Route::get('/version', function () {
     ]);
 });
 
-Route::get('/courses', function () {
-    $courses = Course::with('tags')->get();
+/**
+ * Course Catalog Routes
+ */
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/{slug}', [CourseController::class, 'show']);
 
-    return response()->json([
-        'status' => 'ok',
-        'count' => $courses->count(),
-        'data' => $courses,
-    ]);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/courses', [CourseController::class, 'store']);
+    Route::put('/courses/{id}', [CourseController::class, 'update']);
 });
 
-Route::get('/courses/{slug}', function (string $slug) {
-    $course = Course::with('tags')->where('slug', $slug)->first();
+Route::get('/assessment/questions', [AssessmentController::class, 'index']);
 
-    if (!$course) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Curso no encontrado',
-        ], 404);
-    }
+/**
+ * Authentication Routes (Discord OAuth2 & Laravel Sanctum)
+ */
+Route::prefix('auth')->group(function () {
+    // Public OAuth2 flow
+    Route::get('/discord/redirect', [AuthController::class, 'redirectToDiscord']);
+    Route::get('/discord/callback', [AuthController::class, 'handleDiscordCallback']);
 
-    return response()->json([
-        'status' => 'ok',
-        'data' => $course,
-    ]);
+    // Local dev mock authentication
+    Route::get('/mock-login', [AuthController::class, 'mockLogin']);
+
+    // Protected routes
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/user', [AuthController::class, 'user']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
 });
+
+/**
+ * Recommendation Routes
+ */
+Route::post('/recommendations/generate', [LearningPathController::class, 'generate']);
+
+/**
+ * Learning Paths Routes (Persistence & Management under auth:sanctum)
+ */
+Route::middleware('auth:sanctum')->prefix('learning-paths')->group(function () {
+    Route::get('/', [LearningPathController::class, 'index']);
+    Route::post('/', [LearningPathController::class, 'store']);
+    Route::get('/{id}', [LearningPathController::class, 'show']);
+    Route::delete('/{id}', [LearningPathController::class, 'destroy']);
+});
+
+/**
+ * Progress Tracking Routes (under auth:sanctum)
+ */
+Route::middleware('auth:sanctum')->prefix('progress')->group(function () {
+    Route::get('/', [ProgressController::class, 'index']);
+    Route::post('/toggle', [ProgressController::class, 'toggle']);
+});
+
+
+
+

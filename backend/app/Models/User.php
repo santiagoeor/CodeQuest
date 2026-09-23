@@ -7,11 +7,12 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +20,10 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'discord_id',
         'name',
         'email',
+        'avatar',
         'password',
     ];
 
@@ -45,5 +48,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * The learning paths created by or assigned to this user.
+     */
+    public function learningPaths(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(LearningPath::class);
+    }
+
+    /**
+     * Progress records of courses for this user.
+     */
+    public function courseProgress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CourseProgress::class);
     }
 }

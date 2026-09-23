@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'discord' => [
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
+        'redirect' => env('DISCORD_REDIRECT_URI', 'http://localhost:8000/api/auth/discord/callback'),
+        'frontend_redirect' => env('DISCORD_FRONTEND_REDIRECT', 'http://localhost:4200/auth/callback'),
+        'mock' => env('DISCORD_MOCK', false),
+    ],
+
 ];

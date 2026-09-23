@@ -16,6 +16,9 @@
 - ✓ product.md
 
 ### Tech — Structured
+- ✓ ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md
+- ✓ ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
+- ✓ ADR-003-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md
 - ✓ architecture-notes.md
 - ✓ codebase.md
 - ✓ current-state.md
@@ -35,6 +38,9 @@
 - ✓ WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md
 - ✓ WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md
 - ✓ WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md
+- ✓ WI-013-garantizar-persistencia-y-rehidratacion-de-sesion-de-discord-al-recargar-la-spa.md
+- ✓ WI-014-implementar-endpoints-backend-para-creacion-y-edicion-de-cursos-de-devtalles.md
+- ✓ WI-015-construir-interfaz-de-formulario-para-agregar-y-editar-cursos-en-angular.md
 - ✓ roadmap.md
 
 ## Detected Stack
@@ -54,33 +60,35 @@
 - Tech: Structured
 - Delivery: Traceable
 - Agents: available
-- Roadmap initiatives: 6
-- Work Item candidates: 12
-- Materialized Work Items: 12
-- Ownership coverage: 12/12 work items
+- Roadmap initiatives: 7
+- Work Item candidates: 15
+- Materialized Work Items: 15
+- Ownership coverage: 15/15 work items
 
 ## Work Items
-- Draft: 11
+- Draft: 2
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 1
+- Completed: 13
 - Archived: 0
 
 ## Work Items by Type
-- Features: 9
+- Features: 11
 - Chores: 3
+- Bugfixs: 1
 
 ## Work Item Sources
-- Roadmap: 12
+- Roadmap: 15
 
 ## Work Items by Initiative
-- Autenticación e Identidad con Discord OAuth2 — Draft: 2
-- Catálogo Académico de DevTalles y Banco de Evaluación — Draft: 2
-- Configuración de Infraestructura y Monorepo — Draft: 1 · Completed: 1
-- Gestión, Persistencia y Visualización de Rutas — Draft: 2
-- Motor de Recomendación y Generación de Rutas — Draft: 2
-- Seguimiento de Progreso y Métricas de Completitud — Draft: 2
+- Administración del Catálogo de Cursos y Resiliencia de Autenticación — Draft: 2 · Completed: 1
+- Autenticación e Identidad con Discord OAuth2 — Completed: 2
+- Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
+- Configuración de Infraestructura y Monorepo — Completed: 2
+- Gestión, Persistencia y Visualización de Rutas — Completed: 2
+- Motor de Recomendación y Generación de Rutas — Completed: 2
+- Seguimiento de Progreso y Métricas de Completitud — Completed: 2
 
 ## Domains
 - Experiencia de Usuario (User Experience), Catálogo Académico (Course Catalog), Identidad y Acceso (Identity & Access), Motor de Recomendación (Recommendation Engine), Gestión de Rutas (Path Management), Seguimiento de Aprendizaje (Learning Tracking)
@@ -105,7 +113,7 @@ Groups:
 ## Project Route
 
 Route: new
-Progress: 11/12
+Progress: 12/12
 
 - [x] Enable Kaddo
 - [x] Define business context
@@ -117,25 +125,24 @@ Progress: 11/12
 - [x] Refine Work Item
 - [x] Suggest ownership
 - [x] Prepare implementation
-- [ ] Run guard
+- [x] Run guard
 - [x] Capture learning
 
 ## Phase
 - Phase: Active Delivery
 - Reason:
   - Roadmap available
-  - 12 materialized work item(s)
-  - draft: 11
+  - 15 materialized work item(s)
+  - draft: 2
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 1
-- Active Work Items: 11
+- Completed Work Items: 13
+- Active Work Items: 2
 
 ## Suggested Next Steps
 1. Refine the existing draft Work Item with the work-item-agent.
-2. Use the adr-writing skill (`kaddo adr`) to materialize decision candidates into ADRs before implementing related technical Work Items.
 
 ## Project Readiness
 - overall: not-applicable
@@ -148,32 +155,30 @@ Core:
 - ✓ current-state.md
 - ✓ codebase.md
 Decisions:
-- ADRs: 0 (draft: 0, accepted: 0) · status: candidates
+- ADRs: 3 (draft: 1, accepted: 2) · status: accepted-adrs
 Discovery:
 - ✓ architecture-notes.md
 - ✓ decision-candidates.md
 
-Use the adr-writing skill to materialize decision candidates into ADRs (`kaddo adr`) before implementing related technical Work Items.
-
 ## Roadmap Status
-- Initiatives: 6
-- Work Item candidates: 12
-- Materialized Work Items: 12
+- Initiatives: 7
+- Work Item candidates: 15
+- Materialized Work Items: 15
 - Remaining Work Item candidates: 0
 
 ## Roadmap Quality
 Initiatives:
-- Candidates evaluated: 6
-- Grounded: 6/6
-- With related domain: 6/6
-- With related capability: 6/6
-- With source signals: 6/6
+- Candidates evaluated: 7
+- Grounded: 7/7
+- With related domain: 7/7
+- With related capability: 7/7
+- With source signals: 7/7
 
 Work Item Candidates:
-- Candidates: 12
-- With source initiative: 12/12
-- With related domain: 0/12
-- With related capability: 0/12
+- Candidates: 15
+- With source initiative: 15/15
+- With related domain: 0/15
+- With related capability: 0/15
 
 Work Item candidate quality: good.
 
