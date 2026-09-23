@@ -4,7 +4,7 @@
   "description": "Cliente SPA en Angular para CodeQuest 2026",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --port 4200 --disable-host-check",
+    "start": "ng serve --host 0.0.0.0 --port 4200 --poll 2000",
     "build": "ng build --configuration production",
     "build:dev": "ng build --configuration development",
     "serve:prod": "node server.js",

@@ -3,8 +3,8 @@ type: feature
 id: WI-015
 title: "Construir interfaz de formulario para agregar y editar cursos en Angular"
 knowledge_level: K2
-status: draft
-phase: next
+status: completed
+phase: completed
 initiative: "Administración del Catálogo de Cursos y Resiliencia de Autenticación"
 domains:
   - "Catálogo Académico (Course Catalog)"
@@ -12,7 +12,9 @@ code:
   - "frontend/src/app/features/courses/**"
   - "frontend/src/app/app.routes.ts"
   - "frontend/src/app/shared/components/navbar/navbar.component.ts"
+  - "frontend/src/app/features/home/home.component.ts"
 created_at: 2026-09-22
+completed_at: 2026-09-22
 source: roadmap
 source_id: WI-015
 source_initiative: RM-007
@@ -65,10 +67,10 @@ Vista/modal reactiva con formulario para crear y editar cursos con validación e
 
 ## Acceptance Criteria
 
-- [ ] AC-1: Formulario reactivo con validaciones de cliente en vivo (campos requeridos, patrón de URL, duración).
-- [ ] AC-2: Soporte para modo creación (`Nuevo Curso`) y modo edición (`Editar Curso`) reutilizando la estructura del formulario.
-- [ ] AC-3: Selector interactivo de etiquetas tecnológicas (tags) con badges dinámicos.
-- [ ] AC-4: Mensajes de éxito/error y actualización reactiva inmediata en la vista del catálogo o rutas.
+- [x] AC-1: Formulario reactivo con validaciones de cliente en vivo (campos requeridos, patrón de URL, duración).
+- [x] AC-2: Soporte para modo creación (`Nuevo Curso`) y modo edición (`Editar Curso`) reutilizando la estructura del formulario.
+- [x] AC-3: Selector interactivo de etiquetas tecnológicas (tags) con badges dinámicos.
+- [x] AC-4: Mensajes de éxito/error y actualización reactiva inmediata en la vista del catálogo o rutas.
 
 ## Out of scope
 
@@ -83,11 +85,11 @@ Vista/modal reactiva con formulario para crear y editar cursos con validación e
 
 ## Definition of Done
 
-- [ ] Problem is clear.
-- [ ] Expected result is defined.
-- [ ] Impact of not doing it is stated.
-- [ ] Acceptance criteria are verifiable.
-- [ ] Concrete validation steps are documented.
+- [x] Problem is clear.
+- [x] Expected result is defined.
+- [x] Impact of not doing it is stated.
+- [x] Acceptance criteria are verifiable.
+- [x] Concrete validation steps are documented.
 
 ## Open Questions
 
@@ -104,4 +106,4 @@ Vista/modal reactiva con formulario para crear y editar cursos con validación e
 
 ## Learning
 
-_What did we learn from this change? Update after completion._
+La implementación de formularios reactivos en Angular 17+ con Signals desacopla la sincronización del catálogo local y las operaciones de red (`createCourse`, `updateCourse`), proporcionando actualización optimista y una experiencia de usuario instantánea sin necesidad de recargar la página.

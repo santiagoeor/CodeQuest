@@ -39,6 +39,13 @@ import { AuthService } from '../../../core/auth/services/auth.service';
               Diagnóstico
             </a>
 
+            <a routerLink="/courses"
+               routerLinkActive="text-cq-primary bg-cq-primary/10"
+               class="px-4 py-2 rounded-lg text-sm font-medium text-cq-muted hover:text-cq-text
+                      hover:bg-cq-surface-hover transition-colors">
+              Cursos
+            </a>
+
             @if (isAuthenticated()) {
               <a routerLink="/paths"
                  routerLinkActive="text-cq-primary bg-cq-primary/10"
@@ -172,6 +179,14 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                class="block px-4 py-2.5 rounded-lg text-sm font-medium text-cq-muted
                       hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
               Diagnóstico
+            </a>
+
+            <a routerLink="/courses"
+               routerLinkActive="text-cq-primary bg-cq-primary/10"
+               (click)="closeMenu()"
+               class="block px-4 py-2.5 rounded-lg text-sm font-medium text-cq-muted
+                      hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
+              Cursos
             </a>
 
             @if (isAuthenticated()) {
