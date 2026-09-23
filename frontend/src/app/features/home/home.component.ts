@@ -35,11 +35,11 @@ import { ContainerComponent } from '../../shared/components/container/container.
               </svg>
               Comenzar Diagnóstico
             </a>
-            <a href="https://cursos.devtalles.com" target="_blank" rel="noopener noreferrer"
-               class="btn-outline text-base px-8 py-3">
-              Explorar cursos
+            <a routerLink="/courses"
+               class="btn-outline text-base px-8 py-3 inline-flex items-center gap-2">
+              Explorar Cursos
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
               </svg>
             </a>
           </div>
