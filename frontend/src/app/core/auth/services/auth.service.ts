@@ -13,10 +13,12 @@ export class AuthService {
   private readonly router = inject(Router);
 
   private readonly TOKEN_KEY = 'codequest_token';
+  private readonly USER_KEY = 'codequest_user';
   private readonly apiUrl = environment.apiUrl;
 
-  // Reactive State with Signals (AC-3)
-  private readonly currentUserSignal = signal<User | null>(null);
+  // Reactive State with Signals (AC-1, AC-2, AC-3)
+  // Rehydrate immediately from localStorage on startup to prevent flicker/logout on reload
+  private readonly currentUserSignal = signal<User | null>(this.getStoredUser());
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly isAuthenticated = computed(() => !!this.currentUserSignal());
   readonly isLoading = signal<boolean>(false);
@@ -27,6 +29,7 @@ export class AuthService {
 
   /**
    * Initialize session if token exists in storage.
+   * Validates token validity in background with the backend.
    */
   private initAuth(): void {
     const token = this.getToken();
@@ -64,6 +67,41 @@ export class AuthService {
   }
 
   /**
+   * Retrieve cached user profile from localStorage.
+   */
+  getStoredUser(): User | null {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const data = localStorage.getItem(this.USER_KEY);
+      if (data) {
+        try {
+          return JSON.parse(data) as User;
+        } catch {
+          localStorage.removeItem(this.USER_KEY);
+        }
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Persist user profile to localStorage for synchronous rehydration on reload.
+   */
+  setStoredUser(user: User): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    }
+  }
+
+  /**
+   * Remove stored user from localStorage.
+   */
+  clearStoredUser(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem(this.USER_KEY);
+    }
+  }
+
+  /**
    * Start Discord OAuth2 flow by querying backend redirect endpoint (AC-1).
    */
   loginWithDiscord(): void {
@@ -95,6 +133,7 @@ export class AuthService {
     return this.http.get<AuthLoginResponse>(url).pipe(
       tap((res) => {
         this.setToken(res.token);
+        this.setStoredUser(res.user);
         this.currentUserSignal.set(res.user);
         this.isLoading.set(false);
       }),
@@ -120,7 +159,7 @@ export class AuthService {
   loadCurrentUser(): Observable<User | null> {
     const token = this.getToken();
     if (!token) {
-      this.currentUserSignal.set(null);
+      this.clearSession();
       return of(null);
     }
 
@@ -128,13 +167,17 @@ export class AuthService {
     return this.http.get<UserResponse>(`${this.apiUrl}/auth/user`).pipe(
       map((res) => res.data),
       tap((user) => {
+        this.setStoredUser(user);
         this.currentUserSignal.set(user);
         this.isLoading.set(false);
       }),
-      catchError(() => {
-        this.clearSession();
+      catchError((error) => {
+        // Only invalidate local session if server explicitly returned 401 Unauthorized
+        if (error?.status === 401) {
+          this.clearSession();
+        }
         this.isLoading.set(false);
-        return of(null);
+        return of(this.currentUserSignal());
       })
     );
   }
@@ -158,6 +201,7 @@ export class AuthService {
    */
   private clearSession(): void {
     this.clearToken();
+    this.clearStoredUser();
     this.currentUserSignal.set(null);
   }
 }

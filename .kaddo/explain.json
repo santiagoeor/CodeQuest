@@ -28,7 +28,7 @@
     "hasSkills": true
   },
   "workItems": {
-    "total": 12,
+    "total": 15,
     "inProgress": 0,
     "done": 0,
     "cancelled": 0,
@@ -37,14 +37,26 @@
       "ready": 0,
       "in-progress": 0,
       "blocked": 0,
-      "completed": 10,
+      "completed": 13,
       "archived": 0
     },
     "byType": {
       "chore": 3,
-      "feature": 9
+      "feature": 11,
+      "bugfix": 1
     },
     "initiatives": [
+      {
+        "name": "Administración del Catálogo de Cursos y Resiliencia de Autenticación",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 1,
+          "archived": 0
+        }
+      },
       {
         "name": "Autenticación e Identidad con Discord OAuth2",
         "states": {
@@ -103,11 +115,11 @@
       {
         "name": "Seguimiento de Progreso y Métricas de Completitud",
         "states": {
-          "draft": 2,
+          "draft": 0,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 0,
+          "completed": 2,
           "archived": 0
         }
       }
@@ -297,8 +309,8 @@
         "id": "WI-011",
         "title": "Desarrollar endpoints para registrar el progreso de cursos por usuario",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Seguimiento de Progreso y Métricas de Completitud",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -315,8 +327,8 @@
         "id": "WI-012",
         "title": "Integrar barra de progreso reactiva e indicadores de completitud en la SPA",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Seguimiento de Progreso y Métricas de Completitud",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -328,12 +340,66 @@
           "id": "WI-012",
           "inferred": false
         }
+      },
+      {
+        "id": "WI-013",
+        "title": "Garantizar persistencia y rehidratación de sesión de Discord al recargar la SPA",
+        "type": "bugfix",
+        "status": "completed",
+        "lifecycle": "completed",
+        "initiative": "Administración del Catálogo de Cursos y Resiliencia de Autenticación",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-013",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-014",
+        "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Administración del Catálogo de Cursos y Resiliencia de Autenticación",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-014",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-015",
+        "title": "Construir interfaz de formulario para agregar y editar cursos en Angular",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Administración del Catálogo de Cursos y Resiliencia de Autenticación",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-015",
+          "inferred": false
+        }
       }
     ]
   },
   "ownership": {
-    "workItemsTotal": 12,
-    "workItemsWithOwnership": 12,
+    "workItemsTotal": 15,
+    "workItemsWithOwnership": 15,
     "workItemsMissingOwnership": 0
   },
   "domains": [
@@ -450,18 +516,21 @@
         "WI-010-crear-vista-interactiva-de-roadmap-y-tarjetas-de-cursos-en-angular.md",
         "WI-011-desarrollar-endpoints-para-registrar-el-progreso-de-cursos-por-usuario.md",
         "WI-012-integrar-barra-de-progreso-reactiva-e-indicadores-de-completitud-en-la-spa.md",
+        "WI-013-garantizar-persistencia-y-rehidratacion-de-sesion-de-discord-al-recargar-la-spa.md",
+        "WI-014-implementar-endpoints-backend-para-creacion-y-edicion-de-cursos-de-devtalles.md",
+        "WI-015-construir-interfaz-de-formulario-para-agregar-y-editar-cursos-en-angular.md",
         "roadmap.md"
       ]
     }
   ],
   "roadmap": {
     "present": true,
-    "initiatives": 6,
-    "work_item_candidates": 12,
-    "materialized_work_items": 12,
+    "initiatives": 7,
+    "work_item_candidates": 15,
+    "materialized_work_items": 15,
     "remaining_work_item_candidates": 0,
-    "candidates": 12,
-    "materialized": 12,
+    "candidates": 15,
+    "materialized": 15,
     "remaining": 0
   },
   "missingKnowledge": [],
@@ -768,11 +837,11 @@
   },
   "roadmapQuality": {
     "initiatives": {
-      "total": 6,
-      "grounded": 6,
-      "with_related_domain": 6,
-      "with_related_capability": 6,
-      "with_source_signals": 6,
+      "total": 7,
+      "grounded": 7,
+      "with_related_domain": 7,
+      "with_related_capability": 7,
+      "with_source_signals": 7,
       "needs_refinement": false,
       "items": [
         {
@@ -822,22 +891,30 @@
           "hasRelatedCapability": true,
           "hasSourceSignals": true,
           "grounded": true
+        },
+        {
+          "id": "RM-007",
+          "title": "Administración del Catálogo de Cursos y Resiliencia de Autenticación",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
         }
       ]
     },
     "work_item_candidates": {
-      "total": 12,
-      "with_source_initiative": 12,
+      "total": 15,
+      "with_source_initiative": 15,
       "with_related_domain": 0,
       "with_related_capability": 0
     }
   },
   "projectRoute": {
     "type": "new",
-    "currentStep": "run-guard",
-    "completed": 11,
+    "currentStep": "complete",
+    "completed": 12,
     "total": 12,
-    "progressPercent": 92,
+    "progressPercent": 100,
     "steps": [
       {
         "id": "enable-kaddo",
@@ -914,7 +991,10 @@
       {
         "id": "run-guard",
         "label": "Run guard",
-        "status": "pending"
+        "status": "done",
+        "evidence": [
+          ".kaddo/history/guard-runs.jsonl"
+        ]
       },
       {
         "id": "capture-learning",
@@ -1003,7 +1083,7 @@
   },
   "isModuleRepo": false,
   "deliverySummary": {
-    "completedWorkItems": 10,
+    "completedWorkItems": 13,
     "archivedWorkItems": 0,
     "activeWorkItems": 2,
     "implementationCompleted": 0,
