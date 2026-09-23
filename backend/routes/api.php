@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LearningPathController;
 use App\Http\Controllers\ProgressController;
 use App\Models\Course;
@@ -58,30 +59,15 @@ Route::get('/version', function () {
     ]);
 });
 
-Route::get('/courses', function () {
-    $courses = Course::with('tags')->get();
+/**
+ * Course Catalog Routes
+ */
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/{slug}', [CourseController::class, 'show']);
 
-    return response()->json([
-        'status' => 'ok',
-        'count' => $courses->count(),
-        'data' => $courses,
-    ]);
-});
-
-Route::get('/courses/{slug}', function (string $slug) {
-    $course = Course::with('tags')->where('slug', $slug)->first();
-
-    if (!$course) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Curso no encontrado',
-        ], 404);
-    }
-
-    return response()->json([
-        'status' => 'ok',
-        'data' => $course,
-    ]);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/courses', [CourseController::class, 'store']);
+    Route::put('/courses/{id}', [CourseController::class, 'update']);
 });
 
 Route::get('/assessment/questions', [AssessmentController::class, 'index']);

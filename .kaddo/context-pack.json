@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-23T03:10:27.591Z",
+  "generatedAt": "2026-09-23T03:22:18.650Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -26,24 +26,6 @@
     "inventoryAvailable": true,
     "workItems": [
       {
-        "id": "WI-014",
-        "type": "feature",
-        "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Catálogo Académico (Course Catalog)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-014",
-          "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
-          "context": "Materialized from roadmap candidate WI-014 under initiative RM-007.",
-          "inferred": false
-        }
-      },
-      {
         "id": "WI-015",
         "type": "feature",
         "title": "Construir interfaz de formulario para agregar y editar cursos en Angular",
@@ -63,24 +45,6 @@
       }
     ],
     "activeWorkItems": [
-      {
-        "id": "WI-014",
-        "type": "feature",
-        "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Catálogo Académico (Course Catalog)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-014",
-          "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
-          "context": "Materialized from roadmap candidate WI-014 under initiative RM-007.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-015",
         "type": "feature",
@@ -373,6 +337,27 @@
         "implementationStatus": "not-assessed",
         "validationStatus": "not-assessed",
         "releaseStatus": "not-assessed"
+      },
+      {
+        "id": "WI-014",
+        "type": "feature",
+        "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
+        "status": "completed",
+        "lifecycle": "completed",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-014",
+          "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
+          "context": "Materialized from roadmap candidate WI-014 under initiative RM-007.",
+          "inferred": false
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       }
     ],
     "archivedWorkItems": [],
@@ -654,8 +639,8 @@
         "id": "WI-014",
         "type": "feature",
         "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "knowledgeLevel": "K2",
         "domains": [
           "Catálogo Académico (Course Catalog)"
@@ -666,7 +651,10 @@
           "title": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
           "context": "Materialized from roadmap candidate WI-014 under initiative RM-007.",
           "inferred": false
-        }
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       },
       {
         "id": "WI-015",
@@ -865,9 +853,11 @@
         "summary": "Implementar endpoints backend para creación y edición de cursos de DevTalles",
         "codeGlobs": [
           "backend/app/Http/Controllers/CourseController.php",
-          "backend/app/Http/Requests/**",
+          "backend/app/Http/Requests/StoreCourseRequest.php",
+          "backend/app/Http/Requests/UpdateCourseRequest.php",
           "backend/routes/api.php",
-          "backend/app/Models/Course.php"
+          "backend/app/Models/Course.php",
+          "backend/tests/Feature/CourseAdminTest.php"
         ]
       },
       {
@@ -979,7 +969,7 @@
     "reasons": [
       "Roadmap available",
       "15 materialized work item(s)",
-      "draft: 2",
+      "draft: 1",
       "Ownership coverage 100%"
     ],
     "recommendedAgents": [
@@ -998,11 +988,11 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 2 draft Work Items. Refine before defining roadmap candidates."
+    "reason": "There is 1 draft Work Item. Refine before defining roadmap candidates."
   },
   "deliveryState": {
     "phase": "Active Delivery",
-    "draft_work_items": 2,
+    "draft_work_items": 1,
     "refined_draft_work_items": 0,
     "refined_draft_ids": [],
     "ready_work_items": 0,
@@ -1152,17 +1142,17 @@
   },
   "workItemSummary": {
     "total": 15,
-    "active": 2,
-    "draft": 2,
+    "active": 1,
+    "draft": 1,
     "ready": 0,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 13,
+    "completed": 14,
     "archived": 0,
     "summary": "draft-only"
   },
   "deliveryMix": {
-    "feature": 2
+    "feature": 1
   },
   "external": [],
   "graph": {

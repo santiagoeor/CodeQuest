@@ -16,11 +16,11 @@
 - Recommended agent: work-item-agent
 - Recommended skill: work-item-refinement
 - Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 2 draft Work Items. Refine before defining roadmap candidates.
+- Reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 2
+- Draft Work Items: 1
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
@@ -43,12 +43,10 @@ Route: new · Progress: 12/12
 - id: refine-work-item
 - agent: work-item-agent
 - skill: work-item-refinement
-- reason: There are 2 draft Work Items. Refine before defining roadmap candidates.
+- reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
 
 ## Active Work Items
 
-- WI-014 [feature] draft — Implementar endpoints backend para creación y edición de cursos de DevTalles
-  - Source: roadmap · WI-014
 - WI-015 [feature] draft — Construir interfaz de formulario para agregar y editar cursos en Angular
   - Source: roadmap · WI-015
 
