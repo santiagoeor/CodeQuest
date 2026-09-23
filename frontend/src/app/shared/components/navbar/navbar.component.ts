@@ -40,6 +40,13 @@ import { AuthService } from '../../../core/auth/services/auth.service';
             </a>
 
             @if (isAuthenticated()) {
+              <a routerLink="/paths"
+                 routerLinkActive="text-cq-primary bg-cq-primary/10"
+                 class="px-4 py-2 rounded-lg text-sm font-medium text-cq-muted hover:text-cq-text
+                        hover:bg-cq-surface-hover transition-colors">
+                Mis Rutas
+              </a>
+
               <a routerLink="/profile"
                  routerLinkActive="text-cq-primary bg-cq-primary/10"
                  class="px-4 py-2 rounded-lg text-sm font-medium text-cq-muted hover:text-cq-text
@@ -87,6 +94,11 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                       <div class="px-4 py-2 border-b border-cq-border/60">
                         <p class="text-xs text-cq-muted truncate">{{ user()?.email }}</p>
                       </div>
+                      <a routerLink="/paths"
+                         (click)="closeUserDropdown()"
+                         class="block px-4 py-2 text-sm text-cq-muted hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
+                        Mis Rutas
+                      </a>
                       <a routerLink="/profile"
                          (click)="closeUserDropdown()"
                          class="block px-4 py-2 text-sm text-cq-muted hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
@@ -163,6 +175,14 @@ import { AuthService } from '../../../core/auth/services/auth.service';
             </a>
 
             @if (isAuthenticated()) {
+              <a routerLink="/paths"
+                 routerLinkActive="text-cq-primary bg-cq-primary/10"
+                 (click)="closeMenu()"
+                 class="block px-4 py-2.5 rounded-lg text-sm font-medium text-cq-muted
+                        hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
+                Mis Rutas
+              </a>
+
               <a routerLink="/profile"
                  (click)="closeMenu()"
                  class="block px-4 py-2.5 rounded-lg text-sm font-medium text-cq-muted

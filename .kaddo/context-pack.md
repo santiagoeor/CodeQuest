@@ -26,7 +26,7 @@ Reason:
 
 - Roadmap available
 - 12 materialized work item(s)
-- draft: 3
+- draft: 2
 - Ownership coverage 100%
 
 Recommended next: work-item-agent
@@ -36,7 +36,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 ## Delivery State
 
 - Phase: Active Delivery
-- Draft Work Items: 3
+- Draft Work Items: 2
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Ownership coverage: 12/12
@@ -46,7 +46,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 
 - Refine the existing draft Work Item with the work-item-agent.
   - id: refine-work-item
-  - reason: There are 3 draft Work Items. Refine before defining roadmap candidates.
+  - reason: There are 2 draft Work Items. Refine before defining roadmap candidates.
   - agent: work-item-agent
   - skill: work-item-refinement
 
@@ -70,6 +70,7 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 ### Tech — Structured
 - ✓ ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md
 - ✓ ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
+- ✓ ADR-003-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md
 - ✓ architecture-notes.md
 - ✓ codebase.md
 - ✓ current-state.md
@@ -136,8 +137,6 @@ Work Item Candidates:
 
 ## Active Work Items
 
-- WI-010 [feature] [K2] (draft) — Crear vista interactiva de Roadmap y tarjetas de cursos en Angular · domains: Gestión de Rutas (Path Management)
-  - Source: roadmap · WI-010
 - WI-011 [feature] [K2] (draft) — Desarrollar endpoints para registrar el progreso de cursos por usuario · domains: Seguimiento de Aprendizaje (Learning Tracking)
   - Source: roadmap · WI-011
 - WI-012 [feature] [K2] (draft) — Integrar barra de progreso reactiva e indicadores de completitud en la SPA · domains: Seguimiento de Aprendizaje (Learning Tracking)
@@ -147,7 +146,7 @@ Work Item Candidates:
 
 Active Work Items by type:
 
-- Features: 3
+- Features: 2
 
 ## Artifacts and Ownership
 
@@ -160,7 +159,7 @@ Active Work Items by type:
 - WI-007 [feature] owns: backend/app/Services/LearningPathGeneratorService.php, backend/app/Http/Controllers/LearningPathController.php, backend/routes/api.php, backend/tests/Unit/LearningPathGeneratorServiceTest.php, backend/tests/Feature/RecommendationTest.php, knowledge/tech/decisions/ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
 - WI-008 [feature] owns: frontend/src/app/features/assessment/**, frontend/src/app/app.routes.ts, frontend/src/app/shared/components/navbar/navbar.component.ts, frontend/src/app/features/home/home.component.ts
 - WI-009 [feature] owns: backend/app/Models/LearningPath.php, backend/app/Models/LearningPathCourse.php, backend/app/Models/User.php, backend/app/Models/Course.php, backend/app/Http/Controllers/LearningPathController.php, backend/database/migrations/2026_09_22_000001_create_learning_paths_tables.php, backend/routes/api.php, backend/tests/Feature/LearningPathTest.php
-- WI-010 [feature] owns: frontend/src/app/features/paths/**
+- WI-010 [feature] owns: frontend/src/app/features/paths/**, frontend/src/app/app.routes.ts, frontend/src/app/features/assessment/assessment.component.ts, frontend/src/app/shared/components/navbar/navbar.component.ts
 - WI-011 [feature] owns: backend/app/Models/CourseProgress.php, backend/app/Http/Controllers/ProgressController.php, backend/routes/api.php
 - WI-012 [feature] owns: frontend/src/app/features/progress/**, frontend/src/app/features/paths/components/**
 

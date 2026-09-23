@@ -18,6 +18,7 @@
 ### Tech — Structured
 - ✓ ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md
 - ✓ ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md
+- ✓ ADR-003-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md
 - ✓ architecture-notes.md
 - ✓ codebase.md
 - ✓ current-state.md
@@ -62,11 +63,11 @@
 - Ownership coverage: 12/12 work items
 
 ## Work Items
-- Draft: 5
+- Draft: 2
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 7
+- Completed: 10
 - Archived: 0
 
 ## Work Items by Type
@@ -80,8 +81,8 @@
 - Autenticación e Identidad con Discord OAuth2 — Completed: 2
 - Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
 - Configuración de Infraestructura y Monorepo — Completed: 2
-- Gestión, Persistencia y Visualización de Rutas — Draft: 2
-- Motor de Recomendación y Generación de Rutas — Draft: 1 · Completed: 1
+- Gestión, Persistencia y Visualización de Rutas — Completed: 2
+- Motor de Recomendación y Generación de Rutas — Completed: 2
 - Seguimiento de Progreso y Métricas de Completitud — Draft: 2
 
 ## Domains
@@ -127,13 +128,13 @@ Progress: 11/12
 - Reason:
   - Roadmap available
   - 12 materialized work item(s)
-  - draft: 5
+  - draft: 2
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 7
-- Active Work Items: 5
+- Completed Work Items: 10
+- Active Work Items: 2
 
 ## Suggested Next Steps
 1. Refine the existing draft Work Item with the work-item-agent.
@@ -149,7 +150,7 @@ Core:
 - ✓ current-state.md
 - ✓ codebase.md
 Decisions:
-- ADRs: 2 (draft: 1, accepted: 1) · status: accepted-adrs
+- ADRs: 3 (draft: 1, accepted: 2) · status: accepted-adrs
 Discovery:
 - ✓ architecture-notes.md
 - ✓ decision-candidates.md

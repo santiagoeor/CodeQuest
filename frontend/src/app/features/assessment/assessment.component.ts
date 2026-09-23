@@ -1,9 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ContainerComponent } from '../../shared/components/container/container.component';
 import { AssessmentService } from './services/assessment.service';
-import { QuestionOption } from './models/assessment.model';
+import { QuestionOption, LearningPathRecommendation } from './models/assessment.model';
+import { PathsService } from '../paths/services/paths.service';
+import { AuthService } from '../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-assessment',
@@ -44,6 +46,22 @@ import { QuestionOption } from './models/assessment.model';
               </p>
 
               <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-cq-border/60">
+                <button
+                  (click)="saveToMyPaths(rec)"
+                  [disabled]="isSavingPath()"
+                  class="btn-primary text-xs sm:text-sm py-2 px-4 shadow-md shadow-cq-primary/20 flex items-center gap-2"
+                >
+                  @if (isSavingPath()) {
+                    <div class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Guardando...
+                  } @else {
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                    </svg>
+                    Guardar en mis Rutas
+                  }
+                </button>
+
                 <button (click)="restartAssessment()" class="btn-outline text-xs sm:text-sm py-2 px-4">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
@@ -311,6 +329,10 @@ import { QuestionOption } from './models/assessment.model';
 export class AssessmentComponent implements OnInit {
   readonly service = inject(AssessmentService);
   private readonly router = inject(Router);
+  private readonly pathsService = inject(PathsService);
+  private readonly authService = inject(AuthService);
+
+  readonly isSavingPath = signal<boolean>(false);
 
   ngOnInit(): void {
     if (this.service.questions().length === 0) {
@@ -318,6 +340,38 @@ export class AssessmentComponent implements OnInit {
         error: (err) => console.error('Error fetching questions', err),
       });
     }
+  }
+
+  saveToMyPaths(rec: LearningPathRecommendation): void {
+    if (!this.authService.isAuthenticated()) {
+      if (confirm('Para guardar tu ruta de aprendizaje necesitas iniciar sesión con Discord. ¿Deseas iniciar sesión ahora?')) {
+        this.authService.loginWithDiscord();
+      }
+      return;
+    }
+
+    this.isSavingPath.set(true);
+    const saveRequest = {
+      title: rec.title,
+      description: rec.description,
+      level: rec.level,
+      status: 'active',
+      courses: rec.courses.map((c, i) => ({
+        id: c.id,
+        order: c.step || i + 1,
+      })),
+    };
+
+    this.pathsService.savePath(saveRequest).subscribe({
+      next: (saved) => {
+        this.isSavingPath.set(false);
+        this.router.navigate(['/paths', saved.id]);
+      },
+      error: (err) => {
+        this.isSavingPath.set(false);
+        alert(err.message || 'Error al guardar la ruta.');
+      },
+    });
   }
 
   retryLoad(): void {

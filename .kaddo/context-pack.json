@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-22T15:43:56.122Z",
+  "generatedAt": "2026-09-23T01:29:37.137Z",
   "project": {
     "name": "CodeQuest",
     "state": "new",
@@ -25,24 +25,6 @@
     "roadmapSummary": "> Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.",
     "inventoryAvailable": true,
     "workItems": [
-      {
-        "id": "WI-010",
-        "type": "feature",
-        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Gestión de Rutas (Path Management)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-010",
-          "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
-          "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-011",
         "type": "feature",
@@ -81,24 +63,6 @@
       }
     ],
     "activeWorkItems": [
-      {
-        "id": "WI-010",
-        "type": "feature",
-        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
-        "status": "draft",
-        "lifecycle": "draft",
-        "knowledgeLevel": "K2",
-        "domains": [
-          "Gestión de Rutas (Path Management)"
-        ],
-        "source": {
-          "type": "roadmap",
-          "id": "WI-010",
-          "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
-          "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
-          "inferred": false
-        }
-      },
       {
         "id": "WI-011",
         "type": "feature",
@@ -325,6 +289,27 @@
         "implementationStatus": "not-assessed",
         "validationStatus": "not-assessed",
         "releaseStatus": "not-assessed"
+      },
+      {
+        "id": "WI-010",
+        "type": "feature",
+        "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+        "status": "completed",
+        "lifecycle": "completed",
+        "knowledgeLevel": "K2",
+        "domains": [
+          "Gestión de Rutas (Path Management)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-010",
+          "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
+          "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
+          "inferred": false
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       }
     ],
     "archivedWorkItems": [],
@@ -522,8 +507,8 @@
         "id": "WI-010",
         "type": "feature",
         "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "knowledgeLevel": "K2",
         "domains": [
           "Gestión de Rutas (Path Management)"
@@ -534,7 +519,10 @@
           "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
           "context": "Materialized from roadmap candidate WI-010 under initiative RM-005.",
           "inferred": false
-        }
+        },
+        "implementationStatus": "not-assessed",
+        "validationStatus": "not-assessed",
+        "releaseStatus": "not-assessed"
       },
       {
         "id": "WI-011",
@@ -701,7 +689,10 @@
         "title": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
         "summary": "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular",
         "codeGlobs": [
-          "frontend/src/app/features/paths/**"
+          "frontend/src/app/features/paths/**",
+          "frontend/src/app/app.routes.ts",
+          "frontend/src/app/features/assessment/assessment.component.ts",
+          "frontend/src/app/shared/components/navbar/navbar.component.ts"
         ]
       },
       {
@@ -749,6 +740,7 @@
       "detected": [
         "ADR-001-dc-001-autenticacion-api-mediante-laravel-sanctum.md",
         "ADR-002-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md",
+        "ADR-003-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md",
         "architecture-notes.md",
         "codebase.md",
         "current-state.md",
@@ -819,7 +811,7 @@
     "reasons": [
       "Roadmap available",
       "12 materialized work item(s)",
-      "draft: 3",
+      "draft: 2",
       "Ownership coverage 100%"
     ],
     "recommendedAgents": [
@@ -838,11 +830,11 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 3 draft Work Items. Refine before defining roadmap candidates."
+    "reason": "There are 2 draft Work Items. Refine before defining roadmap candidates."
   },
   "deliveryState": {
     "phase": "Active Delivery",
-    "draft_work_items": 3,
+    "draft_work_items": 2,
     "refined_draft_work_items": 0,
     "refined_draft_ids": [],
     "ready_work_items": 0,
@@ -854,30 +846,30 @@
     "ownership_coverage": "12/12",
     "remaining_work_item_candidates": 0,
     "decision_candidates": 3,
-    "accepted_adrs": 1,
+    "accepted_adrs": 2,
     "adapters_installed": 1
   },
   "techDecisions": {
     "status": "accepted-adrs",
     "candidates": 3,
-    "adrs": 2,
+    "adrs": 3,
     "draft_adrs": 1,
-    "accepted_adrs": 1,
+    "accepted_adrs": 2,
     "candidate_list": [
       {
         "title": "DC-001: Autenticación API mediante Laravel Sanctum",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-003-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-004-dc-001-autenticacion-api-mediante-laravel-sanctum.md"
       },
       {
         "title": "DC-002: Algoritmo Determinista de Recomendación en Backend",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-004-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-005-dc-002-algoritmo-determinista-de-recomendacion-en-backend.md"
       },
       {
         "title": "DC-003: Renderizado de Rutas de Aprendizaje en Angular",
         "source": "knowledge/tech/discovery/decision-candidates.md",
-        "suggestedAdrFile": "knowledge/tech/decisions/ADR-005-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
+        "suggestedAdrFile": "knowledge/tech/decisions/ADR-006-dc-003-renderizado-de-rutas-de-aprendizaje-en-angular.md"
       }
     ],
     "candidates_source": "knowledge/tech/discovery/decision-candidates.md",
@@ -890,7 +882,7 @@
       "codebase.md": true
     },
     "decisions": {
-      "adrs": 2,
+      "adrs": 3,
       "dir": true
     },
     "discovery": {
@@ -984,17 +976,17 @@
   },
   "workItemSummary": {
     "total": 12,
-    "active": 3,
-    "draft": 3,
+    "active": 2,
+    "draft": 2,
     "ready": 0,
     "in_progress": 0,
     "blocked": 0,
-    "completed": 9,
+    "completed": 10,
     "archived": 0,
     "summary": "draft-only"
   },
   "deliveryMix": {
-    "feature": 3
+    "feature": 2
   },
   "external": [],
   "graph": {

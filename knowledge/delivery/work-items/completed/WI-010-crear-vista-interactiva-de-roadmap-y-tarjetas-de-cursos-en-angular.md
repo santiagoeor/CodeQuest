@@ -3,14 +3,18 @@ type: feature
 id: WI-010
 title: "Crear vista interactiva de Roadmap y tarjetas de cursos en Angular"
 knowledge_level: K2
-status: draft
-phase: next
+status: completed
+phase: completed
 initiative: "Gestión, Persistencia y Visualización de Rutas"
 domains:
   - "Gestión de Rutas (Path Management)"
 code:
   - "frontend/src/app/features/paths/**"
+  - "frontend/src/app/app.routes.ts"
+  - "frontend/src/app/features/assessment/assessment.component.ts"
+  - "frontend/src/app/shared/components/navbar/navbar.component.ts"
 created_at: 2026-09-18
+completed_at: 2026-09-22
 source: roadmap
 source_id: WI-010
 source_initiative: RM-005
@@ -61,10 +65,10 @@ Componente visual de ruta tipo itinerario con enlaces hacia los cursos en DevTal
 
 ## Acceptance Criteria
 
-- [ ] AC-1: Visualización tipo itinerario secuencial con nodos interconectados.
-- [ ] AC-2: Tarjeta de curso con título, nivel, duración estimada, tecnologías y enlace directo a DevTalles.
-- [ ] AC-3: Panel de mis rutas guardadas para alternar entre diferentes itinerarios.
-- [ ] AC-4: Diseño adaptable y optimizado para navegación en móviles.
+- [x] AC-1: Visualización tipo itinerario secuencial con nodos interconectados.
+- [x] AC-2: Tarjeta de curso con título, nivel, duración estimada, tecnologías y enlace directo a DevTalles.
+- [x] AC-3: Panel de mis rutas guardadas para alternar entre diferentes itinerarios.
+- [x] AC-4: Diseño adaptable y optimizado para navegación en móviles.
 
 ## Out of scope
 
@@ -74,15 +78,15 @@ Componente visual de ruta tipo itinerario con enlaces hacia los cursos en DevTal
 
 1. Abrir una ruta guardada y verificar renderizado de la secuencia de cursos.
 2. Probar enlaces externos a DevTalles asegurando apertura en nueva pestaña.
-3. Ejecutar `kaddo guard` para verificar consistencia.
+3. Ejecutar compilación de producción y guard de kaddo.
 
 ## Definition of Done
 
-- [ ] Problem is clear.
-- [ ] Expected result is defined.
-- [ ] Impact of not doing it is stated.
-- [ ] Acceptance criteria are verifiable.
-- [ ] Concrete validation steps are documented.
+- [x] Problem is clear.
+- [x] Expected result is defined.
+- [x] Impact of not doing it is stated.
+- [x] Acceptance criteria are verifiable.
+- [x] Concrete validation steps are documented.
 
 ## Open Questions
 
@@ -90,6 +94,9 @@ Componente visual de ruta tipo itinerario con enlaces hacia los cursos en DevTal
 
 **Suggested ownership (code globs):**
   - "frontend/src/app/features/paths/**"
+  - "frontend/src/app/app.routes.ts"
+  - "frontend/src/app/features/assessment/assessment.component.ts"
+  - "frontend/src/app/shared/components/navbar/navbar.component.ts"
 
 **Related domain / capability:**
 - Related domain: Gestión de Rutas (Path Management)
@@ -97,4 +104,6 @@ Componente visual de ruta tipo itinerario con enlaces hacia los cursos en DevTal
 
 ## Learning
 
-_What did we learn from this change? Update after completion._
+- Formalización de ADR-003: Renderizado nativo con Tailwind CSS y Angular en lugar de librerías pesadas como D3.js o Canvas. Esto redujo el bundle transfer size a solo 18.35 kB para la vista de rutas y garantiza total accesibilidad DOM nativa, diseño responsive e integración con Tailwind sin desbordamientos de canvas en pantallas móviles.
+- En Angular 17 con la nueva sintaxis de control de flujo (`@if`, `@else if`, `@else`), los comentarios HTML (`<!-- -->`) entre bloques adyacentes disparan el error sintáctico `NG5002`. Es crucial mantener la secuencia sin comentarios intermedios.
+- Integración de Signals reactivas (`paths`, `currentPath`, `isLoading`, `error`) con `computed` en `PathsService`, proporcionando un manejo de estado limpio y reactivo sin necesidad de boilerplate adicional.
