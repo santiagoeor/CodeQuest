@@ -26,7 +26,7 @@ Reason:
 
 - Roadmap available
 - 15 materialized work item(s)
-- draft: 2
+- draft: 1
 - Ownership coverage 100%
 
 Recommended next: work-item-agent
@@ -36,7 +36,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 ## Delivery State
 
 - Phase: Active Delivery
-- Draft Work Items: 2
+- Draft Work Items: 1
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Ownership coverage: 15/15
@@ -46,7 +46,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 
 - Refine the existing draft Work Item with the work-item-agent.
   - id: refine-work-item
-  - reason: There are 2 draft Work Items. Refine before defining roadmap candidates.
+  - reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
   - agent: work-item-agent
   - skill: work-item-refinement
 
@@ -140,8 +140,6 @@ Work Item Candidates:
 
 ## Active Work Items
 
-- WI-014 [feature] [K2] (draft) — Implementar endpoints backend para creación y edición de cursos de DevTalles · domains: Catálogo Académico (Course Catalog)
-  - Source: roadmap · WI-014
 - WI-015 [feature] [K2] (draft) — Construir interfaz de formulario para agregar y editar cursos en Angular · domains: Catálogo Académico (Course Catalog)
   - Source: roadmap · WI-015
 
@@ -149,7 +147,7 @@ Work Item Candidates:
 
 Active Work Items by type:
 
-- Features: 2
+- Features: 1
 
 ## Artifacts and Ownership
 
@@ -166,7 +164,7 @@ Active Work Items by type:
 - WI-011 [feature] owns: backend/app/Models/CourseProgress.php, backend/app/Models/User.php, backend/app/Models/Course.php, backend/app/Http/Controllers/ProgressController.php, backend/database/migrations/2026_09_22_000002_create_course_progress_table.php, backend/routes/api.php, backend/tests/Feature/ProgressTest.php
 - WI-012 [feature] owns: frontend/src/app/features/progress/**, frontend/src/app/features/paths/components/**, frontend/src/app/features/paths/paths.component.ts, frontend/src/app/features/paths/paths.component.spec.ts
 - WI-013 [bugfix] owns: frontend/src/app/core/auth/**, frontend/src/app/core/guards/**
-- WI-014 [feature] owns: backend/app/Http/Controllers/CourseController.php, backend/app/Http/Requests/**, backend/routes/api.php, backend/app/Models/Course.php
+- WI-014 [feature] owns: backend/app/Http/Controllers/CourseController.php, backend/app/Http/Requests/StoreCourseRequest.php, backend/app/Http/Requests/UpdateCourseRequest.php, backend/routes/api.php, backend/app/Models/Course.php, backend/tests/Feature/CourseAdminTest.php
 - WI-015 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/app.routes.ts, frontend/src/app/shared/components/navbar/navbar.component.ts
 
 ## Knowledge Graph
