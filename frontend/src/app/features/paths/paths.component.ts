@@ -5,6 +5,7 @@ import { PathsService } from './services/paths.service';
 import { PathRoadmapComponent } from './components/path-roadmap/path-roadmap.component';
 import { LearningPath } from './models/path.model';
 import { ContainerComponent } from '../../shared/components/container/container.component';
+import { ProgressService } from '../progress/services/progress.service';
 
 @Component({
   selector: 'app-paths',
@@ -27,7 +28,7 @@ import { ContainerComponent } from '../../shared/components/container/container.
               Mis Rutas de Aprendizaje
             </h1>
             <p class="text-sm text-cq-muted mt-1">
-              Visualiza la secuencia de cursos recomendada y accede a cada módulo para avanzar hacia tus metas.
+              Visualiza la secuencia de cursos recomendada, registra tu avance y mide tu progreso hacia tus metas.
             </p>
           </div>
 
@@ -107,10 +108,25 @@ import { ContainerComponent } from '../../shared/components/container/container.
                         {{ path.level || 'General' }}
                       </span>
 
+                      <!-- Sidebar Progress Badge -->
+                      <span
+                        class="text-xs font-bold px-2 py-0.5 rounded-full border flex items-center gap-1"
+                        [ngClass]="isPathFullyCompleted(path.id)
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                          : 'bg-cq-surface text-cq-muted border-cq-border/60'"
+                      >
+                        @if (isPathFullyCompleted(path.id)) {
+                          <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                          </svg>
+                        }
+                        {{ getPathProgressPct(path.id) }}%
+                      </span>
+
                       <!-- Delete button -->
                       <button
                         (click)="confirmDelete(path, $event)"
-                        class="text-cq-muted hover:text-cq-danger transition-colors p-1 rounded opacity-0 group-hover:opacity-100 focus:opacity-100"
+                        class="text-cq-muted hover:text-cq-danger transition-colors p-1 rounded opacity-0 group-hover:opacity-100 focus:opacity-100 ml-auto"
                         title="Eliminar ruta"
                       >
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,7 +153,7 @@ import { ContainerComponent } from '../../shared/components/container/container.
             <div class="lg:col-span-8 space-y-6">
               @if (service.currentPath(); as activePath) {
                 
-                <!-- Path Header Card -->
+                <!-- Path Header Card with Reactive Progress Bar (AC-2) -->
                 <div class="card p-6 sm:p-8 bg-gradient-to-br from-cq-surface via-cq-surface to-cq-surface-hover/50 border border-cq-border relative overflow-hidden">
                   <div class="absolute -right-12 -top-12 w-48 h-48 bg-cq-primary/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -157,6 +173,15 @@ import { ContainerComponent } from '../../shared/components/container/container.
                     <span class="text-xs text-cq-muted px-2.5 py-1 rounded bg-cq-surface border border-cq-border/60">
                       {{ activePath.courses.length || 0 }} cursos en secuencia
                     </span>
+
+                    @if (isPathFullyCompleted(activePath.id)) {
+                      <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 ml-auto">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Ruta 100% Completada
+                      </span>
+                    }
                   </div>
 
                   <h2 class="text-xl sm:text-2xl font-extrabold text-cq-text mb-3">
@@ -169,8 +194,41 @@ import { ContainerComponent } from '../../shared/components/container/container.
                     </p>
                   }
 
+                  <!-- Reactive Progress Bar (AC-2) -->
+                  <div class="space-y-2 pt-4 border-t border-cq-border/60">
+                    <div class="flex items-center justify-between text-xs sm:text-sm">
+                      <span class="font-bold text-cq-text flex items-center gap-2">
+                        <svg class="w-4 h-4 text-cq-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Tu Progreso en esta Ruta
+                      </span>
+                      <div class="flex items-center gap-2">
+                        <span class="text-cq-muted text-xs">
+                          {{ getCompletedCount(activePath.id) }} de {{ activePath.courses.length }} cursos completados
+                        </span>
+                        <span
+                          class="font-extrabold text-xs px-2.5 py-0.5 rounded border"
+                          [ngClass]="isPathFullyCompleted(activePath.id)
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                            : 'bg-cq-surface text-cq-accent border-cq-border'"
+                        >
+                          {{ getPathProgressPct(activePath.id) }}%
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Animated Progress Bar Track -->
+                    <div class="w-full h-3 bg-cq-surface rounded-full overflow-hidden border border-cq-border/80">
+                      <div
+                        class="h-full bg-gradient-to-r from-cq-primary via-cq-accent to-emerald-400 transition-all duration-500 ease-out rounded-full shadow-md"
+                        [style.width.%]="getPathProgressPct(activePath.id)"
+                      ></div>
+                    </div>
+                  </div>
+
                   <!-- Meta Info Bar -->
-                  <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-cq-muted pt-4 border-t border-cq-border/60">
+                  <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-cq-muted pt-4 mt-4 border-t border-cq-border/60">
                     <div class="flex items-center gap-1.5">
                       <svg class="w-4 h-4 text-cq-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -187,8 +245,35 @@ import { ContainerComponent } from '../../shared/components/container/container.
                   </div>
                 </div>
 
+                <!-- Celebratory Banner when 100% completed (AC-4) -->
+                @if (isPathFullyCompleted(activePath.id)) {
+                  <div class="card p-6 bg-gradient-to-r from-emerald-500/15 via-cq-accent/15 to-emerald-500/10 border-2 border-emerald-500/40 animate-fade-in shadow-xl shadow-emerald-500/10">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+                      <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shrink-0 shadow-lg shadow-emerald-500/20 text-2xl">
+                        🎉
+                      </div>
+                      <div class="space-y-1.5 flex-1">
+                        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                          <h3 class="text-lg sm:text-xl font-black text-emerald-400">
+                            ¡Felicidades! Has completado el 100% de esta ruta
+                          </h3>
+                          <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider">
+                            Itinerario Completado
+                          </span>
+                        </div>
+                        <p class="text-sm text-cq-text/90 leading-relaxed">
+                          Has finalizado con éxito todos los cursos de esta ruta formativa de DevTalles. Continúa aprendiendo y trazando nuevos itinerarios para seguir potenciando tu carrera profesional.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                }
+
                 <!-- Sequential Interactive Roadmap -->
-                <app-path-roadmap [courses]="activePath.courses || []" />
+                <app-path-roadmap
+                  [courses]="activePath.courses || []"
+                  [learningPathId]="activePath.id"
+                />
 
               } @else {
                 <div class="card p-12 text-center text-cq-muted">
@@ -207,17 +292,25 @@ import { ContainerComponent } from '../../shared/components/container/container.
 })
 export class PathsComponent implements OnInit {
   service = inject(PathsService);
+  progressService = inject(ProgressService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
   ngOnInit(): void {
+    // Load overall completed course IDs
+    this.progressService.loadOverallProgress().subscribe();
+
     // Check if an ID was passed in route params
     const idParam = this.route.snapshot.paramMap.get('id');
 
     if (idParam) {
       const id = parseInt(idParam, 10);
       if (!isNaN(id)) {
-        this.service.loadPathById(id).subscribe();
+        this.service.loadPathById(id).subscribe((path) => {
+          if (path) {
+            this.progressService.loadPathProgress(path.id).subscribe();
+          }
+        });
       }
     }
 
@@ -227,13 +320,23 @@ export class PathsComponent implements OnInit {
         const found = paths.find((p) => p.id === parseInt(idParam, 10));
         if (found) {
           this.service.setCurrentPath(found);
+          this.progressService.loadPathProgress(found.id).subscribe();
         }
+      } else if (paths.length > 0 && !this.service.currentPath()) {
+        this.service.setCurrentPath(paths[0]);
+        this.progressService.loadPathProgress(paths[0].id).subscribe();
+      }
+
+      // Preload progress for all user paths so sidebar percentages are populated
+      for (const p of paths) {
+        this.progressService.loadPathProgress(p.id).subscribe();
       }
     });
   }
 
   selectPath(path: LearningPath): void {
     this.service.setCurrentPath(path);
+    this.progressService.loadPathProgress(path.id).subscribe();
     this.router.navigate(['/paths', path.id], { replaceUrl: true });
   }
 
@@ -243,12 +346,51 @@ export class PathsComponent implements OnInit {
       this.service.deletePath(path.id).subscribe(() => {
         if (this.service.paths().length > 0) {
           const next = this.service.paths()[0];
+          this.progressService.loadPathProgress(next.id).subscribe();
           this.router.navigate(['/paths', next.id], { replaceUrl: true });
         } else {
           this.router.navigate(['/paths'], { replaceUrl: true });
         }
       });
     }
+  }
+
+  getPathProgressPct(pathId: number): number {
+    const metrics = this.progressService.getPathMetrics(pathId);
+    if (metrics) {
+      return metrics.progress_percentage;
+    }
+    // Fallback: calculate from path courses and completedCourseIds
+    const path = this.service.paths().find((p) => p.id === pathId) || this.service.currentPath();
+    if (path && path.id === pathId && path.courses?.length > 0) {
+      const completed = path.courses.filter((c) => this.progressService.isCourseCompleted(c.id)).length;
+      return Math.round((completed / path.courses.length) * 1000) / 10;
+    }
+    return 0;
+  }
+
+  getCompletedCount(pathId: number): number {
+    const metrics = this.progressService.getPathMetrics(pathId);
+    if (metrics) {
+      return metrics.completed_courses_count;
+    }
+    const path = this.service.paths().find((p) => p.id === pathId) || this.service.currentPath();
+    if (path && path.id === pathId && path.courses?.length > 0) {
+      return path.courses.filter((c) => this.progressService.isCourseCompleted(c.id)).length;
+    }
+    return 0;
+  }
+
+  isPathFullyCompleted(pathId: number): boolean {
+    const metrics = this.progressService.getPathMetrics(pathId);
+    if (metrics && metrics.total_courses_count > 0) {
+      return metrics.completed_courses_count === metrics.total_courses_count;
+    }
+    const path = this.service.paths().find((p) => p.id === pathId) || this.service.currentPath();
+    if (path && path.id === pathId && path.courses?.length > 0) {
+      return path.courses.every((c) => this.progressService.isCourseCompleted(c.id));
+    }
+    return false;
   }
 
   getTotalHours(path: LearningPath): string {

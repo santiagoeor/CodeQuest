@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PathCourse } from '../../models/path.model';
+import { ProgressService } from '../../../progress/services/progress.service';
 
 @Component({
   selector: 'app-course-card',
@@ -8,11 +9,13 @@ import { PathCourse } from '../../models/path.model';
   imports: [CommonModule],
   template: `
     <div
-      class="card p-5 sm:p-6 transition-all duration-300 hover:border-cq-primary/60 hover:shadow-lg hover:shadow-cq-primary/5 relative group bg-cq-surface/80 backdrop-blur-sm"
-      [class.border-l-4]="true"
-      [class.border-l-emerald-500]="course().level === 'beginner'"
-      [class.border-l-sky-500]="course().level === 'intermediate'"
-      [class.border-l-purple-500]="course().level === 'advanced'"
+      class="card p-5 sm:p-6 transition-all duration-300 hover:border-cq-primary/60 hover:shadow-lg hover:shadow-cq-primary/5 relative group bg-cq-surface/80 backdrop-blur-sm border-l-4"
+      [ngClass]="{
+        'border-l-emerald-500': course().level === 'beginner',
+        'border-l-sky-500': course().level === 'intermediate',
+        'border-l-purple-500': course().level === 'advanced',
+        'ring-1 ring-emerald-500/40 bg-emerald-950/10': isCompleted()
+      }"
     >
       <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         
@@ -49,12 +52,18 @@ import { PathCourse } from '../../models/path.model';
               {{ course().duration }}
             </span>
 
-            <!-- Course Status if present -->
-            @if (course().pivot?.status) {
+            <!-- Completion Badge (AC-3) -->
+            @if (isCompleted()) {
+              <span class="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 ml-auto">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+                Completado
+              </span>
+            } @else if (course().pivot?.status) {
               <span
                 class="text-xs px-2 py-0.5 rounded font-medium ml-auto"
                 [ngClass]="{
-                  'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20': course().pivot?.status === 'completed',
                   'bg-cq-accent/15 text-cq-accent border border-cq-accent/30': course().pivot?.status === 'in_progress',
                   'text-cq-muted bg-cq-surface border border-cq-border/40': course().pivot?.status === 'pending'
                 }"
@@ -65,7 +74,10 @@ import { PathCourse } from '../../models/path.model';
           </div>
 
           <!-- Course Title -->
-          <h3 class="text-base sm:text-lg font-bold text-cq-text group-hover:text-cq-primary transition-colors leading-snug">
+          <h3
+            class="text-base sm:text-lg font-bold transition-colors leading-snug"
+            [ngClass]="isCompleted() ? 'text-emerald-300' : 'text-cq-text group-hover:text-cq-primary'"
+          >
             {{ course().title }}
           </h3>
 
@@ -99,16 +111,43 @@ import { PathCourse } from '../../models/path.model';
           </div>
         </div>
 
-        <!-- Right: Action Button -->
-        <div class="sm:self-center shrink-0 pt-2 sm:pt-0">
+        <!-- Right: Actions (Completion Toggle AC-1 & External Link) -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:self-center shrink-0 pt-2 sm:pt-0">
+          
+          <!-- Completion Toggle Button (AC-1, AC-3) -->
+          <button
+            type="button"
+            (click)="onToggleCompletion()"
+            [disabled]="isToggling()"
+            class="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 border cursor-pointer select-none"
+            [ngClass]="isCompleted()
+              ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 hover:bg-emerald-500/30'
+              : 'bg-cq-surface hover:bg-cq-surface-hover text-cq-muted hover:text-cq-text border-cq-border'"
+            [title]="isCompleted() ? 'Marcar curso como pendiente' : 'Marcar curso como completado'"
+          >
+            <!-- Checkbox Box -->
+            <div
+              class="w-4 h-4 rounded flex items-center justify-center transition-colors flex-shrink-0"
+              [ngClass]="isCompleted() ? 'bg-emerald-500 text-white' : 'border border-cq-border'"
+            >
+              @if (isCompleted()) {
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              }
+            </div>
+            <span>{{ isCompleted() ? 'Completado' : 'Marcar completado' }}</span>
+          </button>
+
+          <!-- External Course Link -->
           <a
             [href]="course().url"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-primary text-xs sm:text-sm w-full sm:w-auto justify-center whitespace-nowrap shadow-sm group/btn"
+            class="btn-outline text-xs sm:text-sm justify-center whitespace-nowrap group/btn py-2.5"
           >
             <span>Ver en DevTalles</span>
-            <svg class="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform text-cq-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
             </svg>
           </a>
@@ -118,8 +157,34 @@ import { PathCourse } from '../../models/path.model';
   `,
 })
 export class CourseCardComponent {
+  private readonly progressService = inject(ProgressService);
+
   course = input.required<PathCourse>();
   step = input<number>(1);
+  learningPathId = input<number | undefined>(undefined);
+  allPathCourseIds = input<number[]>([]);
+
+  readonly isCompleted = computed(() => {
+    const courseId = this.course().id;
+    return (
+      this.progressService.isCourseCompleted(courseId) ||
+      this.course().pivot?.status === 'completed'
+    );
+  });
+
+  readonly isToggling = computed(() => {
+    return this.progressService.isTogglingCourse().has(this.course().id);
+  });
+
+  onToggleCompletion(): void {
+    const courseId = this.course().id;
+    const pathId = this.learningPathId();
+    const allIds = this.allPathCourseIds();
+
+    this.progressService.toggleCourseProgress(courseId, pathId, allIds).subscribe({
+      error: (err) => console.error('Error toggling course progress', err),
+    });
+  }
 
   getLevelLabel(level?: string): string {
     switch (level) {
