@@ -18,8 +18,14 @@ COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
+# Copy application files
+COPY . .
+
+# Install dependencies
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader 2>/dev/null || true
+
 # Expose port
 EXPOSE 8000
 
-# Start Laravel development server
-CMD ["sh", "-c", "if [ ! -f vendor/autoload.php ]; then composer install --no-interaction --prefer-dist 2>/dev/null || true; fi && php artisan serve --host=0.0.0.0 --port=8000"]
+# Start Laravel respecting dynamic PORT from cloud platforms (Railway/Render)
+CMD ["sh", "-c", "if [ ! -f vendor/autoload.php ]; then composer install --no-interaction --prefer-dist 2>/dev/null || true; fi && php artisan migrate --force && php artisan optimize:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
