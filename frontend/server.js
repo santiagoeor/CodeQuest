@@ -3,8 +3,18 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
+function normalizeUrl(url) {
+  if (!url) return '';
+  let cleaned = url.trim().replace(/^['"]|['"]$/g, '');
+  if (!cleaned) return '';
+  if (!cleaned.startsWith('http://') && !cleaned.startsWith('https://')) {
+    cleaned = 'https://' + cleaned;
+  }
+  return cleaned.replace(/\/$/, '');
+}
+
 const PORT = process.env.PORT || 4200;
-const BACKEND_URL = (process.env.BACKEND_URL || process.env.API_URL || '').replace(/\/$/, '');
+const BACKEND_URL = normalizeUrl(process.env.BACKEND_URL || process.env.API_URL || '');
 const PUBLIC_API_URL = process.env.PUBLIC_API_URL || '';
 
 // Serve from Angular build output in production, fallback to src/ for dev
