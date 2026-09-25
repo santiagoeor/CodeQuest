@@ -11,7 +11,8 @@
 
 # Builds & compiled assets
 /frontend/dist/
-/backend/bootstrap/cache/
+/backend/bootstrap/cache/*
+!/backend/bootstrap/cache/.gitkeep
 /backend/storage/framework/cache/*
 !/backend/storage/framework/cache/.gitkeep
 /backend/storage/framework/sessions/*
