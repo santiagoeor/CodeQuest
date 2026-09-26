@@ -110,7 +110,7 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 ## Current Knowledge
 
-No project knowledge summary found yet.
+> What is true about this product right now.
 
 ## Roadmap Status
 
@@ -539,7 +539,7 @@ No active work items found.
 - WI-012 [feature] owns: frontend/src/app/features/progress/**, frontend/src/app/features/paths/components/**, frontend/src/app/features/paths/paths.component.ts, frontend/src/app/features/paths/paths.component.spec.ts
 - WI-013 [bugfix] owns: frontend/src/app/core/auth/**, frontend/src/app/core/guards/**
 - WI-014 [feature] owns: backend/app/Http/Controllers/CourseController.php, backend/app/Http/Requests/StoreCourseRequest.php, backend/app/Http/Requests/UpdateCourseRequest.php, backend/routes/api.php, backend/app/Models/Course.php, backend/tests/Feature/CourseAdminTest.php
-- WI-015 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/app.routes.ts, frontend/src/app/shared/components/navbar/navbar.component.ts
+- WI-015 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/app.routes.ts, frontend/src/app/shared/components/navbar/navbar.component.ts, frontend/src/app/features/home/home.component.ts
 
 ## Knowledge Graph
 
@@ -570,6 +570,7 @@ Suggested agent: graph-agent
 Available reusable skills (agents apply these; content is not inlined):
 
 - adr-writing
+- capsule-writing
 - graph-metadata-review
 - implementation-planning
 - learning-capture
@@ -581,7 +582,7 @@ Read full skill definitions in `knowledge/skills/` or via the Kaddo MCP server (
 
 ## Missing Context
 
-- No project knowledge summary found yet.
+_None — all expected context is present._
 
 ## Recommended Agent Handoff
 

@@ -66,11 +66,11 @@
 - Ownership coverage: 15/15 work items
 
 ## Work Items
-- Draft: 2
+- Draft: 0
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 13
+- Completed: 15
 - Archived: 0
 
 ## Work Items by Type
@@ -82,7 +82,7 @@
 - Roadmap: 15
 
 ## Work Items by Initiative
-- Administración del Catálogo de Cursos y Resiliencia de Autenticación — Draft: 2 · Completed: 1
+- Administración del Catálogo de Cursos y Resiliencia de Autenticación — Completed: 3
 - Autenticación e Identidad con Discord OAuth2 — Completed: 2
 - Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
 - Configuración de Infraestructura y Monorepo — Completed: 2
@@ -105,9 +105,10 @@
 - Reason: Active Work Items only; completed and archived are excluded.
 - Last exported: 2026-09-18T04:52:25.782Z
 
-## Skills installed: 7
+## Skills installed: 8
 Groups:
 - delivery: 3
+- integration: 1
 - tech: 4
 
 ## Project Route
@@ -129,20 +130,19 @@ Progress: 12/12
 - [x] Capture learning
 
 ## Phase
-- Phase: Active Delivery
+- Phase: Maintenance
 - Reason:
   - Roadmap available
   - 15 materialized work item(s)
-  - draft: 2
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 13
-- Active Work Items: 2
+- Completed Work Items: 15
+- Active Work Items: 0
 
 ## Suggested Next Steps
-1. Refine the existing draft Work Item with the work-item-agent.
+1. Use the roadmap-agent to plan the next initiative.
 
 ## Project Readiness
 - overall: not-applicable
@@ -183,6 +183,6 @@ Work Item Candidates:
 Work Item candidate quality: good.
 
 ## Installed Assets
-- CLI version: 3.68.0
-- Agents: 11 installed
-- Skills: 7 installed
+- CLI version: 3.90.3
+- Agents: 20 installed
+- Skills: 8 installed

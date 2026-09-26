@@ -3,7 +3,7 @@ type: skill
 id: adr-writing
 name: adr-writing
 title: ADR Writing Skill
-version: 3.68.0
+version: 3.90.3
 group: tech
 applies_to:
   - decision-agent
