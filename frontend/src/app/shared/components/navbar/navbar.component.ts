@@ -102,16 +102,11 @@ import { CommonModule } from '@angular/common';
                     <div class="absolute right-0 mt-2 w-56 bg-cq-surface border border-cq-border rounded-xl shadow-2xl py-1 z-50">
                       <div class="px-4 py-2 border-b border-cq-border/60">
                         <p class="text-xs text-cq-muted truncate">{{ user()?.email }}</p>
-                        <div class="flex items-center justify-between gap-1.5 mt-1.5">
+                        <div class="mt-1.5">
                           <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full"
                                 [ngClass]="user()?.role === 'admin' ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' : 'bg-cq-primary/20 text-cq-primary border border-cq-primary/30'">
                             {{ user()?.role === 'admin' ? 'Admin' : 'Estudiante' }}
                           </span>
-                          <button
-                            (click)="toggleRole()"
-                            class="text-[11px] text-cq-primary hover:underline font-medium">
-                            Cambiar a {{ user()?.role === 'admin' ? 'Estudiante' : 'Admin' }}
-                          </button>
                         </div>
                       </div>
                       <a routerLink="/courses"
@@ -240,17 +235,10 @@ import { CommonModule } from '@angular/common';
 
               <div class="flex items-center justify-between px-4 py-2 mb-1 rounded-xl bg-cq-surface-hover/50 border border-cq-border/40">
                 <span class="text-xs text-cq-muted">Rol activo:</span>
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full"
-                        [ngClass]="user()?.role === 'admin' ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' : 'bg-cq-primary/20 text-cq-primary border border-cq-primary/30'">
-                    {{ user()?.role === 'admin' ? 'Admin' : 'Estudiante' }}
-                  </span>
-                  <button
-                    (click)="toggleRole()"
-                    class="text-xs text-cq-primary font-medium hover:underline">
-                    Cambiar
-                  </button>
-                </div>
+                <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full"
+                      [ngClass]="user()?.role === 'admin' ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' : 'bg-cq-primary/20 text-cq-primary border border-cq-primary/30'">
+                  {{ user()?.role === 'admin' ? 'Admin' : 'Estudiante' }}
+                </span>
               </div>
 
               <button
@@ -501,12 +489,6 @@ export class NavbarComponent {
 
   mockGoogleLogin(role: 'student' | 'admin' = 'student'): void {
     this.authService.mockGoogleLogin(undefined, undefined, role).subscribe();
-  }
-
-  toggleRole(): void {
-    const newRole = this.user()?.role === 'admin' ? 'student' : 'admin';
-    this.authService.switchRole(newRole);
-    this.closeUserDropdown();
   }
 
   logout(): void {
