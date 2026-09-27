@@ -171,4 +171,30 @@ describe('AuthService', () => {
       data: mockUser,
     });
   });
+
+  it('should mockGoogleLogin and update state to authenticated with google profile', () => {
+    const mockGoogleUser = {
+      id: 3,
+      google_id: 'google-999',
+      name: 'Google Dev',
+      email: 'dev@gmail.com',
+      avatar: 'https://lh3.google.com/avatar.png',
+    };
+
+    service.mockGoogleLogin('google-999', 'dev@gmail.com').subscribe((user) => {
+      expect(user).toEqual(mockGoogleUser);
+      expect(service.isAuthenticated()).toBeTrue();
+      expect(service.currentUser()?.name).toBe('Google Dev');
+      expect(localStorage.getItem('codequest_token')).toBe('mock-google-token');
+    });
+
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/google/mock-login?id=google-999&email=dev%40gmail.com`);
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      status: 'ok',
+      token: 'mock-google-token',
+      user: mockGoogleUser,
+    });
+  });
 });
+

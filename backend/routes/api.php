@@ -80,8 +80,13 @@ Route::prefix('auth')->group(function () {
     Route::get('/discord/redirect', [AuthController::class, 'redirectToDiscord']);
     Route::get('/discord/callback', [AuthController::class, 'handleDiscordCallback']);
 
+    // Public OAuth2 flow - Google (AC-2)
+    Route::get('/google/redirect', [AuthController::class, 'redirectToGoogle']);
+    Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
     // Local dev mock authentication
     Route::get('/mock-login', [AuthController::class, 'mockLogin']);
+    Route::get('/google/mock-login', [AuthController::class, 'mockGoogleLogin']);
 
     // Protected routes
     Route::middleware('auth:sanctum')->group(function () {

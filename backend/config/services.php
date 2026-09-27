@@ -43,4 +43,12 @@ return [
         'mock' => env('DISCORD_MOCK', false),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI', 'http://localhost:8000/api/auth/google/callback'),
+        'frontend_redirect' => env('GOOGLE_FRONTEND_REDIRECT', 'http://localhost:4200/auth/callback'),
+        'mock' => env('GOOGLE_MOCK', false),
+    ],
+
 ];

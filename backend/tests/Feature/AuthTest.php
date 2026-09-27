@@ -118,4 +118,78 @@ class AuthTest extends TestCase
             ->getJson('/api/auth/user');
         $afterLogoutResponse->assertStatus(401);
     }
+
+    public function test_redirect_to_google_endpoint(): void
+    {
+        $response = $this->getJson('/api/auth/google/redirect?format=json');
+
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'url',
+                'mock',
+            ]);
+    }
+
+    public function test_mock_google_login_creates_user_and_returns_sanctum_token(): void
+    {
+        $response = $this->getJson('/api/auth/google/mock-login?id=google_123456');
+
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'token',
+                'user' => [
+                    'id',
+                    'google_id',
+                    'name',
+                    'email',
+                    'avatar',
+                ],
+            ]);
+
+        $this->assertDatabaseHas('users', [
+            'google_id' => 'google_123456',
+            'email' => 'google_google_123456@gmail.com',
+        ]);
+    }
+
+    public function test_mock_google_login_links_existing_user_by_email(): void
+    {
+        $user = User::factory()->create([
+            'discord_id' => 'discord_user_99',
+            'name' => 'Existing User',
+            'email' => 'google_linked_test@gmail.com',
+        ]);
+
+        $response = $this->getJson('/api/auth/google/mock-login?id=linked_test');
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'discord_id' => 'discord_user_99',
+            'google_id' => 'linked_test',
+            'email' => 'google_linked_test@gmail.com',
+        ]);
+    }
+
+    public function test_google_callback_returns_token(): void
+    {
+        $response = $this->getJson('/api/auth/google/callback?code=mock_code_google_123&format=json');
+
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'status',
+                'token',
+                'user' => [
+                    'id',
+                    'google_id',
+                    'name',
+                    'email',
+                    'avatar',
+                ],
+            ]);
+    }
 }
+

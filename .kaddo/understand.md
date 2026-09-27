@@ -16,11 +16,11 @@
 - Recommended agent: work-item-agent
 - Recommended skill: work-item-refinement
 - Next step: Refine the existing draft Work Item with the work-item-agent.
-- Reason: There are 4 draft Work Items. Refine before defining roadmap candidates.
+- Reason: There are 3 draft Work Items. Refine before defining roadmap candidates.
 
 ## Delivery State
 
-- Draft Work Items: 4
+- Draft Work Items: 3
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Blocked Work Items: 0
@@ -43,12 +43,10 @@ Route: new · Progress: 12/12
 - id: refine-work-item
 - agent: work-item-agent
 - skill: work-item-refinement
-- reason: There are 4 draft Work Items. Refine before defining roadmap candidates.
+- reason: There are 3 draft Work Items. Refine before defining roadmap candidates.
 
 ## Active Work Items
 
-- WI-016 [feature] draft — Implementar autenticación federada con Google OAuth2 en Laravel y Angular
-  - Source: roadmap · WI-016
 - WI-017 [feature] draft — Implementar roles de usuario y restricción del catálogo a usuarios autenticados
   - Source: roadmap · WI-017
 - WI-018 [feature] draft — Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles

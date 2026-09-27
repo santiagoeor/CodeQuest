@@ -26,7 +26,7 @@ Reason:
 
 - Roadmap available
 - 19 materialized work item(s)
-- draft: 4
+- draft: 3
 - Ownership coverage 100%
 
 Recommended next: work-item-agent
@@ -36,7 +36,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 ## Delivery State
 
 - Phase: Active Delivery
-- Draft Work Items: 4
+- Draft Work Items: 3
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Ownership coverage: 19/19
@@ -46,7 +46,7 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 
 - Refine the existing draft Work Item with the work-item-agent.
   - id: refine-work-item
-  - reason: There are 4 draft Work Items. Refine before defining roadmap candidates.
+  - reason: There are 3 draft Work Items. Refine before defining roadmap candidates.
   - agent: work-item-agent
   - skill: work-item-refinement
 
@@ -624,8 +624,6 @@ Work Item Candidates:
 
 ## Active Work Items
 
-- WI-016 [feature] [K2] (draft) — Implementar autenticación federada con Google OAuth2 en Laravel y Angular · domains: Identidad y Acceso (Identity & Access)
-  - Source: roadmap · WI-016
 - WI-017 [feature] [K2] (draft) — Implementar roles de usuario y restricción del catálogo a usuarios autenticados · domains: Identidad y Acceso (Identity & Access)
   - Source: roadmap · WI-017
 - WI-018 [feature] [K2] (draft) — Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles · domains: Catálogo Académico (Course Catalog)
@@ -637,7 +635,7 @@ Work Item Candidates:
 
 Active Work Items by type:
 
-- Features: 4
+- Features: 3
 
 ## Artifacts and Ownership
 
@@ -656,7 +654,7 @@ Active Work Items by type:
 - WI-013 [bugfix] owns: frontend/src/app/core/auth/**, frontend/src/app/core/guards/**
 - WI-014 [feature] owns: backend/app/Http/Controllers/CourseController.php, backend/app/Http/Requests/StoreCourseRequest.php, backend/app/Http/Requests/UpdateCourseRequest.php, backend/routes/api.php, backend/app/Models/Course.php, backend/tests/Feature/CourseAdminTest.php
 - WI-015 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/app.routes.ts, frontend/src/app/shared/components/navbar/navbar.component.ts, frontend/src/app/features/home/home.component.ts
-- WI-016 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/routes/api.php, backend/config/services.php, frontend/src/app/core/auth/**, frontend/src/app/shared/components/navbar/navbar.component.ts
+- WI-016 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/app/Services/GoogleOAuthService.php, backend/database/migrations/2026_09_26_000001_add_google_id_to_users_table.php, backend/routes/api.php, backend/config/services.php, frontend/src/app/core/auth/**, frontend/src/app/shared/components/navbar/navbar.component.ts
 - WI-017 [feature] owns: backend/app/Models/User.php, backend/database/migrations/**, backend/app/Http/Middleware/**, backend/routes/api.php, frontend/src/app/core/guards/**, frontend/src/app/features/courses/**
 - WI-018 [feature] owns: backend/app/Services/CourseMetadataExtractorService.php, backend/app/Http/Controllers/CourseController.php, backend/routes/api.php
 - WI-019 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/features/courses/services/**
