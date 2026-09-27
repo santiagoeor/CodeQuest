@@ -86,4 +86,104 @@ class LearningPathGeneratorServiceTest extends TestCase
         $this->assertArrayHasKey('title', $result);
         $this->assertArrayHasKey('estimated_duration', $result);
     }
+
+    public function test_multi_area_selection_backend_and_devops_includes_both_and_excludes_react(): void
+    {
+        $result = $this->service->generate([
+            'options' => ['intermediate', 'backend', 'devops', 'first_job'],
+        ]);
+
+        $this->assertNotEmpty($result['courses']);
+        $this->assertStringContainsString('Backend', $result['title']);
+        $this->assertStringContainsString('DevOps', $result['title']);
+
+        $titles = array_column($result['courses'], 'title');
+
+        // Should include courses from both areas
+        $hasBackend = false;
+        $hasDevOps = false;
+        foreach ($result['courses'] as $course) {
+            $tags = $course['tags'] ?? [];
+            if (array_intersect($tags, ['Backend', 'Node.js', 'Laravel', 'NestJS', 'Go', 'PHP', 'SQL'])) {
+                $hasBackend = true;
+            }
+            if (array_intersect($tags, ['DevOps', 'Docker', 'Kubernetes', 'Cloud', 'Contenedores'])) {
+                $hasDevOps = true;
+            }
+        }
+
+        $this->assertTrue($hasBackend, 'Should contain courses matching Backend interest');
+        $this->assertTrue($hasDevOps, 'Should contain courses matching DevOps interest');
+
+        // Must NOT contain React or Angular when user chose Backend & DevOps
+        $this->assertFalse(
+            in_array('React: De cero a experto (Hooks y MERN)', $titles, true),
+            'Should not recommend React web course for Backend + DevOps'
+        );
+        $this->assertFalse(
+            in_array('Angular: De cero a experto', $titles, true),
+            'Should not recommend Angular course for Backend + DevOps'
+        );
+    }
+
+    public function test_mobile_selection_excludes_react_web_and_angular(): void
+    {
+        $result = $this->service->generate([
+            'options' => ['intermediate', 'mobile', 'specialize'],
+        ]);
+
+        $this->assertNotEmpty($result['courses']);
+        $this->assertStringContainsString('Mobile', $result['title']);
+
+        $titles = array_column($result['courses'], 'title');
+
+        $this->assertFalse(
+            in_array('React: De cero a experto (Hooks y MERN)', $titles, true),
+            'Should not recommend React web course when mobile is chosen'
+        );
+        $this->assertFalse(
+            in_array('Angular: De cero a experto', $titles, true),
+            'Should not recommend Angular course when mobile is chosen'
+        );
+
+        $hasMobileCourse = false;
+        foreach ($result['courses'] as $course) {
+            $tags = $course['tags'] ?? [];
+            if (array_intersect($tags, ['Mobile', 'Flutter', 'Dart', 'SwiftUI', 'Riverpod'])) {
+                $hasMobileCourse = true;
+                break;
+            }
+        }
+        $this->assertTrue($hasMobileCourse, 'Should contain at least one mobile course');
+    }
+
+    public function test_fullstack_with_angular_and_laravel_recommends_angular_and_laravel_and_excludes_react_and_node(): void
+    {
+        $result = $this->service->generate([
+            'options' => ['intermediate', 'fullstack', 'angular', 'php_laravel', 'first_job'],
+        ]);
+
+        $this->assertNotEmpty($result['courses']);
+        $titles = array_column($result['courses'], 'title');
+
+        // Must recommend Angular and Laravel
+        $this->assertTrue(
+            in_array('Angular: De cero a experto', $titles, true),
+            'Fullstack Angular+Laravel path should contain Angular'
+        );
+        $this->assertTrue(
+            in_array('Laravel: Crea aplicaciones web profesionales con PHP', $titles, true),
+            'Fullstack Angular+Laravel path should contain Laravel'
+        );
+
+        // Must NOT recommend React or Node
+        $this->assertFalse(
+            in_array('React: De cero a experto (Hooks y MERN)', $titles, true),
+            'Fullstack Angular+Laravel path must not contain React'
+        );
+        $this->assertFalse(
+            in_array('Node: De cero a experto', $titles, true),
+            'Fullstack Angular+Laravel path must not contain Node'
+        );
+    }
 }
