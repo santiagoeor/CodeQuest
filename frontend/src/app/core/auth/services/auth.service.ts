@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { AuthLoginResponse, DiscordRedirectResponse, User, UserResponse } from '../models/user.model';
+import { AuthLoginResponse, DiscordRedirectResponse, GoogleRedirectResponse, User, UserResponse } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -122,13 +122,59 @@ export class AuthService {
   }
 
   /**
-   * Login using local development mock profile.
+   * Start Google OAuth2 flow by querying backend redirect endpoint (WI-016).
+   */
+  loginWithGoogle(): void {
+    this.isLoading.set(true);
+    this.http.get<GoogleRedirectResponse>(`${this.apiUrl}/auth/google/redirect?format=json`).subscribe({
+      next: (res) => {
+        this.isLoading.set(false);
+        if (res.url) {
+          window.location.href = res.url;
+        }
+      },
+      error: () => {
+        this.isLoading.set(false);
+        // Fallback to direct redirect
+        window.location.href = `${this.apiUrl}/auth/google/redirect`;
+      },
+    });
+  }
+
+  /**
+   * Login using local development mock Discord profile.
    */
   mockLogin(customId?: string): Observable<User> {
     this.isLoading.set(true);
     const url = customId
       ? `${this.apiUrl}/auth/mock-login?id=${encodeURIComponent(customId)}`
       : `${this.apiUrl}/auth/mock-login`;
+
+    return this.http.get<AuthLoginResponse>(url).pipe(
+      tap((res) => {
+        this.setToken(res.token);
+        this.setStoredUser(res.user);
+        this.currentUserSignal.set(res.user);
+        this.isLoading.set(false);
+      }),
+      map((res) => res.user),
+      catchError((err) => {
+        this.isLoading.set(false);
+        throw err;
+      })
+    );
+  }
+
+  /**
+   * Login using local development mock Google profile (WI-016).
+   */
+  mockGoogleLogin(customId?: string, customEmail?: string): Observable<User> {
+    this.isLoading.set(true);
+    const params = new URLSearchParams();
+    if (customId) params.set('id', customId);
+    if (customEmail) params.set('email', customEmail);
+    const query = params.toString() ? `?${params.toString()}` : '';
+    const url = `${this.apiUrl}/auth/google/mock-login${query}`;
 
     return this.http.get<AuthLoginResponse>(url).pipe(
       tap((res) => {
