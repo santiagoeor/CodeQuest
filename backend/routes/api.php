@@ -69,6 +69,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::post('/courses', [CourseController::class, 'store']);
         Route::put('/courses/{id}', [CourseController::class, 'update']);
+        Route::post('/courses/extract-metadata', [CourseController::class, 'extractMetadata']);
     });
 });
 

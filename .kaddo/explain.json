@@ -33,11 +33,11 @@
     "done": 0,
     "cancelled": 0,
     "byState": {
-      "draft": 3,
+      "draft": 1,
       "ready": 0,
       "in-progress": 0,
       "blocked": 0,
-      "completed": 16,
+      "completed": 18,
       "archived": 0
     },
     "byType": {
@@ -71,11 +71,11 @@
       {
         "name": "Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)",
         "states": {
-          "draft": 1,
+          "draft": 0,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 1,
+          "completed": 2,
           "archived": 0
         }
       },
@@ -104,11 +104,11 @@
       {
         "name": "Extracción de Metadatos y Autollenado de Cursos de DevTalles",
         "states": {
-          "draft": 2,
+          "draft": 1,
           "ready": 0,
           "in-progress": 0,
           "blocked": 0,
-          "completed": 0,
+          "completed": 1,
           "archived": 0
         }
       },
@@ -439,8 +439,8 @@
         "id": "WI-017",
         "title": "Implementar roles de usuario y restricción del catálogo a usuarios autenticados",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -457,8 +457,8 @@
         "id": "WI-018",
         "title": "Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles",
         "type": "feature",
-        "status": "draft",
-        "lifecycle": "draft",
+        "status": "completed",
+        "lifecycle": "completed",
         "initiative": "Extracción de Metadatos y Autollenado de Cursos de DevTalles",
         "knowledgeLevel": "K2",
         "hasOwnership": true,
@@ -666,7 +666,7 @@
       "label": "Refine the existing draft Work Item with the work-item-agent.",
       "agent": "work-item-agent",
       "skill": "work-item-refinement",
-      "reason": "There are 3 draft Work Items. Refine before defining roadmap candidates."
+      "reason": "There is 1 draft Work Item. Refine before defining roadmap candidates."
     }
   },
   "nextStepRecommendation": {
@@ -675,7 +675,7 @@
     "label": "Refine the existing draft Work Item with the work-item-agent.",
     "agent": "work-item-agent",
     "skill": "work-item-refinement",
-    "reason": "There are 3 draft Work Items. Refine before defining roadmap candidates."
+    "reason": "There is 1 draft Work Item. Refine before defining roadmap candidates."
   },
   "techDecisions": {
     "status": "accepted-adrs",
@@ -1198,9 +1198,9 @@
   },
   "isModuleRepo": false,
   "deliverySummary": {
-    "completedWorkItems": 16,
+    "completedWorkItems": 18,
     "archivedWorkItems": 0,
-    "activeWorkItems": 3,
+    "activeWorkItems": 1,
     "implementationCompleted": 0,
     "releaseBlocked": 0,
     "releaseReady": 0

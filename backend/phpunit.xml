@@ -34,5 +34,6 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
         <env name="DISCORD_MOCK" value="true"/>
+        <env name="GOOGLE_MOCK" value="true"/>
     </php>
 </phpunit>
