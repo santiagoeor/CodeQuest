@@ -60,14 +60,17 @@ Route::get('/version', function () {
 });
 
 /**
- * Course Catalog Routes
+ * Course Catalog Routes (Protected by auth:sanctum; mutations restricted to admin)
  */
-Route::get('/courses', [CourseController::class, 'index']);
-Route::get('/courses/{slug}', [CourseController::class, 'show']);
-
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/courses', [CourseController::class, 'store']);
-    Route::put('/courses/{id}', [CourseController::class, 'update']);
+    Route::get('/courses', [CourseController::class, 'index']);
+    Route::get('/courses/{slug}', [CourseController::class, 'show']);
+
+    Route::middleware('role:admin')->group(function () {
+        Route::post('/courses', [CourseController::class, 'store']);
+        Route::put('/courses/{id}', [CourseController::class, 'update']);
+        Route::post('/courses/extract-metadata', [CourseController::class, 'extractMetadata']);
+    });
 });
 
 Route::get('/assessment/questions', [AssessmentController::class, 'index']);
@@ -76,12 +79,20 @@ Route::get('/assessment/questions', [AssessmentController::class, 'index']);
  * Authentication Routes (Discord OAuth2 & Laravel Sanctum)
  */
 Route::prefix('auth')->group(function () {
+    // Standard email/password credentials authentication (WI-020)
+    Route::post('/login', [AuthController::class, 'login']);
+
     // Public OAuth2 flow
     Route::get('/discord/redirect', [AuthController::class, 'redirectToDiscord']);
     Route::get('/discord/callback', [AuthController::class, 'handleDiscordCallback']);
 
+    // Public OAuth2 flow - Google (AC-2)
+    Route::get('/google/redirect', [AuthController::class, 'redirectToGoogle']);
+    Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
     // Local dev mock authentication
     Route::get('/mock-login', [AuthController::class, 'mockLogin']);
+    Route::get('/google/mock-login', [AuthController::class, 'mockGoogleLogin']);
 
     // Protected routes
     Route::middleware('auth:sanctum')->group(function () {

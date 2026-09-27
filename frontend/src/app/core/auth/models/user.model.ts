@@ -1,8 +1,10 @@
 export interface User {
   id: number;
-  discord_id: string;
+  discord_id?: string | null;
+  google_id?: string | null;
   name: string;
   email: string;
+  role?: 'student' | 'admin';
   avatar: string | null;
   created_at?: string;
 }
@@ -24,3 +26,10 @@ export interface DiscordRedirectResponse {
   url: string;
   mock: boolean;
 }
+
+export interface GoogleRedirectResponse {
+  status: string;
+  url: string;
+  mock: boolean;
+}
+

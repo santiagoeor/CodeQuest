@@ -45,17 +45,19 @@ import { AuthService } from '../../core/auth/services/auth.service';
             </p>
           </div>
 
-          <!-- Add Course Button -->
-          <div class="flex items-center gap-3">
-            <button
-              (click)="openCreateModal()"
-              class="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl shadow-lg hover:shadow-cq-primary/20 transition-all text-sm font-semibold">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-              </svg>
-              <span>Nuevo Curso</span>
-            </button>
-          </div>
+          <!-- Add Course Button (Admin only) -->
+          @if (isAdmin()) {
+            <div class="flex items-center gap-3">
+              <button
+                (click)="openCreateModal()"
+                class="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl shadow-lg hover:shadow-cq-primary/20 transition-all text-sm font-semibold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                <span>Nuevo Curso</span>
+              </button>
+            </div>
+          }
         </div>
 
         <!-- Success & Error Alert Banners (AC-4) -->
@@ -208,14 +210,16 @@ import { AuthService } from '../../core/auth/services/auth.service';
                     </svg>
                   </a>
 
-                  <button
-                    (click)="openEditModal(course)"
-                    class="px-3 py-1.5 rounded-lg text-xs font-medium text-cq-muted hover:text-cq-text bg-cq-surface-hover border border-cq-border hover:border-cq-primary/40 transition-colors inline-flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                    </svg>
-                    <span>Editar</span>
-                  </button>
+                  @if (isAdmin()) {
+                    <button
+                      (click)="openEditModal(course)"
+                      class="px-3 py-1.5 rounded-lg text-xs font-medium text-cq-muted hover:text-cq-text bg-cq-surface-hover border border-cq-border hover:border-cq-primary/40 transition-colors inline-flex items-center gap-1.5">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                      </svg>
+                      <span>Editar</span>
+                    </button>
+                  }
                 </div>
               </div>
             }
@@ -249,6 +253,7 @@ export class CoursesComponent implements OnInit {
   readonly isSaving = this.coursesService.isSaving;
   readonly errorMessage = this.coursesService.error;
   readonly successMessage = this.coursesService.successMessage;
+  readonly isAdmin = this.authService.isAdmin;
 
   readonly isModalOpen = signal<boolean>(false);
   readonly selectedCourse = signal<Course | null>(null);

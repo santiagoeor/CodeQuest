@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of, throwError } from 'rxjs';
 import { CourseFormComponent } from './course-form.component';
-import { Course } from '../../models/course.model';
+import { Course, ExtractedCourseMetadata } from '../../models/course.model';
+import { CoursesService } from '../../services/courses.service';
 
 describe('CourseFormComponent', () => {
   let component: CourseFormComponent;
   let fixture: ComponentFixture<CourseFormComponent>;
+  let mockCoursesService: jasmine.SpyObj<CoursesService>;
 
   const mockCourse: Course = {
     id: 5,
@@ -19,8 +22,13 @@ describe('CourseFormComponent', () => {
   };
 
   beforeEach(async () => {
+    mockCoursesService = jasmine.createSpyObj('CoursesService', ['extractMetadata']);
+
     await TestBed.configureTestingModule({
       imports: [CourseFormComponent],
+      providers: [
+        { provide: CoursesService, useValue: mockCoursesService },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CourseFormComponent);
@@ -178,5 +186,74 @@ describe('CourseFormComponent', () => {
     spyOn(component.formCancel, 'emit');
     component.onCancel();
     expect(component.formCancel.emit).toHaveBeenCalled();
+  });
+
+  describe('Autofill from DevTalles URL', () => {
+    it('should correctly evaluate canAutofill based on URL validity', () => {
+      component.form.get('url')?.setValue('');
+      expect(component.canAutofill()).toBeFalse();
+
+      component.form.get('url')?.setValue('not-a-valid-url');
+      expect(component.canAutofill()).toBeFalse();
+
+      component.form.get('url')?.setValue('https://cursos.devtalles.com/courses/angular');
+      expect(component.canAutofill()).toBeTrue();
+    });
+
+    it('should autofill form fields and tags on successful extraction without auto-submitting (AC-2, AC-3, AC-4)', () => {
+      const mockMeta: ExtractedCourseMetadata = {
+        url: 'https://cursos.devtalles.com/courses/angular-pro',
+        title: 'Angular Pro: De Cero a Experto',
+        slug: 'angular-pro-de-cero-a-experto',
+        description: 'Domina Angular moderno con Signals y SSR.',
+        level: 'advanced',
+        duration: '42 horas',
+        image_url: 'https://devtalles.com/angular-pro.png',
+        tags: ['Angular', 'TypeScript', 'Signals'],
+      };
+
+      mockCoursesService.extractMetadata.and.returnValue(of(mockMeta));
+      spyOn(component.formSubmit, 'emit');
+
+      component.form.get('url')?.setValue('https://cursos.devtalles.com/courses/angular-pro');
+      component.autofillFromUrl();
+
+      expect(mockCoursesService.extractMetadata).toHaveBeenCalledWith('https://cursos.devtalles.com/courses/angular-pro');
+      expect(component.form.get('title')?.value).toBe('Angular Pro: De Cero a Experto');
+      expect(component.form.get('slug')?.value).toBe('angular-pro-de-cero-a-experto');
+      expect(component.form.get('description')?.value).toBe('Domina Angular moderno con Signals y SSR.');
+      expect(component.form.get('level')?.value).toBe('advanced');
+      expect(component.form.get('duration')?.value).toBe('42 horas');
+      expect(component.form.get('image_url')?.value).toBe('https://devtalles.com/angular-pro.png');
+      expect(component.tags()).toEqual(['Angular', 'TypeScript', 'Signals']);
+      expect(component.autofillNotice()).toContain('completados automáticamente');
+      expect(component.isExtracting()).toBeFalse();
+
+      // AC-4: must NOT auto-submit to database
+      expect(component.formSubmit.emit).not.toHaveBeenCalled();
+    });
+
+    it('should display error banner when metadata extraction fails', () => {
+      mockCoursesService.extractMetadata.and.returnValue(
+        throwError(() => ({ error: { message: 'URL inaccesible o no válida.' } }))
+      );
+
+      component.form.get('url')?.setValue('https://cursos.devtalles.com/courses/broken');
+      component.autofillFromUrl();
+
+      expect(component.isExtracting()).toBeFalse();
+      expect(component.autofillNotice()).toBeNull();
+      expect(component.autofillError()).toBe('URL inaccesible o no válida.');
+    });
+
+    it('should dismiss autofill notices and errors', () => {
+      component.autofillNotice.set('Noticia');
+      component.dismissAutofillNotice();
+      expect(component.autofillNotice()).toBeNull();
+
+      component.autofillError.set('Error');
+      component.dismissAutofillError();
+      expect(component.autofillError()).toBeNull();
+    });
   });
 });

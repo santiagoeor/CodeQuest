@@ -21,8 +21,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'discord_id',
+        'google_id',
         'name',
         'email',
+        'role',
         'avatar',
         'password',
     ];
@@ -64,5 +66,21 @@ class User extends Authenticatable
     public function courseProgress(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(CourseProgress::class);
+    }
+
+    /**
+     * Check if the user has administrator privileges.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Check if the user is a standard student.
+     */
+    public function isStudent(): bool
+    {
+        return $this->role === 'student';
     }
 }

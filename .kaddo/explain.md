@@ -41,6 +41,10 @@
 - ✓ WI-013-garantizar-persistencia-y-rehidratacion-de-sesion-de-discord-al-recargar-la-spa.md
 - ✓ WI-014-implementar-endpoints-backend-para-creacion-y-edicion-de-cursos-de-devtalles.md
 - ✓ WI-015-construir-interfaz-de-formulario-para-agregar-y-editar-cursos-en-angular.md
+- ✓ WI-016-implementar-autenticacion-federada-con-google-oauth2-en-laravel-y-angular.md
+- ✓ WI-017-implementar-roles-de-usuario-y-restriccion-del-catalogo-a-usuarios-autenticados.md
+- ✓ WI-018-desarrollar-servicio-y-endpoint-para-extraccion-automatica-de-metadatos-desde-urls-de-devtalles.md
+- ✓ WI-019-integrar-autollenado-interactivo-por-url-en-el-formulario-de-cursos-en-angular.md
 - ✓ roadmap.md
 
 ## Detected Stack
@@ -60,32 +64,34 @@
 - Tech: Structured
 - Delivery: Traceable
 - Agents: available
-- Roadmap initiatives: 7
-- Work Item candidates: 15
-- Materialized Work Items: 15
-- Ownership coverage: 15/15 work items
+- Roadmap initiatives: 9
+- Work Item candidates: 19
+- Materialized Work Items: 19
+- Ownership coverage: 19/19 work items
 
 ## Work Items
-- Draft: 2
+- Draft: 1
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 13
+- Completed: 18
 - Archived: 0
 
 ## Work Items by Type
-- Features: 11
+- Features: 15
 - Chores: 3
 - Bugfixs: 1
 
 ## Work Item Sources
-- Roadmap: 15
+- Roadmap: 19
 
 ## Work Items by Initiative
-- Administración del Catálogo de Cursos y Resiliencia de Autenticación — Draft: 2 · Completed: 1
+- Administración del Catálogo de Cursos y Resiliencia de Autenticación — Completed: 3
 - Autenticación e Identidad con Discord OAuth2 — Completed: 2
+- Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC) — Completed: 2
 - Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
 - Configuración de Infraestructura y Monorepo — Completed: 2
+- Extracción de Metadatos y Autollenado de Cursos de DevTalles — Draft: 1 · Completed: 1
 - Gestión, Persistencia y Visualización de Rutas — Completed: 2
 - Motor de Recomendación y Generación de Rutas — Completed: 2
 - Seguimiento de Progreso y Métricas de Completitud — Completed: 2
@@ -105,9 +111,10 @@
 - Reason: Active Work Items only; completed and archived are excluded.
 - Last exported: 2026-09-18T04:52:25.782Z
 
-## Skills installed: 7
+## Skills installed: 8
 Groups:
 - delivery: 3
+- integration: 1
 - tech: 4
 
 ## Project Route
@@ -132,14 +139,14 @@ Progress: 12/12
 - Phase: Active Delivery
 - Reason:
   - Roadmap available
-  - 15 materialized work item(s)
-  - draft: 2
+  - 19 materialized work item(s)
+  - draft: 1
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 13
-- Active Work Items: 2
+- Completed Work Items: 18
+- Active Work Items: 1
 
 ## Suggested Next Steps
 1. Refine the existing draft Work Item with the work-item-agent.
@@ -161,28 +168,28 @@ Discovery:
 - ✓ decision-candidates.md
 
 ## Roadmap Status
-- Initiatives: 7
-- Work Item candidates: 15
-- Materialized Work Items: 15
+- Initiatives: 9
+- Work Item candidates: 19
+- Materialized Work Items: 19
 - Remaining Work Item candidates: 0
 
 ## Roadmap Quality
 Initiatives:
-- Candidates evaluated: 7
-- Grounded: 7/7
-- With related domain: 7/7
-- With related capability: 7/7
-- With source signals: 7/7
+- Candidates evaluated: 9
+- Grounded: 9/9
+- With related domain: 9/9
+- With related capability: 9/9
+- With source signals: 9/9
 
 Work Item Candidates:
-- Candidates: 15
-- With source initiative: 15/15
-- With related domain: 0/15
-- With related capability: 0/15
+- Candidates: 19
+- With source initiative: 19/19
+- With related domain: 0/19
+- With related capability: 0/19
 
 Work Item candidate quality: good.
 
 ## Installed Assets
-- CLI version: 3.68.0
-- Agents: 11 installed
-- Skills: 7 installed
+- CLI version: 3.90.3
+- Agents: 20 installed
+- Skills: 8 installed

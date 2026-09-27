@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { AuthLoginResponse, DiscordRedirectResponse, User, UserResponse } from '../models/user.model';
+import { AuthLoginResponse, DiscordRedirectResponse, GoogleRedirectResponse, User, UserResponse } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,7 @@ export class AuthService {
   private readonly currentUserSignal = signal<User | null>(this.getStoredUser());
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly isAuthenticated = computed(() => !!this.currentUserSignal());
+  readonly isAdmin = computed(() => this.currentUserSignal()?.role === 'admin');
   readonly isLoading = signal<boolean>(false);
 
   constructor() {
@@ -102,6 +103,18 @@ export class AuthService {
   }
 
   /**
+   * Switch active user role for testing and administrative evaluation.
+   */
+  switchRole(role: 'student' | 'admin'): void {
+    const current = this.currentUserSignal();
+    if (current) {
+      const updated: User = { ...current, role };
+      this.setStoredUser(updated);
+      this.currentUserSignal.set(updated);
+    }
+  }
+
+  /**
    * Start Discord OAuth2 flow by querying backend redirect endpoint (AC-1).
    */
   loginWithDiscord(): void {
@@ -122,13 +135,82 @@ export class AuthService {
   }
 
   /**
-   * Login using local development mock profile.
+   * Start Google OAuth2 flow by querying backend redirect endpoint (WI-016).
    */
-  mockLogin(customId?: string): Observable<User> {
+  loginWithGoogle(): void {
     this.isLoading.set(true);
-    const url = customId
-      ? `${this.apiUrl}/auth/mock-login?id=${encodeURIComponent(customId)}`
-      : `${this.apiUrl}/auth/mock-login`;
+    this.http.get<GoogleRedirectResponse>(`${this.apiUrl}/auth/google/redirect?format=json`).subscribe({
+      next: (res) => {
+        this.isLoading.set(false);
+        if (res.url) {
+          window.location.href = res.url;
+        }
+      },
+      error: () => {
+        this.isLoading.set(false);
+        // Fallback to direct redirect
+        window.location.href = `${this.apiUrl}/auth/google/redirect`;
+      },
+    });
+  }
+
+  /**
+   * Login using standard email and password credentials (WI-020).
+   */
+  loginWithCredentials(email: string, password: string): Observable<User> {
+    this.isLoading.set(true);
+    return this.http.post<AuthLoginResponse>(`${this.apiUrl}/auth/login`, { email, password }).pipe(
+      tap((res) => {
+        this.setToken(res.token);
+        this.setStoredUser(res.user);
+        this.currentUserSignal.set(res.user);
+        this.isLoading.set(false);
+      }),
+      map((res) => res.user),
+      catchError((err) => {
+        this.isLoading.set(false);
+        throw err;
+      })
+    );
+  }
+
+  /**
+   * Login using local development mock Discord profile.
+   */
+  mockLogin(customId?: string, role?: 'student' | 'admin'): Observable<User> {
+    this.isLoading.set(true);
+    const params = new URLSearchParams();
+    if (customId) params.set('id', customId);
+    if (role) params.set('role', role);
+    const query = params.toString() ? `?${params.toString()}` : '';
+    const url = `${this.apiUrl}/auth/mock-login${query}`;
+
+    return this.http.get<AuthLoginResponse>(url).pipe(
+      tap((res) => {
+        this.setToken(res.token);
+        this.setStoredUser(res.user);
+        this.currentUserSignal.set(res.user);
+        this.isLoading.set(false);
+      }),
+      map((res) => res.user),
+      catchError((err) => {
+        this.isLoading.set(false);
+        throw err;
+      })
+    );
+  }
+
+  /**
+   * Login using local development mock Google profile (WI-016).
+   */
+  mockGoogleLogin(customId?: string, customEmail?: string, role?: 'student' | 'admin'): Observable<User> {
+    this.isLoading.set(true);
+    const params = new URLSearchParams();
+    if (customId) params.set('id', customId);
+    if (customEmail) params.set('email', customEmail);
+    if (role) params.set('role', role);
+    const query = params.toString() ? `?${params.toString()}` : '';
+    const url = `${this.apiUrl}/auth/google/mock-login${query}`;
 
     return this.http.get<AuthLoginResponse>(url).pipe(
       tap((res) => {

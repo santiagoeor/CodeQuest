@@ -366,6 +366,140 @@ Eliminación física de cursos en cascada con borrado de progreso histórico de 
 
 ---
 
+### RM-008: Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)
+
+**Status:** candidate
+
+**Priority:** high
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Identidad y Acceso (Identity & Access)
+
+**Related capabilities:**
+- Autenticación e Identidad vía Discord OAuth2
+- Catálogo Estructurado de Cursos DevTalles
+
+**Source signals:**
+- Business Goal: Ampliar las opciones de acceso federado mediante Gmail/Google y restringir la administración del catálogo a usuarios autorizados.
+- Capability Gap: Ausencia de proveedor Google OAuth2 y falta de control de acceso basado en roles (RBAC) entre estudiantes y administradores.
+
+**Problem / opportunity:**
+Los usuarios solicitan poder acceder utilizando sus cuentas de Google/Gmail además de Discord. Asimismo, el catálogo de cursos no debe ser accesible de manera pública sin autenticación, y las operaciones de creación y edición deben estar restringidas exclusivamente a usuarios con rol administrador.
+
+**Expected value:**
+Inicio de sesión con Google OAuth2 funcional, visibilidad protegida del catálogo para usuarios autenticados y aislamiento seguro de permisos CRUD para administradores.
+
+**Risks:**
+- Configuración de credenciales de Google Cloud Console y redirecciones de URI.
+- Manejo de usuarios con el mismo correo electrónico en diferentes proveedores OAuth2 (linking de cuentas o resolución de colisiones).
+
+**Dependencies:**
+RM-003, RM-007
+
+**Suggested Work Items:**
+- WI-016: Implementar autenticación federada con Google OAuth2 en Laravel y Angular
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Flujo completo de login con Google en backend (Socialite) y botón en frontend emitiendo token Sanctum.
+  - notes: Migración para google_id en users, endpoints de redirect/callback y componente de login.
+- WI-017: Implementar roles de usuario y restricción del catálogo a usuarios autenticados
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Control de acceso RBAC ('student' | 'admin'), endpoints protegidos por Sanctum y protección visual de acciones administrativas.
+  - notes: Migración para columna role, middleware CheckRole/admin y authGuard en ruta /courses.
+
+**Not now:**
+Múltiples niveles jerárquicos de permisos o gestión de grupos empresariales.
+
+---
+
+### RM-009: Extracción de Metadatos y Autollenado de Cursos de DevTalles
+
+**Status:** candidate
+
+**Priority:** medium
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Catálogo Académico (Course Catalog)
+
+**Related capabilities:**
+- Catálogo Estructurado de Cursos DevTalles
+- Visualización Interactiva de Ruta (Roadmap View)
+
+**Source signals:**
+- Operational Need: Agilizar la carga de cursos permitiendo al usuario pegar la URL de DevTalles para autollenar los campos antes de confirmar.
+- Capability Gap: Ausencia de servicio de extracción automática de metadatos desde URLs externas de DevTalles.
+
+**Problem / opportunity:**
+Registrar un curso manualmente requiere transcribir título, descripción, duración, imagen y tags. Permitir la extracción automática a partir de la URL de DevTalles ahorra tiempo y previene inconsistencias en la información.
+
+**Expected value:**
+Botón en el formulario que extrae automáticamente la información del curso mediante la URL de DevTalles y prellena el formulario para revisión y guardado del usuario.
+
+**Risks:**
+- Bloqueos de scraping, cambios en la estructura HTML de DevTalles o tiempos de espera elevados al consultar la URL.
+
+**Dependencies:**
+RM-007, RM-008
+
+**Suggested Work Items:**
+- WI-018: Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Endpoint `POST /api/courses/extract-metadata` que parsea Open Graph / metaetiquetas HTML de la URL y devuelve JSON estructurado.
+  - notes: Servicio en Laravel utilizando Http client y DOMDocument/Symfony Crawler.
+- WI-019: Integrar autollenado interactivo por URL en el formulario de cursos en Angular
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Campo de URL con botón de extracción rápida que puebla los campos del formulario reactivo para posterior confirmación.
+  - notes: Retroalimentación de carga (spinner), manejo de errores de red y validación en vivo.
+
+**Not now:**
+Sincronización periódica automática por cron de todo el catálogo de DevTalles.
+
+---
+
+### RM-010: Autenticación Clásica con Email/Contraseña y Cuentas Semilla en Seeder
+
+**Priority:** high
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Identidad y Acceso (Identity & Access)
+
+**Related capabilities:**
+- Autenticación OAuth2 Discord y Gestión de Sesión
+
+**Source signals:**
+- User Request: Permitir inicio de sesión normal con usuario y contraseña sin depender de plataformas de terceros, e incluir usuarios iniciales en el seeder de la base de datos.
+- Operational Need: Facilitar el acceso y evaluación en cualquier entorno sin necesidad de cuentas activas de Google o Discord.
+
+**Problem / opportunity:**
+El sistema actual solo permite la autenticación a través de plataformas externas federadas (Discord, Google) o mock logins de testing. La autenticación clásica con email y contraseña universaliza el acceso a cualquier evaluador o estudiante, y las cuentas semilla preconfiguradas en el seeder aseguran disponibilidad inmediata de credenciales conocidas.
+
+**Expected value:**
+Endpoint `POST /api/auth/login` con validación de credenciales y emisión de token Bearer Sanctum, formulario reactivo de login con email y contraseña en la SPA de Angular, y seeder con usuarios predeterminados (administrador y estudiante).
+
+**Risks:**
+- Manejo inseguro de contraseñas si no se aplica hash bcrypt estándar.
+
+**Dependencies:**
+RM-001, RM-003, RM-008
+
+**Suggested Work Items:**
+- WI-020: Implementar autenticación tradicional con email y contraseña, login en SPA y usuarios preconfigurados en seeder
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Endpoint de login con credenciales en Laravel, formulario reactivo de login en Angular y seeder de usuarios preconfigurados con contraseñas seguras.
+  - notes: Crear UserSeeder con usuario admin y estudiante, implementar AuthController@login con Sanctum, y formulario en frontend.
+
+**Not now:**
+Flujo de recuperación de contraseñas por correo electrónico (olvidé mi contraseña) o registro público abierto de nuevos usuarios sin aprobación.
+
+---
+
 ## Suggested Execution Order
 
 1. **RM-001 (Configuración de Infraestructura y Monorepo):** Establece el entorno de trabajo, Docker y la base de los frameworks.
@@ -375,22 +509,26 @@ Eliminación física de cursos en cascada con borrado de progreso histórico de 
 5. **RM-005 (Gestión, Persistencia y Visualización de Rutas):** Permite guardar las rutas generadas y presentarlas visualmente como roadmaps.
 6. **RM-006 (Seguimiento de Progreso y Métricas de Completitud):** Añade la funcionalidad de tracking de avance y completitud de cursos.
 7. **RM-007 (Administración del Catálogo de Cursos y Resiliencia de Autenticación):** Resuelve la persistencia de sesión al recargar y habilita el alta y modificación interactiva de cursos.
+8. **RM-008 (Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles):** Añade inicio de sesión con Google y control de roles (Admin/Estudiante).
+9. **RM-009 (Extracción de Metadatos y Autollenado de Cursos de DevTalles):** Facilita la creación ágil de cursos mediante extracción por URL.
+10. **RM-010 (Autenticación Clásica con Email/Contraseña y Cuentas Semilla en Seeder):** Habilita acceso nativo con credenciales directas y usuarios base en el seeder.
 
 ## Risks and Constraints
 
 - **Ventana de entrega estricta:** 28 de septiembre a las 10:00 AM (GMT-6). El alcance de los Work Items está acotado estrictamente a lo esencial para el MVP.
-- **Disponibilidad de servicios externos:** Discord OAuth2 es obligatorio; se recomienda implementar un modo de prueba local o mock durante el desarrollo.
+- **Disponibilidad de servicios externos:** Discord y Google OAuth2 requieren credenciales válidas; mantener modos mock para desarrollo local.
 - **Calidad de datos iniciales:** La curación del catálogo inicial de cursos debe ser precisa y fiel a DevTalles para asegurar recomendaciones realistas.
 
 ## Not Now
 
 - Pasarela de pagos o suscripciones de compra de cursos.
 - Reproductor de video propio dentro de la plataforma.
-- Proveedores de autenticación adicionales (GitHub, Google, Email/Password).
+- Proveedores de autenticación adicionales (GitHub).
 - Red social interna o sistema de comentarios entre estudiantes.
 - Generación de certificados o diplomas de finalización.
 
 ## Next Recommended Work Item
 
-- **WI-013:** Garantizar persistencia y rehidratación de sesión de Discord al recargar la SPA
+- **WI-020:** Implementar autenticación tradicional con email y contraseña, login en SPA y usuarios preconfigurados en seeder
+
 
