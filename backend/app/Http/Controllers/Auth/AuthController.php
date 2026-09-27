@@ -155,13 +155,20 @@ class AuthController extends Controller
     {
         $profile = $this->discordService->getMockUserProfile($request->query('id'));
 
+        $updateData = [
+            'name' => $profile['username'],
+            'email' => $profile['email'],
+            'avatar' => $profile['avatar'],
+        ];
+
+        $role = $request->query('role');
+        if ($role && in_array($role, ['student', 'admin'], true)) {
+            $updateData['role'] = $role;
+        }
+
         $user = User::updateOrCreate(
             ['discord_id' => $profile['id']],
-            [
-                'name' => $profile['username'],
-                'email' => $profile['email'],
-                'avatar' => $profile['avatar'],
-            ]
+            $updateData
         );
 
         $token = $user->createToken('codequest-auth')->plainTextToken;
@@ -176,6 +183,7 @@ class AuthController extends Controller
                     'google_id' => $user->google_id,
                     'name' => $user->name,
                     'email' => $user->email,
+                    'role' => $user->role,
                     'avatar' => $user->avatar,
                 ],
                 'note' => 'Mock login generated for local development and testing',
@@ -327,13 +335,17 @@ class AuthController extends Controller
             }
         }
 
+        $role = $request->query('role');
         if (!$user) {
             $user = User::create([
                 'google_id' => $profile['id'],
                 'name' => $profile['name'],
                 'email' => $profile['email'],
                 'avatar' => $profile['avatar'],
+                'role' => ($role && in_array($role, ['student', 'admin'], true)) ? $role : 'student',
             ]);
+        } elseif ($role && in_array($role, ['student', 'admin'], true)) {
+            $user->update(['role' => $role]);
         }
 
         $token = $user->createToken('codequest-auth')->plainTextToken;
@@ -348,6 +360,7 @@ class AuthController extends Controller
                     'google_id' => $user->google_id,
                     'name' => $user->name,
                     'email' => $user->email,
+                    'role' => $user->role,
                     'avatar' => $user->avatar,
                 ],
                 'note' => 'Mock Google login generated for local development and testing',
@@ -373,6 +386,7 @@ class AuthController extends Controller
                 'google_id' => $user->google_id,
                 'name' => $user->name,
                 'email' => $user->email,
+                'role' => $user->role,
                 'avatar' => $user->avatar,
                 'created_at' => $user->created_at?->toIso8601String(),
             ],

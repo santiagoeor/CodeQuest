@@ -21,6 +21,7 @@ export class AuthService {
   private readonly currentUserSignal = signal<User | null>(this.getStoredUser());
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly isAuthenticated = computed(() => !!this.currentUserSignal());
+  readonly isAdmin = computed(() => this.currentUserSignal()?.role === 'admin');
   readonly isLoading = signal<boolean>(false);
 
   constructor() {
@@ -144,11 +145,13 @@ export class AuthService {
   /**
    * Login using local development mock Discord profile.
    */
-  mockLogin(customId?: string): Observable<User> {
+  mockLogin(customId?: string, role?: 'student' | 'admin'): Observable<User> {
     this.isLoading.set(true);
-    const url = customId
-      ? `${this.apiUrl}/auth/mock-login?id=${encodeURIComponent(customId)}`
-      : `${this.apiUrl}/auth/mock-login`;
+    const params = new URLSearchParams();
+    if (customId) params.set('id', customId);
+    if (role) params.set('role', role);
+    const query = params.toString() ? `?${params.toString()}` : '';
+    const url = `${this.apiUrl}/auth/mock-login${query}`;
 
     return this.http.get<AuthLoginResponse>(url).pipe(
       tap((res) => {
@@ -168,11 +171,12 @@ export class AuthService {
   /**
    * Login using local development mock Google profile (WI-016).
    */
-  mockGoogleLogin(customId?: string, customEmail?: string): Observable<User> {
+  mockGoogleLogin(customId?: string, customEmail?: string, role?: 'student' | 'admin'): Observable<User> {
     this.isLoading.set(true);
     const params = new URLSearchParams();
     if (customId) params.set('id', customId);
     if (customEmail) params.set('email', customEmail);
+    if (role) params.set('role', role);
     const query = params.toString() ? `?${params.toString()}` : '';
     const url = `${this.apiUrl}/auth/google/mock-login${query}`;
 

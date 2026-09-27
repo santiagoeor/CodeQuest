@@ -149,4 +149,31 @@ describe('CoursesComponent', () => {
     expect(coursesService.updateCourse).toHaveBeenCalledWith(1, { title: 'Angular Actualizado' });
     expect(component.isModalOpen()).toBeFalse();
   });
+
+  it('should reflect admin status from authService', () => {
+    const authService = TestBed.inject(AuthService);
+    expect(component.isAdmin()).toBeFalse();
+
+    // Mock student user
+    (authService as any).currentUserSignal.set({
+      id: 1,
+      name: 'Student',
+      email: 'student@devtalles.com',
+      role: 'student',
+      avatar: null,
+    });
+    fixture.detectChanges();
+    expect(component.isAdmin()).toBeFalse();
+
+    // Mock admin user
+    (authService as any).currentUserSignal.set({
+      id: 2,
+      name: 'Admin',
+      email: 'admin@devtalles.com',
+      role: 'admin',
+      avatar: null,
+    });
+    fixture.detectChanges();
+    expect(component.isAdmin()).toBeTrue();
+  });
 });

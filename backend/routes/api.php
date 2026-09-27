@@ -60,14 +60,16 @@ Route::get('/version', function () {
 });
 
 /**
- * Course Catalog Routes
+ * Course Catalog Routes (Protected by auth:sanctum; mutations restricted to admin)
  */
-Route::get('/courses', [CourseController::class, 'index']);
-Route::get('/courses/{slug}', [CourseController::class, 'show']);
-
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/courses', [CourseController::class, 'store']);
-    Route::put('/courses/{id}', [CourseController::class, 'update']);
+    Route::get('/courses', [CourseController::class, 'index']);
+    Route::get('/courses/{slug}', [CourseController::class, 'show']);
+
+    Route::middleware('role:admin')->group(function () {
+        Route::post('/courses', [CourseController::class, 'store']);
+        Route::put('/courses/{id}', [CourseController::class, 'update']);
+    });
 });
 
 Route::get('/assessment/questions', [AssessmentController::class, 'index']);
