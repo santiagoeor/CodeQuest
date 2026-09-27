@@ -13,16 +13,24 @@ class CourseAdminTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected User $user;
+    protected User $adminUser;
+    protected User $studentUser;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->user = User::factory()->create([
+        $this->adminUser = User::factory()->admin()->create([
             'name' => 'Admin User',
             'email' => 'admin@codequest.dev',
             'discord_id' => '999888777',
+        ]);
+
+        $this->studentUser = User::factory()->create([
+            'name' => 'Student User',
+            'email' => 'student@codequest.dev',
+            'discord_id' => '111222333',
+            'role' => 'student',
         ]);
     }
 
@@ -46,9 +54,49 @@ class CourseAdminTest extends TestCase
         ])->assertStatus(401);
     }
 
-    public function test_authenticated_user_can_create_course_with_tags(): void
+    public function test_student_user_is_forbidden_from_creating_or_updating_courses(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->studentUser);
+
+        // Student tries to create course -> 403 Forbidden
+        $responseCreate = $this->postJson('/api/courses', [
+            'title' => 'Curso de Estudiante',
+            'description' => 'Intento no autorizado',
+            'level' => 'beginner',
+            'url' => 'https://cursos.devtalles.com/courses/test',
+            'duration' => '10 horas',
+        ]);
+
+        $responseCreate->assertStatus(403)
+            ->assertJson([
+                'status' => 'error',
+                'message' => 'Acceso denegado: se requieren permisos de administrador.',
+            ]);
+
+        $course = Course::create([
+            'title' => 'Flutter Básico',
+            'slug' => 'flutter-basico',
+            'description' => 'Intro a Flutter',
+            'level' => 'beginner',
+            'url' => 'https://cursos.devtalles.com/courses/flutter',
+            'duration' => '20 horas',
+        ]);
+
+        // Student tries to update course -> 403 Forbidden
+        $responseUpdate = $this->putJson("/api/courses/{$course->id}", [
+            'title' => 'Flutter Modificado por Alumno',
+        ]);
+
+        $responseUpdate->assertStatus(403)
+            ->assertJson([
+                'status' => 'error',
+                'message' => 'Acceso denegado: se requieren permisos de administrador.',
+            ]);
+    }
+
+    public function test_admin_user_can_create_course_with_tags(): void
+    {
+        Sanctum::actingAs($this->adminUser);
 
         $existingTag = Tag::firstOrCreate(['slug' => 'backend'], ['name' => 'Backend']);
 
@@ -89,9 +137,9 @@ class CourseAdminTest extends TestCase
         $this->assertTrue($course->tags->contains('slug', 'grpc'));
     }
 
-    public function test_create_course_auto_generates_slug_when_omitted(): void
+    public function test_admin_create_course_auto_generates_slug_when_omitted(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         $payload = [
             'title' => 'Aprende TypeScript Moderno',
@@ -111,9 +159,9 @@ class CourseAdminTest extends TestCase
         ]);
     }
 
-    public function test_store_course_validates_required_and_typed_fields(): void
+    public function test_admin_store_course_validates_required_and_typed_fields(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         // Empty payload
         $response = $this->postJson('/api/courses', []);
@@ -134,9 +182,9 @@ class CourseAdminTest extends TestCase
             ->assertJsonValidationErrors(['level', 'url']);
     }
 
-    public function test_store_course_rejects_duplicate_slug(): void
+    public function test_admin_store_course_rejects_duplicate_slug(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         Course::create([
             'title' => 'Docker Básico',
@@ -160,9 +208,9 @@ class CourseAdminTest extends TestCase
             ->assertJsonValidationErrors(['slug']);
     }
 
-    public function test_authenticated_user_can_update_course(): void
+    public function test_admin_user_can_update_course(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         $course = Course::create([
             'title' => 'Python Inicial',
@@ -198,9 +246,9 @@ class CourseAdminTest extends TestCase
         ]);
     }
 
-    public function test_update_course_synchronizes_tags(): void
+    public function test_admin_update_course_synchronizes_tags(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         $tag1 = Tag::firstOrCreate(['slug' => 'python'], ['name' => 'Python']);
         $tag2 = Tag::firstOrCreate(['slug' => 'django'], ['name' => 'Django']);
@@ -229,9 +277,9 @@ class CourseAdminTest extends TestCase
         $this->assertEquals('fastapi', $freshTags->first()->slug);
     }
 
-    public function test_update_course_ignores_own_slug_uniqueness(): void
+    public function test_admin_update_course_ignores_own_slug_uniqueness(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         $course = Course::create([
             'title' => 'Rust Básico',
@@ -242,7 +290,6 @@ class CourseAdminTest extends TestCase
             'duration' => '10 horas',
         ]);
 
-        // Sending the same slug shouldn't trigger unique validation failure
         $response = $this->putJson("/api/courses/{$course->id}", [
             'title' => 'Rust Básico Edición 2026',
             'slug' => 'rust-basico',
@@ -251,9 +298,9 @@ class CourseAdminTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_update_course_rejects_another_courses_slug(): void
+    public function test_admin_update_course_rejects_another_courses_slug(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         $course1 = Course::create([
             'title' => 'Elixir 1',
@@ -281,9 +328,9 @@ class CourseAdminTest extends TestCase
             ->assertJsonValidationErrors(['slug']);
     }
 
-    public function test_update_non_existent_course_returns_404(): void
+    public function test_admin_update_non_existent_course_returns_404(): void
     {
-        Sanctum::actingAs($this->user);
+        Sanctum::actingAs($this->adminUser);
 
         $this->putJson('/api/courses/99999', [
             'title' => 'Inexistente',
