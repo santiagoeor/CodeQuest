@@ -37,6 +37,54 @@ class LearningPathGeneratorService
     ];
 
     /**
+     * Framework tags that should not receive foundational priority ranking.
+     */
+    protected const FRAMEWORK_TAGS = [
+        'React',
+        'Angular',
+        'Next.js',
+        'NestJS',
+        'Laravel',
+        'Flutter',
+        'React Native',
+        'SwiftUI',
+        'Riverpod',
+        'PWA',
+        'Kubernetes',
+        'Node.js',
+    ];
+
+    /**
+     * Mutually alternative technology tracks. If the user explicitly selects one technology in a track,
+     * courses whose primary identity is an unselected alternative in the same track are excluded.
+     */
+    protected const TECH_TRACKS = [
+        'frontend_framework' => [
+            'react' => ['React', 'Next.js', 'MERN'],
+            'angular' => ['Angular'],
+        ],
+        'backend_stack' => [
+            'php_laravel' => ['Laravel', 'PHP', 'Eloquent'],
+            'nodejs' => ['Node.js', 'Express', 'MongoDB'],
+        ],
+        'mobile_framework' => [
+            'dart_flutter' => ['Flutter', 'Dart', 'Riverpod'],
+            'react_native' => ['React Native'],
+        ],
+    ];
+
+    /**
+     * Mapping from interest areas to associated tags.
+     */
+    protected const AREA_TAG_MAP = [
+        'frontend' => ['Frontend', 'React', 'Angular', 'Next.js', 'Web', 'PWA', 'JavaScript'],
+        'backend' => ['Backend', 'Node.js', 'Laravel', 'NestJS', 'PHP', 'Express', 'APIs', 'SQL', 'PostgreSQL', 'Database', 'Go'],
+        'mobile' => ['Mobile', 'Flutter', 'React Native', 'Dart', 'iOS', 'Android', 'SwiftUI', 'Riverpod'],
+        'devops' => ['DevOps', 'Docker', 'Kubernetes', 'Cloud', 'Contenedores'],
+        'fullstack' => ['Fullstack', 'Frontend', 'Backend'],
+    ];
+
+    /**
      * Area display labels for title and description generation.
      */
     protected const AREA_LABELS = [
@@ -69,6 +117,7 @@ class LearningPathGeneratorService
         $userLevel = 'beginner';
         $interestAreas = [];
         $goal = 'first_job';
+        $experienceTechs = [];
         $tagScores = [];
 
         foreach ($selectedOptions as $option) {
@@ -78,6 +127,8 @@ class LearningPathGeneratorService
                 $userLevel = $option->value;
             } elseif ($category === 'interest_area') {
                 $interestAreas[] = $option->value;
+            } elseif ($category === 'experience') {
+                $experienceTechs[] = $option->value;
             } elseif ($category === 'goals') {
                 $goal = $option->value;
             }
@@ -107,10 +158,10 @@ class LearningPathGeneratorService
         }
 
         // Score and rank all courses
-        $scoredCourses = $this->scoreCourses($allCourses, $tagScores, $userLevel);
+        $scoredCourses = $this->scoreCourses($allCourses, $tagScores, $userLevel, $experienceTechs);
 
         // Filter and pick top relevant courses (min 3, max 6)
-        $selectedCourses = $this->selectTopCourses($scoredCourses, $userLevel);
+        $selectedCourses = $this->selectTopCourses($scoredCourses, $userLevel, $interestAreas);
 
         // Sort selected courses in pedagogical order
         $orderedCourses = $this->orderPedagogically($selectedCourses);
@@ -200,38 +251,62 @@ class LearningPathGeneratorService
      */
     protected function getBaselineTagScores(array $interestAreas): array
     {
-        $scores = ['JavaScript' => 2, 'Git' => 2, 'Clean Code' => 1];
+        $scores = [
+            'Programación' => 2,
+            'Git' => 2,
+            'Clean Code' => 1,
+            'Buenas Prácticas' => 1,
+        ];
+
         foreach ($interestAreas as $area) {
             switch ($area) {
                 case 'frontend':
-                    $scores['Frontend'] = 4;
-                    $scores['React'] = 3;
-                    $scores['Angular'] = 3;
+                    $scores['Frontend'] = 5;
+                    $scores['React'] = 4;
+                    $scores['Angular'] = 4;
+                    $scores['Next.js'] = 4;
+                    $scores['JavaScript'] = 2;
                     $scores['TypeScript'] = 2;
+                    $scores['Web'] = 3;
+                    $scores['PWA'] = 3;
                     break;
                 case 'backend':
-                    $scores['Backend'] = 4;
-                    $scores['Node.js'] = 3;
-                    $scores['Laravel'] = 3;
-                    $scores['APIs'] = 2;
+                    $scores['Backend'] = 5;
+                    $scores['Node.js'] = 4;
+                    $scores['Laravel'] = 4;
+                    $scores['NestJS'] = 4;
+                    $scores['PHP'] = 3;
+                    $scores['APIs'] = 3;
+                    $scores['SQL'] = 3;
+                    $scores['PostgreSQL'] = 3;
+                    $scores['Go'] = 4;
+                    $scores['Express'] = 2;
                     break;
                 case 'mobile':
-                    $scores['Mobile'] = 4;
-                    $scores['Flutter'] = 3;
-                    $scores['Dart'] = 2;
+                    $scores['Mobile'] = 5;
+                    $scores['Flutter'] = 5;
+                    $scores['React Native'] = 4;
+                    $scores['Dart'] = 3;
+                    $scores['iOS'] = 3;
+                    $scores['Android'] = 3;
+                    $scores['SwiftUI'] = 4;
+                    $scores['Riverpod'] = 3;
                     break;
                 case 'devops':
-                    $scores['DevOps'] = 4;
-                    $scores['Docker'] = 3;
-                    $scores['Kubernetes'] = 3;
+                    $scores['DevOps'] = 5;
+                    $scores['Docker'] = 5;
+                    $scores['Kubernetes'] = 5;
+                    $scores['Cloud'] = 4;
+                    $scores['Contenedores'] = 4;
                     break;
                 case 'fullstack':
                 default:
-                    $scores['Fullstack'] = 4;
+                    $scores['Fullstack'] = 5;
                     $scores['Frontend'] = 3;
                     $scores['Backend'] = 3;
-                    $scores['React'] = 2;
-                    $scores['Node.js'] = 2;
+                    $scores['APIs'] = 2;
+                    $scores['Database'] = 2;
+                    $scores['SQL'] = 2;
                     break;
             }
         }
@@ -239,14 +314,40 @@ class LearningPathGeneratorService
     }
 
     /**
-     * Score courses based on tag affinities and user level.
+     * Score courses based on tag affinities, user level, and explicit technology track choices.
      */
-    protected function scoreCourses(EloquentCollection $courses, array $tagScores, string $userLevel): array
+    protected function scoreCourses(EloquentCollection $courses, array $tagScores, string $userLevel, array $experienceTechs = []): array
     {
         $scored = [];
 
+        // Determine excluded tags from unselected alternatives in tracks where user made an explicit choice
+        $excludedTags = [];
+        foreach (self::TECH_TRACKS as $track) {
+            $selectedKeys = array_intersect(array_keys($track), $experienceTechs);
+            if (!empty($selectedKeys)) {
+                foreach ($track as $key => $tags) {
+                    if (!in_array($key, $selectedKeys, true)) {
+                        $excludedTags = array_merge($excludedTags, $tags);
+                    }
+                }
+            }
+        }
+
         foreach ($courses as $course) {
             $tagNames = $course->tags->pluck('name')->toArray();
+
+            // If user explicitly chose a competing framework/stack track and this course belongs to an unselected rival, exclude it
+            if (!empty($excludedTags) && !empty(array_intersect($tagNames, $excludedTags))) {
+                $scored[] = [
+                    'course' => $course,
+                    'total_score' => -100,
+                    'affinity_score' => 0,
+                    'matched_tags' => [],
+                    'level' => $course->level,
+                ];
+                continue;
+            }
+
             $affinityScore = 0;
             $matchedTags = [];
 
@@ -260,30 +361,34 @@ class LearningPathGeneratorService
                 }
             }
 
-            // Level modifier to promote courses aligned with the user's current knowledge
-            $levelModifier = match ($userLevel) {
-                'beginner' => match ($course->level) {
-                    'beginner' => 15,
-                    'intermediate' => 6,
-                    'advanced' => -15,
+            // Only apply positive level modifier if course has positive affinity with the user's selected preferences
+            if ($affinityScore > 0) {
+                $levelModifier = match ($userLevel) {
+                    'beginner' => match ($course->level) {
+                        'beginner' => 12,
+                        'intermediate' => 5,
+                        'advanced' => -10,
+                        default => 0,
+                    },
+                    'intermediate' => match ($course->level) {
+                        'intermediate' => 12,
+                        'advanced' => 6,
+                        'beginner' => 3,
+                        default => 0,
+                    },
+                    'advanced' => match ($course->level) {
+                        'advanced' => 15,
+                        'intermediate' => 6,
+                        'beginner' => -15,
+                        default => 0,
+                    },
                     default => 0,
-                },
-                'intermediate' => match ($course->level) {
-                    'intermediate' => 15,
-                    'advanced' => 8,
-                    'beginner' => 3,
-                    default => 0,
-                },
-                'advanced' => match ($course->level) {
-                    'advanced' => 20,
-                    'intermediate' => 8,
-                    'beginner' => -20,
-                    default => 0,
-                },
-                default => 0,
-            };
+                };
 
-            $totalScore = $affinityScore + $levelModifier;
+                $totalScore = $affinityScore + $levelModifier;
+            } else {
+                $totalScore = $affinityScore;
+            }
 
             $scored[] = [
                 'course' => $course,
@@ -303,19 +408,80 @@ class LearningPathGeneratorService
     /**
      * Select the top relevant courses (minimum 3, maximum 6).
      */
-    protected function selectTopCourses(array $scoredCourses, string $userLevel): array
+    protected function selectTopCourses(array $scoredCourses, string $userLevel, array $interestAreas = []): array
     {
-        // Filter courses with positive affinity/score
-        $qualified = array_filter($scoredCourses, fn($item) => $item['total_score'] > 0);
+        // Filter courses with positive affinity and score
+        $qualified = array_values(array_filter($scoredCourses, fn($item) => $item['total_score'] > 0 && $item['affinity_score'] > 0));
 
-        // Ensure at least 3 courses if catalog allows
+        // If fewer than 3 qualified courses, fallback to top scored courses in catalog
         if (count($qualified) < 3) {
-            $qualified = array_slice($scoredCourses, 0, min(3, count($scoredCourses)));
-        } else {
-            $qualified = array_slice($qualified, 0, 6);
+            return array_slice($scoredCourses, 0, min(3, count($scoredCourses)));
         }
 
-        return array_values($qualified);
+        // If multiple interest areas are selected, ensure representation from each area
+        $validAreas = array_values(array_intersect($interestAreas, array_keys(self::AREA_TAG_MAP)));
+        if (count($validAreas) > 1) {
+            $selected = [];
+            $selectedIds = [];
+
+            // 1. Pick at least the top matching course for each selected area
+            foreach ($validAreas as $area) {
+                $areaTags = self::AREA_TAG_MAP[$area] ?? [];
+                foreach ($qualified as $item) {
+                    $courseId = $item['course']->id;
+                    if (in_array($courseId, $selectedIds, true)) {
+                        continue;
+                    }
+
+                    $courseTags = $item['course']->tags->pluck('name')->toArray();
+                    if (!empty(array_intersect($courseTags, $areaTags))) {
+                        $selected[] = $item;
+                        $selectedIds[] = $courseId;
+                        break;
+                    }
+                }
+            }
+
+            // 2. Pick a second course for each area if available and space allows (up to 6)
+            if (count($selected) < 6) {
+                foreach ($validAreas as $area) {
+                    if (count($selected) >= 6) {
+                        break;
+                    }
+                    $areaTags = self::AREA_TAG_MAP[$area] ?? [];
+                    foreach ($qualified as $item) {
+                        $courseId = $item['course']->id;
+                        if (in_array($courseId, $selectedIds, true)) {
+                            continue;
+                        }
+
+                        $courseTags = $item['course']->tags->pluck('name')->toArray();
+                        if (!empty(array_intersect($courseTags, $areaTags))) {
+                            $selected[] = $item;
+                            $selectedIds[] = $courseId;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // 3. Fill remaining slots up to 6 with the highest scoring remaining qualified courses
+            foreach ($qualified as $item) {
+                if (count($selected) >= 6) {
+                    break;
+                }
+                $courseId = $item['course']->id;
+                if (!in_array($courseId, $selectedIds, true)) {
+                    $selected[] = $item;
+                    $selectedIds[] = $courseId;
+                }
+            }
+
+            return $selected;
+        }
+
+        // Single area or fullstack: take top 6 qualified courses
+        return array_slice($qualified, 0, 6);
     }
 
     /**
@@ -362,9 +528,20 @@ class LearningPathGeneratorService
     {
         $tags = $course->tags->pluck('name')->toArray();
 
+        // If the course is a framework/application course, it should not be ranked as a pure foundation
+        $isFramework = false;
         foreach ($tags as $tag) {
-            if (in_array($tag, self::FOUNDATION_TAGS, true)) {
-                return 1;
+            if (in_array($tag, self::FRAMEWORK_TAGS, true)) {
+                $isFramework = true;
+                break;
+            }
+        }
+
+        if (!$isFramework) {
+            foreach ($tags as $tag) {
+                if (in_array($tag, self::FOUNDATION_TAGS, true)) {
+                    return 1;
+                }
             }
         }
 
@@ -391,13 +568,23 @@ class LearningPathGeneratorService
      */
     protected function generateTitle(array $interestAreas, string $userLevel): string
     {
-        $primaryAreaKey = $interestAreas[0] ?? 'fullstack';
-        $primaryArea = self::AREA_LABELS[$primaryAreaKey] ?? 'Desarrollo de Software';
+        $areaLabels = array_map(fn($a) => self::AREA_LABELS[$a] ?? ucfirst($a), $interestAreas);
+
+        if (count($areaLabels) === 0) {
+            $areasText = 'Desarrollo de Software';
+        } elseif (count($areaLabels) === 1) {
+            $areasText = $areaLabels[0];
+        } elseif (count($areaLabels) === 2) {
+            $areasText = "{$areaLabels[0]} & {$areaLabels[1]}";
+        } else {
+            $lastArea = array_pop($areaLabels);
+            $areasText = implode(', ', $areaLabels) . " y {$lastArea}";
+        }
 
         return match ($userLevel) {
-            'beginner' => "Ruta Fundacional: {$primaryArea}",
-            'advanced' => "Ruta Avanzada y Especialización: {$primaryArea}",
-            default => "Ruta Profesional: {$primaryArea}",
+            'beginner' => "Ruta Fundacional: {$areasText}",
+            'advanced' => "Ruta Avanzada y Especialización: {$areasText}",
+            default => "Ruta Profesional: {$areasText}",
         };
     }
 

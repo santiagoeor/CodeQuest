@@ -115,7 +115,7 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 ## Current Knowledge
 
-No project knowledge summary found yet.
+> What is true about this product right now.
 
 ## Roadmap Status
 
@@ -729,7 +729,7 @@ Read full skill definitions in `knowledge/skills/` or via the Kaddo MCP server (
 
 ## Missing Context
 
-- No project knowledge summary found yet.
+_None — all expected context is present._
 
 ## Recommended Agent Handoff
 
