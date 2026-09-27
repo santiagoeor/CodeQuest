@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExtractCourseMetadataRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\Tag;
+use App\Services\CourseMetadataExtractorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -178,4 +180,34 @@ class CourseController extends Controller
 
         return array_values(array_unique($tagIds));
     }
+
+    /**
+     * Extract metadata from a course URL.
+     *
+     * POST /api/courses/extract-metadata
+     */
+    public function extractMetadata(
+        ExtractCourseMetadataRequest $request,
+        CourseMetadataExtractorService $extractor
+    ): JsonResponse {
+        try {
+            $data = $extractor->extract($request->validated('url'));
+
+            return response()->json([
+                'status' => 'ok',
+                'data' => $data,
+            ]);
+        } catch (\InvalidArgumentException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ], 422);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No fue posible extraer la información de la URL: ' . $e->getMessage(),
+            ], 400);
+        }
+    }
 }
+

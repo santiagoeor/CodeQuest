@@ -70,11 +70,11 @@
 - Ownership coverage: 19/19 work items
 
 ## Work Items
-- Draft: 3
+- Draft: 1
 - Ready: 0
 - In Progress: 0
 - Blocked: 0
-- Completed: 16
+- Completed: 18
 - Archived: 0
 
 ## Work Items by Type
@@ -88,10 +88,10 @@
 ## Work Items by Initiative
 - Administración del Catálogo de Cursos y Resiliencia de Autenticación — Completed: 3
 - Autenticación e Identidad con Discord OAuth2 — Completed: 2
-- Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC) — Draft: 1 · Completed: 1
+- Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC) — Completed: 2
 - Catálogo Académico de DevTalles y Banco de Evaluación — Completed: 2
 - Configuración de Infraestructura y Monorepo — Completed: 2
-- Extracción de Metadatos y Autollenado de Cursos de DevTalles — Draft: 2
+- Extracción de Metadatos y Autollenado de Cursos de DevTalles — Draft: 1 · Completed: 1
 - Gestión, Persistencia y Visualización de Rutas — Completed: 2
 - Motor de Recomendación y Generación de Rutas — Completed: 2
 - Seguimiento de Progreso y Métricas de Completitud — Completed: 2
@@ -140,13 +140,13 @@ Progress: 12/12
 - Reason:
   - Roadmap available
   - 19 materialized work item(s)
-  - draft: 3
+  - draft: 1
   - Ownership coverage 100%
 - Next step: This project uses the standard new-project Kaddo flow.
 
 ## Delivery Summary
-- Completed Work Items: 16
-- Active Work Items: 3
+- Completed Work Items: 18
+- Active Work Items: 1
 
 ## Suggested Next Steps
 1. Refine the existing draft Work Item with the work-item-agent.
