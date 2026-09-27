@@ -191,5 +191,86 @@ class AuthTest extends TestCase
                 ],
             ]);
     }
+
+    public function test_user_can_login_with_valid_credentials(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'login_success@codequest.dev',
+            'password' => \Illuminate\Support\Facades\Hash::make('Secret123!'),
+            'role' => 'student',
+        ]);
+
+        $response = $this->postJson('/api/auth/login', [
+            'email' => 'login_success@codequest.dev',
+            'password' => 'Secret123!',
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJsonPath('status', 'ok')
+            ->assertJsonStructure([
+                'status',
+                'token',
+                'user' => [
+                    'id',
+                    'name',
+                    'email',
+                    'role',
+                    'avatar',
+                ],
+            ])
+            ->assertJsonPath('user.email', 'login_success@codequest.dev')
+            ->assertJsonPath('user.role', 'student');
+    }
+
+    public function test_login_fails_with_invalid_password(): void
+    {
+        User::factory()->create([
+            'email' => 'bad_pass@codequest.dev',
+            'password' => \Illuminate\Support\Facades\Hash::make('CorrectPassword1!'),
+        ]);
+
+        $response = $this->postJson('/api/auth/login', [
+            'email' => 'bad_pass@codequest.dev',
+            'password' => 'WrongPassword!',
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonPath('status', 'error')
+            ->assertJsonPath('message', 'Credenciales inválidas. Verifica tu correo y contraseña.');
+    }
+
+    public function test_login_fails_with_nonexistent_email(): void
+    {
+        $response = $this->postJson('/api/auth/login', [
+            'email' => 'does_not_exist@codequest.dev',
+            'password' => 'SomePassword123!',
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonPath('status', 'error');
+    }
+
+    public function test_login_validates_required_fields(): void
+    {
+        $response = $this->postJson('/api/auth/login', []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['email', 'password']);
+    }
+
+    public function test_user_seeder_creates_admin_and_student_users(): void
+    {
+        $this->seed(\Database\Seeders\UserSeeder::class);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'admin@codequest.dev',
+            'role' => 'admin',
+        ]);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'estudiante@codequest.dev',
+            'role' => 'student',
+        ]);
+    }
 }
 

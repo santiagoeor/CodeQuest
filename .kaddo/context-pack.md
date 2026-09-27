@@ -20,35 +20,33 @@
 
 ## Current Phase
 
-Phase: Active Delivery
+Phase: Maintenance
 
 Reason:
 
 - Roadmap available
-- 19 materialized work item(s)
-- draft: 1
+- 20 materialized work item(s)
 - Ownership coverage 100%
 
-Recommended next: work-item-agent
+Recommended next: roadmap-agent
 
-Next step: Refine the existing draft Work Item with the work-item-agent.
+Next step: Use the roadmap-agent to plan the next initiative.
 
 ## Delivery State
 
-- Phase: Active Delivery
-- Draft Work Items: 1
+- Phase: Maintenance
+- Draft Work Items: 0
 - Ready Work Items: 0
 - In-progress Work Items: 0
-- Ownership coverage: 19/19
+- Ownership coverage: 20/20
 - Remaining Work Item candidates: 0
 
 ## Next Step Recommendation
 
-- Refine the existing draft Work Item with the work-item-agent.
-  - id: refine-work-item
-  - reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
-  - agent: work-item-agent
-  - skill: work-item-refinement
+- Use the roadmap-agent to plan the next initiative.
+  - id: plan-next
+  - reason: No active Work Items and no remaining roadmap candidates.
+  - agent: roadmap-agent
 
 ## Project Route
 
@@ -97,6 +95,7 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 - ✓ WI-017-implementar-roles-de-usuario-y-restriccion-del-catalogo-a-usuarios-autenticados.md
 - ✓ WI-018-desarrollar-servicio-y-endpoint-para-extraccion-automatica-de-metadatos-desde-urls-de-devtalles.md
 - ✓ WI-019-integrar-autollenado-interactivo-por-url-en-el-formulario-de-cursos-en-angular.md
+- ✓ WI-020-implementar-autenticacion-tradicional-con-email-y-contrasena-login-en-spa-y-usuarios-preconfigurados-en-seeder.md
 - ✓ roadmap.md
 
 ## Technical Inventory
@@ -116,13 +115,13 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 ## Current Knowledge
 
-> What is true about this product right now.
+No project knowledge summary found yet.
 
 ## Roadmap Status
 
-- Initiatives: 9
-- Work Item candidates: 19
-- Materialized Work Items: 19
+- Initiatives: 10
+- Work Item candidates: 20
+- Materialized Work Items: 20
 - Remaining Work Item candidates: 0
 
 > Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.
@@ -577,6 +576,45 @@ Sincronización periódica automática por cron de todo el catálogo de DevTalle
 
 ---
 
+### RM-010: Autenticación Clásica con Email/Contraseña y Cuentas Semilla en Seeder
+
+**Priority:** high
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Identidad y Acceso (Identity & Access)
+
+**Related capabilities:**
+- Autenticación OAuth2 Discord y Gestión de Sesión
+
+**Source signals:**
+- User Request: Permitir inicio de sesión normal con usuario y contraseña sin depender de plataformas de terceros, e incluir usuarios iniciales en el seeder de la base de datos.
+- Operational Need: Facilitar el acceso y evaluación en cualquier entorno sin necesidad de cuentas activas de Google o Discord.
+
+**Problem / opportunity:**
+El sistema actual solo permite la autenticación a través de plataformas externas federadas (Discord, Google) o mock logins de testing. La autenticación clásica con email y contraseña universaliza el acceso a cualquier evaluador o estudiante, y las cuentas semilla preconfiguradas en el seeder aseguran disponibilidad inmediata de credenciales conocidas.
+
+**Expected value:**
+Endpoint `POST /api/auth/login` con validación de credenciales y emisión de token Bearer Sanctum, formulario reactivo de login con email y contraseña en la SPA de Angular, y seeder con usuarios predeterminados (administrador y estudiante).
+
+**Risks:**
+- Manejo inseguro de contraseñas si no se aplica hash bcrypt estándar.
+
+**Dependencies:**
+RM-001, RM-003, RM-008
+
+**Suggested Work Items:**
+- WI-020: Implementar autenticación tradicional con email y contraseña, login en SPA y usuarios preconfigurados en seeder
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Endpoint de login con credenciales en Laravel, formulario reactivo de login en Angular y seeder de usuarios preconfigurados con contraseñas seguras.
+  - notes: Crear UserSeeder con usuario admin y estudiante, implementar AuthController@login con Sanctum, y formulario en frontend.
+
+**Not now:**
+Flujo de recuperación de contraseñas por correo electrónico (olvidé mi contraseña) o registro público abierto de nuevos usuarios sin aprobación.
+
+---
+
 ## Suggested Execution Order
 
 1. **RM-001 (Configuración de Infraestructura y Monorepo):** Establece el entorno de trabajo, Docker y la base de los frameworks.
@@ -588,6 +626,7 @@ Sincronización periódica automática por cron de todo el catálogo de DevTalle
 7. **RM-007 (Administración del Catálogo de Cursos y Resiliencia de Autenticación):** Resuelve la persistencia de sesión al recargar y habilita el alta y modificación interactiva de cursos.
 8. **RM-008 (Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles):** Añade inicio de sesión con Google y control de roles (Admin/Estudiante).
 9. **RM-009 (Extracción de Metadatos y Autollenado de Cursos de DevTalles):** Facilita la creación ágil de cursos mediante extracción por URL.
+10. **RM-010 (Autenticación Clásica con Email/Contraseña y Cuentas Semilla en Seeder):** Habilita acceso nativo con credenciales directas y usuarios base en el seeder.
 
 ## Risks and Constraints
 
@@ -599,39 +638,32 @@ Sincronización periódica automática por cron de todo el catálogo de DevTalle
 
 - Pasarela de pagos o suscripciones de compra de cursos.
 - Reproductor de video propio dentro de la plataforma.
-- Proveedores de autenticación adicionales (GitHub, Email/Password tradicional).
+- Proveedores de autenticación adicionales (GitHub).
 - Red social interna o sistema de comentarios entre estudiantes.
 - Generación de certificados o diplomas de finalización.
 
 ## Next Recommended Work Item
 
-- **WI-016:** Implementar autenticación federada con Google OAuth2 en Laravel y Angular
+- **WI-020:** Implementar autenticación tradicional con email y contraseña, login en SPA y usuarios preconfigurados en seeder
 
 ## Roadmap Quality
 
 Initiatives:
-- Candidates evaluated: 9
-- Grounded: 9/9
-- With related domain: 9/9
-- With related capability: 9/9
-- With source signals: 9/9
+- Candidates evaluated: 10
+- Grounded: 10/10
+- With related domain: 10/10
+- With related capability: 10/10
+- With source signals: 10/10
 
 Work Item Candidates:
-- Candidates: 19
-- With source initiative: 19/19
-- With related domain: 0/19
-- With related capability: 0/19
+- Candidates: 20
+- With source initiative: 20/20
+- With related domain: 0/20
+- With related capability: 0/20
 
 ## Active Work Items
 
-- WI-019 [feature] [K2] (draft) — Integrar autollenado interactivo por URL en el formulario de cursos en Angular · domains: Catálogo Académico (Course Catalog)
-  - Source: roadmap · WI-019
-
-## Delivery Mix
-
-Active Work Items by type:
-
-- Features: 1
+No active work items found.
 
 ## Artifacts and Ownership
 
@@ -653,7 +685,8 @@ Active Work Items by type:
 - WI-016 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/app/Services/GoogleOAuthService.php, backend/database/migrations/2026_09_26_000001_add_google_id_to_users_table.php, backend/routes/api.php, backend/config/services.php, frontend/src/app/core/auth/**, frontend/src/app/shared/components/navbar/navbar.component.ts
 - WI-017 [feature] owns: backend/app/Models/User.php, backend/database/migrations/2026_09_26_000002_add_role_to_users_table.php, backend/app/Http/Middleware/CheckRole.php, backend/bootstrap/app.php, backend/routes/api.php, backend/app/Http/Controllers/Auth/AuthController.php, backend/tests/Feature/CourseTest.php, backend/tests/Feature/CourseAdminTest.php, frontend/src/app/core/auth/models/user.model.ts, frontend/src/app/core/auth/services/auth.service.ts, frontend/src/app/app.routes.ts, frontend/src/app/features/courses/courses.component.ts, frontend/src/app/features/courses/courses.component.spec.ts
 - WI-018 [feature] owns: backend/app/Services/CourseMetadataExtractorService.php, backend/app/Http/Requests/ExtractCourseMetadataRequest.php, backend/app/Http/Controllers/CourseController.php, backend/routes/api.php, backend/tests/Feature/CourseMetadataExtractorTest.php
-- WI-019 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/features/courses/services/**
+- WI-019 [feature] owns: frontend/src/app/features/courses/models/course.model.ts, frontend/src/app/features/courses/services/courses.service.ts, frontend/src/app/features/courses/services/courses.service.spec.ts, frontend/src/app/features/courses/components/course-form/course-form.component.ts, frontend/src/app/features/courses/components/course-form/course-form.component.spec.ts
+- WI-020 [feature] owns: backend/app/Http/Controllers/Auth/AuthController.php, backend/routes/api.php, backend/database/seeders/UserSeeder.php, backend/database/seeders/DatabaseSeeder.php, backend/tests/Feature/AuthTest.php, backend/tests/Feature/CourseAdminTest.php, frontend/src/app/core/auth/services/auth.service.ts, frontend/src/app/features/home/home.component.ts, frontend/src/app/shared/components/navbar/navbar.component.ts
 
 ## Knowledge Graph
 
@@ -696,20 +729,19 @@ Read full skill definitions in `knowledge/skills/` or via the Kaddo MCP server (
 
 ## Missing Context
 
-_None — all expected context is present._
+- No project knowledge summary found yet.
 
 ## Recommended Agent Handoff
 
-Recommended next for the **Active Delivery** phase:
+Recommended next for the **Maintenance** phase:
 
-1. work-item-agent
+1. roadmap-agent
 
 Next step:
 
-- Refine the existing draft Work Item with the work-item-agent.
+- Use the roadmap-agent to plan the next initiative.
 
 ## Instructions for the LLM
 
-- Refine draft Work Items to ready.
-- Use the work-item-agent.
-- Do not implement unless the user explicitly asks.
+- No active work.
+- Use the roadmap-agent to plan the next initiative.

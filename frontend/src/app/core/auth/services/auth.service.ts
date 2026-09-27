@@ -103,6 +103,18 @@ export class AuthService {
   }
 
   /**
+   * Switch active user role for testing and administrative evaluation.
+   */
+  switchRole(role: 'student' | 'admin'): void {
+    const current = this.currentUserSignal();
+    if (current) {
+      const updated: User = { ...current, role };
+      this.setStoredUser(updated);
+      this.currentUserSignal.set(updated);
+    }
+  }
+
+  /**
    * Start Discord OAuth2 flow by querying backend redirect endpoint (AC-1).
    */
   loginWithDiscord(): void {
@@ -140,6 +152,26 @@ export class AuthService {
         window.location.href = `${this.apiUrl}/auth/google/redirect`;
       },
     });
+  }
+
+  /**
+   * Login using standard email and password credentials (WI-020).
+   */
+  loginWithCredentials(email: string, password: string): Observable<User> {
+    this.isLoading.set(true);
+    return this.http.post<AuthLoginResponse>(`${this.apiUrl}/auth/login`, { email, password }).pipe(
+      tap((res) => {
+        this.setToken(res.token);
+        this.setStoredUser(res.user);
+        this.currentUserSignal.set(res.user);
+        this.isLoading.set(false);
+      }),
+      map((res) => res.user),
+      catchError((err) => {
+        this.isLoading.set(false);
+        throw err;
+      })
+    );
   }
 
   /**

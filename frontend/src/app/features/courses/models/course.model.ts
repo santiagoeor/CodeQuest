@@ -51,3 +51,20 @@ export interface SingleCourseResponse {
   message?: string;
   data: Course;
 }
+
+export interface ExtractedCourseMetadata {
+  url: string;
+  title: string;
+  slug?: string;
+  description: string;
+  image_url?: string;
+  level?: 'beginner' | 'intermediate' | 'advanced';
+  duration?: string;
+  tags?: string[];
+}
+
+export interface ExtractMetadataResponse {
+  status: string;
+  message?: string;
+  data: ExtractedCourseMetadata;
+}
