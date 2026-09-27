@@ -9,6 +9,7 @@ use App\Services\GoogleOAuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
@@ -23,6 +24,48 @@ class AuthController extends Controller
     ) {
         $this->discordService = $discordService;
         $this->googleService = $googleService;
+    }
+
+    /**
+     * Authenticate user using standard email and password credentials (WI-020).
+     */
+    public function login(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Debe ingresar un correo electrónico válido.',
+            'password.required' => 'La contraseña es obligatoria.',
+        ]);
+
+        $user = User::where('email', strtolower(trim($validated['email'])))->first();
+
+        if (!$user || empty($user->password) || !Hash::check($validated['password'], $user->password)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Credenciales inválidas. Verifica tu correo y contraseña.',
+            ], 401);
+        }
+
+        $this->syncAdminRole($user);
+
+        $token = $user->createToken('codequest-auth')->plainTextToken;
+
+        return response()->json([
+            'status' => 'ok',
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'discord_id' => $user->discord_id,
+                'google_id' => $user->google_id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+                'avatar' => $user->avatar,
+            ],
+        ]);
     }
 
     /**
@@ -113,6 +156,8 @@ class AuthController extends Controller
                 ]);
             }
 
+            $this->syncAdminRole($user);
+
             // Generate Sanctum Bearer Token
             $token = $user->createToken('codequest-auth')->plainTextToken;
 
@@ -126,6 +171,7 @@ class AuthController extends Controller
                         'google_id' => $user->google_id,
                         'name' => $user->name,
                         'email' => $user->email,
+                        'role' => $user->role,
                         'avatar' => $user->avatar,
                     ],
                 ]);
@@ -280,6 +326,8 @@ class AuthController extends Controller
                 ]);
             }
 
+            $this->syncAdminRole($user);
+
             // Generate Sanctum Bearer Token
             $token = $user->createToken('codequest-auth')->plainTextToken;
 
@@ -293,6 +341,7 @@ class AuthController extends Controller
                         'google_id' => $user->google_id,
                         'name' => $user->name,
                         'email' => $user->email,
+                        'role' => $user->role,
                         'avatar' => $user->avatar,
                     ],
                 ]);
@@ -378,6 +427,10 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
+        if ($user) {
+            $this->syncAdminRole($user);
+        }
+
         return response()->json([
             'status' => 'ok',
             'data' => [
@@ -408,5 +461,19 @@ class AuthController extends Controller
             'status' => 'ok',
             'message' => 'Sesión cerrada exitosamente',
         ]);
+    }
+
+    /**
+     * Automatically promote user to admin if email matches configured admin emails.
+     */
+    protected function syncAdminRole(User $user): void
+    {
+        $adminEmails = config('services.admin_emails', ['snux324@gmail.com']);
+        if (in_array(strtolower((string) $user->email), array_map('strtolower', $adminEmails), true)) {
+            if ($user->role !== 'admin') {
+                $user->role = 'admin';
+                $user->save();
+            }
+        }
     }
 }

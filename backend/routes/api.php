@@ -79,6 +79,9 @@ Route::get('/assessment/questions', [AssessmentController::class, 'index']);
  * Authentication Routes (Discord OAuth2 & Laravel Sanctum)
  */
 Route::prefix('auth')->group(function () {
+    // Standard email/password credentials authentication (WI-020)
+    Route::post('/login', [AuthController::class, 'login']);
+
     // Public OAuth2 flow
     Route::get('/discord/redirect', [AuthController::class, 'redirectToDiscord']);
     Route::get('/discord/callback', [AuthController::class, 'handleDiscordCallback']);

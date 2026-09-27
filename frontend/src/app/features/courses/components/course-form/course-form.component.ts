@@ -188,30 +188,30 @@ import { CoursesService } from '../../services/courses.service';
         </div>
 
         <!-- URLs: DevTalles Link & Image URL -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <!-- URL -->
+        <div class="space-y-4">
+          <!-- URL with Autofill Action -->
           <div>
             <label for="url" class="block text-xs font-semibold text-cq-text uppercase tracking-wider mb-2">
               Enlace a DevTalles <span class="text-rose-400">*</span>
             </label>
-            <div class="flex gap-2">
+            <div class="flex items-center gap-2">
               <input
                 id="url"
                 type="url"
                 formControlName="url"
                 placeholder="https://cursos.devtalles.com/courses/..."
-                class="flex-1 px-4 py-2.5 rounded-xl bg-cq-surface-hover/60 border border-cq-border text-cq-text placeholder-cq-muted/50 focus:outline-none focus:border-cq-primary focus:ring-1 focus:ring-cq-primary transition-all text-sm"
+                class="w-full min-w-0 flex-1 px-4 py-2.5 rounded-xl bg-cq-surface-hover/60 border border-cq-border text-cq-text placeholder-cq-muted/50 focus:outline-none focus:border-cq-primary focus:ring-1 focus:ring-cq-primary transition-all text-sm"
                 [class.border-rose-500]="isFieldInvalid('url')" />
 
               <button
                 type="button"
                 (click)="autofillFromUrl()"
                 [disabled]="isExtracting() || !canAutofill()"
-                class="px-3.5 py-2.5 rounded-xl bg-cq-primary/15 text-cq-primary border border-cq-primary/30 hover:bg-cq-primary/25 font-semibold text-xs sm:text-sm transition-colors flex items-center gap-1.5 shrink-0 disabled:opacity-40 disabled:cursor-not-allowed"
+                class="px-3.5 py-2.5 rounded-xl bg-cq-primary/15 text-cq-primary border border-cq-primary/30 hover:bg-cq-primary/25 font-semibold text-xs sm:text-sm transition-colors flex items-center gap-1.5 shrink-0 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed"
                 title="Autollenar formulario con datos de DevTalles">
                 @if (isExtracting()) {
                   <div class="w-4 h-4 border-2 border-cq-primary/30 border-t-cq-primary rounded-full animate-spin"></div>
-                  <span class="hidden sm:inline">Extrayendo...</span>
+                  <span>Extrayendo...</span>
                 } @else {
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>

@@ -20,18 +20,20 @@ class CourseAdminTest extends TestCase
     {
         parent::setUp();
 
-        $this->adminUser = User::factory()->admin()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@codequest.dev',
-            'discord_id' => '999888777',
-        ]);
+        $this->adminUser = User::where('email', 'admin@codequest.dev')->first()
+            ?? User::factory()->admin()->create([
+                'name' => 'Admin User',
+                'email' => 'admin@codequest.dev',
+                'discord_id' => '999888777',
+            ]);
 
-        $this->studentUser = User::factory()->create([
-            'name' => 'Student User',
-            'email' => 'student@codequest.dev',
-            'discord_id' => '111222333',
-            'role' => 'student',
-        ]);
+        $this->studentUser = User::where('email', 'student@codequest.dev')->first()
+            ?? User::factory()->create([
+                'name' => 'Student User',
+                'email' => 'student@codequest.dev',
+                'discord_id' => '111222333',
+                'role' => 'student',
+            ]);
     }
 
     public function test_unauthenticated_user_cannot_create_or_update_courses(): void

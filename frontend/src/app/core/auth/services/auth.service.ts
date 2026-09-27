@@ -155,6 +155,26 @@ export class AuthService {
   }
 
   /**
+   * Login using standard email and password credentials (WI-020).
+   */
+  loginWithCredentials(email: string, password: string): Observable<User> {
+    this.isLoading.set(true);
+    return this.http.post<AuthLoginResponse>(`${this.apiUrl}/auth/login`, { email, password }).pipe(
+      tap((res) => {
+        this.setToken(res.token);
+        this.setStoredUser(res.user);
+        this.currentUserSignal.set(res.user);
+        this.isLoading.set(false);
+      }),
+      map((res) => res.user),
+      catchError((err) => {
+        this.isLoading.set(false);
+        throw err;
+      })
+    );
+  }
+
+  /**
    * Login using local development mock Discord profile.
    */
   mockLogin(customId?: string, role?: 'student' | 'admin'): Observable<User> {

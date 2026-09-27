@@ -461,6 +461,45 @@ Sincronización periódica automática por cron de todo el catálogo de DevTalle
 
 ---
 
+### RM-010: Autenticación Clásica con Email/Contraseña y Cuentas Semilla en Seeder
+
+**Priority:** high
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Identidad y Acceso (Identity & Access)
+
+**Related capabilities:**
+- Autenticación OAuth2 Discord y Gestión de Sesión
+
+**Source signals:**
+- User Request: Permitir inicio de sesión normal con usuario y contraseña sin depender de plataformas de terceros, e incluir usuarios iniciales en el seeder de la base de datos.
+- Operational Need: Facilitar el acceso y evaluación en cualquier entorno sin necesidad de cuentas activas de Google o Discord.
+
+**Problem / opportunity:**
+El sistema actual solo permite la autenticación a través de plataformas externas federadas (Discord, Google) o mock logins de testing. La autenticación clásica con email y contraseña universaliza el acceso a cualquier evaluador o estudiante, y las cuentas semilla preconfiguradas en el seeder aseguran disponibilidad inmediata de credenciales conocidas.
+
+**Expected value:**
+Endpoint `POST /api/auth/login` con validación de credenciales y emisión de token Bearer Sanctum, formulario reactivo de login con email y contraseña en la SPA de Angular, y seeder con usuarios predeterminados (administrador y estudiante).
+
+**Risks:**
+- Manejo inseguro de contraseñas si no se aplica hash bcrypt estándar.
+
+**Dependencies:**
+RM-001, RM-003, RM-008
+
+**Suggested Work Items:**
+- WI-020: Implementar autenticación tradicional con email y contraseña, login en SPA y usuarios preconfigurados en seeder
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Endpoint de login con credenciales en Laravel, formulario reactivo de login en Angular y seeder de usuarios preconfigurados con contraseñas seguras.
+  - notes: Crear UserSeeder con usuario admin y estudiante, implementar AuthController@login con Sanctum, y formulario en frontend.
+
+**Not now:**
+Flujo de recuperación de contraseñas por correo electrónico (olvidé mi contraseña) o registro público abierto de nuevos usuarios sin aprobación.
+
+---
+
 ## Suggested Execution Order
 
 1. **RM-001 (Configuración de Infraestructura y Monorepo):** Establece el entorno de trabajo, Docker y la base de los frameworks.
@@ -472,6 +511,7 @@ Sincronización periódica automática por cron de todo el catálogo de DevTalle
 7. **RM-007 (Administración del Catálogo de Cursos y Resiliencia de Autenticación):** Resuelve la persistencia de sesión al recargar y habilita el alta y modificación interactiva de cursos.
 8. **RM-008 (Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles):** Añade inicio de sesión con Google y control de roles (Admin/Estudiante).
 9. **RM-009 (Extracción de Metadatos y Autollenado de Cursos de DevTalles):** Facilita la creación ágil de cursos mediante extracción por URL.
+10. **RM-010 (Autenticación Clásica con Email/Contraseña y Cuentas Semilla en Seeder):** Habilita acceso nativo con credenciales directas y usuarios base en el seeder.
 
 ## Risks and Constraints
 
@@ -483,12 +523,12 @@ Sincronización periódica automática por cron de todo el catálogo de DevTalle
 
 - Pasarela de pagos o suscripciones de compra de cursos.
 - Reproductor de video propio dentro de la plataforma.
-- Proveedores de autenticación adicionales (GitHub, Email/Password tradicional).
+- Proveedores de autenticación adicionales (GitHub).
 - Red social interna o sistema de comentarios entre estudiantes.
 - Generación de certificados o diplomas de finalización.
 
 ## Next Recommended Work Item
 
-- **WI-016:** Implementar autenticación federada con Google OAuth2 en Laravel y Angular
+- **WI-020:** Implementar autenticación tradicional con email y contraseña, login en SPA y usuarios preconfigurados en seeder
 
 
