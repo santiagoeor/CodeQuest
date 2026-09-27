@@ -153,4 +153,52 @@ describe('CoursesService', () => {
     expect(service.error()).toBeNull();
     expect(service.successMessage()).toBeNull();
   });
+
+  it('should extract metadata from url successfully', () => {
+    const targetUrl = 'https://cursos.devtalles.com/courses/angular';
+    const mockMetadata = {
+      url: targetUrl,
+      title: 'Angular Pro: De Cero a Experto',
+      slug: 'angular-pro-de-cero-a-experto',
+      description: 'Curso profesional de Angular con TypeScript y buenas prácticas.',
+      level: 'intermediate' as const,
+      duration: '45 horas',
+      image_url: 'https://devtalles.com/images/angular-pro.png',
+      tags: ['Angular', 'TypeScript', 'RxJS'],
+    };
+
+    service.extractMetadata(targetUrl).subscribe((metadata) => {
+      expect(metadata).toEqual(mockMetadata);
+    });
+
+    expect(service.isExtractingMetadata()).toBeTrue();
+
+    const req = httpMock.expectOne(`${apiUrl}/extract-metadata`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({ url: targetUrl });
+    req.flush({ status: 'ok', data: mockMetadata });
+
+    expect(service.isExtractingMetadata()).toBeFalse();
+    expect(service.error()).toBeNull();
+  });
+
+  it('should handle error when extracting metadata fails', () => {
+    const targetUrl = 'https://cursos.devtalles.com/courses/invalid';
+
+    service.extractMetadata(targetUrl).subscribe({
+      next: () => fail('Should have failed'),
+      error: (err) => {
+        expect(err.status).toBe(422);
+      },
+    });
+
+    const req = httpMock.expectOne(`${apiUrl}/extract-metadata`);
+    req.flush(
+      { status: 'error', message: 'No se pudieron extraer los metadatos.' },
+      { status: 422, statusText: 'Unprocessable Entity' }
+    );
+
+    expect(service.isExtractingMetadata()).toBeFalse();
+    expect(service.error()).toBe('No se pudieron extraer los metadatos.');
+  });
 });

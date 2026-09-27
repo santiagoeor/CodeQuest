@@ -103,6 +103,18 @@ export class AuthService {
   }
 
   /**
+   * Switch active user role for testing and administrative evaluation.
+   */
+  switchRole(role: 'student' | 'admin'): void {
+    const current = this.currentUserSignal();
+    if (current) {
+      const updated: User = { ...current, role };
+      this.setStoredUser(updated);
+      this.currentUserSignal.set(updated);
+    }
+  }
+
+  /**
    * Start Discord OAuth2 flow by querying backend redirect endpoint (AC-1).
    */
   loginWithDiscord(): void {

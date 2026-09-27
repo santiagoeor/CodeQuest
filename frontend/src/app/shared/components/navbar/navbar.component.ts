@@ -2,10 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/auth/services/auth.service';
 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
     <nav class="fixed top-0 left-0 right-0 z-50 bg-cq-surface/95 backdrop-blur-sm border-b border-cq-border">
       <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,10 +99,26 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                   </button>
 
                   @if (userDropdownOpen()) {
-                    <div class="absolute right-0 mt-2 w-48 bg-cq-surface border border-cq-border rounded-xl shadow-2xl py-1 z-50">
+                    <div class="absolute right-0 mt-2 w-56 bg-cq-surface border border-cq-border rounded-xl shadow-2xl py-1 z-50">
                       <div class="px-4 py-2 border-b border-cq-border/60">
                         <p class="text-xs text-cq-muted truncate">{{ user()?.email }}</p>
+                        <div class="flex items-center justify-between gap-1.5 mt-1.5">
+                          <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full"
+                                [ngClass]="user()?.role === 'admin' ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' : 'bg-cq-primary/20 text-cq-primary border border-cq-primary/30'">
+                            {{ user()?.role === 'admin' ? 'Admin' : 'Estudiante' }}
+                          </span>
+                          <button
+                            (click)="toggleRole()"
+                            class="text-[11px] text-cq-primary hover:underline font-medium">
+                            Cambiar a {{ user()?.role === 'admin' ? 'Estudiante' : 'Admin' }}
+                          </button>
+                        </div>
                       </div>
+                      <a routerLink="/courses"
+                         (click)="closeUserDropdown()"
+                         class="block px-4 py-2 text-sm text-cq-muted hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
+                        Catálogo Cursos
+                      </a>
                       <a routerLink="/paths"
                          (click)="closeUserDropdown()"
                          class="block px-4 py-2 text-sm text-cq-muted hover:text-cq-text hover:bg-cq-surface-hover transition-colors">
@@ -113,7 +131,7 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                       </a>
                       <button
                         (click)="logout()"
-                        class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 transition-colors">
+                        class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 transition-colors border-t border-cq-border/60">
                         Cerrar Sesión
                       </button>
                     </div>
@@ -143,13 +161,21 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                   Discord
                 </button>
 
-                <!-- Dev Mock Login Shortcut (for local testing) -->
-                <button
-                  (click)="mockLogin()"
-                  title="Iniciar sesión simulada para desarrollo local sin credenciales de Discord"
-                  class="px-2.5 py-2 rounded-lg text-xs font-medium text-cq-muted hover:text-cq-text bg-cq-surface-hover/60 border border-cq-border hover:border-cq-primary/30 transition-colors">
-                  Dev Mock
-                </button>
+                <!-- Dev Mock Login Shortcuts (for local testing) -->
+                <div class="flex items-center gap-1.5">
+                  <button
+                    (click)="mockLogin('student')"
+                    title="Iniciar sesión simulada como Estudiante"
+                    class="px-2.5 py-2 rounded-lg text-xs font-medium text-cq-muted hover:text-cq-text bg-cq-surface-hover/60 border border-cq-border hover:border-cq-primary/30 transition-colors">
+                    Mock Alumno
+                  </button>
+                  <button
+                    (click)="mockLogin('admin')"
+                    title="Iniciar sesión simulada como Administrador (gestión de cursos)"
+                    class="px-2.5 py-2 rounded-lg text-xs font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:border-amber-500/60 transition-colors">
+                    Mock Admin
+                  </button>
+                </div>
               }
             </div>
 
@@ -218,6 +244,21 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                 Mi Perfil ({{ user()?.name }})
               </a>
 
+              <div class="flex items-center justify-between px-4 py-2 mb-1 rounded-xl bg-cq-surface-hover/50 border border-cq-border/40">
+                <span class="text-xs text-cq-muted">Rol activo:</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full"
+                        [ngClass]="user()?.role === 'admin' ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' : 'bg-cq-primary/20 text-cq-primary border border-cq-primary/30'">
+                    {{ user()?.role === 'admin' ? 'Admin' : 'Estudiante' }}
+                  </span>
+                  <button
+                    (click)="toggleRole()"
+                    class="text-xs text-cq-primary font-medium hover:underline">
+                    Cambiar
+                  </button>
+                </div>
+              </div>
+
               <button
                 (click)="logout(); closeMenu()"
                 class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors">
@@ -246,11 +287,18 @@ import { AuthService } from '../../../core/auth/services/auth.service';
                   Iniciar con Discord
                 </button>
 
-                <button
-                  (click)="mockLogin(); closeMenu()"
-                  class="w-full text-center px-4 py-2 rounded-lg text-xs font-medium text-cq-muted hover:text-cq-text bg-cq-surface-hover/60 border border-cq-border transition-colors">
-                  Dev Mock Login
-                </button>
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                  <button
+                    (click)="mockLogin('student'); closeMenu()"
+                    class="w-full text-center px-3 py-2 rounded-lg text-xs font-medium text-cq-muted hover:text-cq-text bg-cq-surface-hover/60 border border-cq-border transition-colors">
+                    Mock Alumno
+                  </button>
+                  <button
+                    (click)="mockLogin('admin'); closeMenu()"
+                    class="w-full text-center px-3 py-2 rounded-lg text-xs font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/30 transition-colors">
+                    Mock Admin
+                  </button>
+                </div>
               </div>
             }
           </div>
@@ -293,12 +341,18 @@ export class NavbarComponent {
     this.authService.loginWithGoogle();
   }
 
-  mockLogin(): void {
-    this.authService.mockLogin().subscribe();
+  mockLogin(role: 'student' | 'admin' = 'student'): void {
+    this.authService.mockLogin(undefined, role).subscribe();
   }
 
-  mockGoogleLogin(): void {
-    this.authService.mockGoogleLogin().subscribe();
+  mockGoogleLogin(role: 'student' | 'admin' = 'student'): void {
+    this.authService.mockGoogleLogin(undefined, undefined, role).subscribe();
+  }
+
+  toggleRole(): void {
+    const newRole = this.user()?.role === 'admin' ? 'student' : 'admin';
+    this.authService.switchRole(newRole);
+    this.closeUserDropdown();
   }
 
   logout(): void {

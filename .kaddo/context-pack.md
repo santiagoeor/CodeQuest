@@ -20,23 +20,22 @@
 
 ## Current Phase
 
-Phase: Active Delivery
+Phase: Maintenance
 
 Reason:
 
 - Roadmap available
 - 19 materialized work item(s)
-- draft: 1
 - Ownership coverage 100%
 
-Recommended next: work-item-agent
+Recommended next: roadmap-agent
 
-Next step: Refine the existing draft Work Item with the work-item-agent.
+Next step: Use the roadmap-agent to plan the next initiative.
 
 ## Delivery State
 
-- Phase: Active Delivery
-- Draft Work Items: 1
+- Phase: Maintenance
+- Draft Work Items: 0
 - Ready Work Items: 0
 - In-progress Work Items: 0
 - Ownership coverage: 19/19
@@ -44,11 +43,10 @@ Next step: Refine the existing draft Work Item with the work-item-agent.
 
 ## Next Step Recommendation
 
-- Refine the existing draft Work Item with the work-item-agent.
-  - id: refine-work-item
-  - reason: There is 1 draft Work Item. Refine before defining roadmap candidates.
-  - agent: work-item-agent
-  - skill: work-item-refinement
+- Use the roadmap-agent to plan the next initiative.
+  - id: plan-next
+  - reason: No active Work Items and no remaining roadmap candidates.
+  - agent: roadmap-agent
 
 ## Project Route
 
@@ -116,7 +114,7 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 ## Current Knowledge
 
-> What is true about this product right now.
+No project knowledge summary found yet.
 
 ## Roadmap Status
 
@@ -624,14 +622,7 @@ Work Item Candidates:
 
 ## Active Work Items
 
-- WI-019 [feature] [K2] (draft) — Integrar autollenado interactivo por URL en el formulario de cursos en Angular · domains: Catálogo Académico (Course Catalog)
-  - Source: roadmap · WI-019
-
-## Delivery Mix
-
-Active Work Items by type:
-
-- Features: 1
+No active work items found.
 
 ## Artifacts and Ownership
 
@@ -653,7 +644,7 @@ Active Work Items by type:
 - WI-016 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/app/Services/GoogleOAuthService.php, backend/database/migrations/2026_09_26_000001_add_google_id_to_users_table.php, backend/routes/api.php, backend/config/services.php, frontend/src/app/core/auth/**, frontend/src/app/shared/components/navbar/navbar.component.ts
 - WI-017 [feature] owns: backend/app/Models/User.php, backend/database/migrations/2026_09_26_000002_add_role_to_users_table.php, backend/app/Http/Middleware/CheckRole.php, backend/bootstrap/app.php, backend/routes/api.php, backend/app/Http/Controllers/Auth/AuthController.php, backend/tests/Feature/CourseTest.php, backend/tests/Feature/CourseAdminTest.php, frontend/src/app/core/auth/models/user.model.ts, frontend/src/app/core/auth/services/auth.service.ts, frontend/src/app/app.routes.ts, frontend/src/app/features/courses/courses.component.ts, frontend/src/app/features/courses/courses.component.spec.ts
 - WI-018 [feature] owns: backend/app/Services/CourseMetadataExtractorService.php, backend/app/Http/Requests/ExtractCourseMetadataRequest.php, backend/app/Http/Controllers/CourseController.php, backend/routes/api.php, backend/tests/Feature/CourseMetadataExtractorTest.php
-- WI-019 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/features/courses/services/**
+- WI-019 [feature] owns: frontend/src/app/features/courses/models/course.model.ts, frontend/src/app/features/courses/services/courses.service.ts, frontend/src/app/features/courses/services/courses.service.spec.ts, frontend/src/app/features/courses/components/course-form/course-form.component.ts, frontend/src/app/features/courses/components/course-form/course-form.component.spec.ts
 
 ## Knowledge Graph
 
@@ -696,20 +687,19 @@ Read full skill definitions in `knowledge/skills/` or via the Kaddo MCP server (
 
 ## Missing Context
 
-_None — all expected context is present._
+- No project knowledge summary found yet.
 
 ## Recommended Agent Handoff
 
-Recommended next for the **Active Delivery** phase:
+Recommended next for the **Maintenance** phase:
 
-1. work-item-agent
+1. roadmap-agent
 
 Next step:
 
-- Refine the existing draft Work Item with the work-item-agent.
+- Use the roadmap-agent to plan the next initiative.
 
 ## Instructions for the LLM
 
-- Refine draft Work Items to ready.
-- Use the work-item-agent.
-- Do not implement unless the user explicitly asks.
+- No active work.
+- Use the roadmap-agent to plan the next initiative.

@@ -23,6 +23,7 @@ import {
   CreateCourseDto,
   UpdateCourseDto,
 } from '../../models/course.model';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-course-form',
@@ -55,6 +56,54 @@ import {
 
       <!-- Form -->
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
+
+        <!-- Autofill Confirmation Banner (AC-3) -->
+        @if (autofillNotice()) {
+          <div class="p-4 rounded-xl bg-cq-primary/10 border border-cq-primary/30 text-cq-text flex items-start justify-between gap-3 animate-fadeIn">
+            <div class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-cq-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div>
+                <p class="text-sm font-semibold text-cq-primary">¡Metadatos extraídos con éxito!</p>
+                <p class="text-xs text-cq-muted mt-0.5">{{ autofillNotice() }}</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              (click)="dismissAutofillNotice()"
+              class="text-cq-muted hover:text-cq-text p-1 rounded-lg hover:bg-cq-surface-hover transition-colors"
+              title="Cerrar notificación">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        }
+
+        <!-- Autofill Error Banner -->
+        @if (autofillError()) {
+          <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-cq-text flex items-start justify-between gap-3 animate-fadeIn">
+            <div class="flex items-start gap-2.5">
+              <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+              <div>
+                <p class="text-sm font-semibold text-rose-400">Error al autollenar</p>
+                <p class="text-xs text-cq-muted mt-0.5">{{ autofillError() }}</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              (click)="dismissAutofillError()"
+              class="text-cq-muted hover:text-cq-text p-1 rounded-lg hover:bg-cq-surface-hover transition-colors"
+              title="Cerrar error">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        }
 
         <!-- Title & Slug -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -145,16 +194,35 @@ import {
             <label for="url" class="block text-xs font-semibold text-cq-text uppercase tracking-wider mb-2">
               Enlace a DevTalles <span class="text-rose-400">*</span>
             </label>
-            <input
-              id="url"
-              type="url"
-              formControlName="url"
-              placeholder="https://devtalles.com/courses/..."
-              class="w-full px-4 py-2.5 rounded-xl bg-cq-surface-hover/60 border border-cq-border text-cq-text placeholder-cq-muted/50 focus:outline-none focus:border-cq-primary focus:ring-1 focus:ring-cq-primary transition-all text-sm"
-              [class.border-rose-500]="isFieldInvalid('url')" />
+            <div class="flex gap-2">
+              <input
+                id="url"
+                type="url"
+                formControlName="url"
+                placeholder="https://cursos.devtalles.com/courses/..."
+                class="flex-1 px-4 py-2.5 rounded-xl bg-cq-surface-hover/60 border border-cq-border text-cq-text placeholder-cq-muted/50 focus:outline-none focus:border-cq-primary focus:ring-1 focus:ring-cq-primary transition-all text-sm"
+                [class.border-rose-500]="isFieldInvalid('url')" />
+
+              <button
+                type="button"
+                (click)="autofillFromUrl()"
+                [disabled]="isExtracting() || !canAutofill()"
+                class="px-3.5 py-2.5 rounded-xl bg-cq-primary/15 text-cq-primary border border-cq-primary/30 hover:bg-cq-primary/25 font-semibold text-xs sm:text-sm transition-colors flex items-center gap-1.5 shrink-0 disabled:opacity-40 disabled:cursor-not-allowed"
+                title="Autollenar formulario con datos de DevTalles">
+                @if (isExtracting()) {
+                  <div class="w-4 h-4 border-2 border-cq-primary/30 border-t-cq-primary rounded-full animate-spin"></div>
+                  <span class="hidden sm:inline">Extrayendo...</span>
+                } @else {
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                  <span>Autollenar</span>
+                }
+              </button>
+            </div>
 
             @if (isFieldInvalid('url')) {
-              <p class="text-xs text-rose-400 mt-1.5">Debe ser una URL válida (ej: https://devtalles.com/...).</p>
+              <p class="text-xs text-rose-400 mt-1.5">Debe ser una URL válida (ej: https://cursos.devtalles.com/...).</p>
             }
           </div>
 
@@ -294,6 +362,7 @@ import {
 })
 export class CourseFormComponent implements OnInit, OnChanges {
   private fb = inject(FormBuilder);
+  private coursesService = inject(CoursesService);
 
   @Input() course: Course | null = null;
   @Input() isSubmitting = false;
@@ -307,6 +376,9 @@ export class CourseFormComponent implements OnInit, OnChanges {
 
   readonly tags = signal<string[]>([]);
   readonly tagInput = signal<string>('');
+  readonly isExtracting = signal<boolean>(false);
+  readonly autofillNotice = signal<string | null>(null);
+  readonly autofillError = signal<string | null>(null);
 
   readonly isEditMode = computed(() => !!this.course);
 
@@ -334,6 +406,9 @@ export class CourseFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.autofillNotice.set(null);
+    this.autofillError.set(null);
+
     if (changes['course'] && this.course) {
       this.populateForm(this.course);
     } else if (changes['course'] && !this.course) {
@@ -376,6 +451,74 @@ export class CourseFormComponent implements OnInit, OnChanges {
     });
     this.tags.set([]);
     this.tagInput.set('');
+    this.autofillNotice.set(null);
+    this.autofillError.set(null);
+  }
+
+  canAutofill(): boolean {
+    const url = (this.form.get('url')?.value || '').trim();
+    return /^https?:\/\/.+/i.test(url);
+  }
+
+  dismissAutofillNotice(): void {
+    this.autofillNotice.set(null);
+  }
+
+  dismissAutofillError(): void {
+    this.autofillError.set(null);
+  }
+
+  autofillFromUrl(): void {
+    const rawUrl = (this.form.get('url')?.value || '').trim();
+    if (!this.canAutofill()) {
+      this.autofillError.set(
+        'Ingresa una URL válida (ej: https://cursos.devtalles.com/courses/...) para autollenar.'
+      );
+      return;
+    }
+
+    this.isExtracting.set(true);
+    this.autofillNotice.set(null);
+    this.autofillError.set(null);
+
+    this.coursesService.extractMetadata(rawUrl).subscribe({
+      next: (metadata) => {
+        this.isExtracting.set(false);
+
+        const patch: Record<string, any> = {};
+        if (metadata.title) patch['title'] = metadata.title;
+        if (metadata.slug) patch['slug'] = metadata.slug;
+        if (metadata.description) patch['description'] = metadata.description;
+        if (metadata.level) patch['level'] = metadata.level;
+        if (metadata.duration) patch['duration'] = metadata.duration;
+        if (metadata.image_url) patch['image_url'] = metadata.image_url;
+
+        this.form.patchValue(patch);
+
+        if (metadata.tags && Array.isArray(metadata.tags)) {
+          const currentTags = this.tags();
+          const newTags = [...currentTags];
+          metadata.tags.forEach((tag) => {
+            const trimmed = tag.trim();
+            if (trimmed && !newTags.some((t) => t.toLowerCase() === trimmed.toLowerCase())) {
+              newTags.push(trimmed);
+            }
+          });
+          this.tags.set(newTags);
+        }
+
+        this.autofillNotice.set(
+          'Los campos del curso han sido completados automáticamente con la información de DevTalles. Revisa y edita los datos antes de guardar.'
+        );
+      },
+      error: (err) => {
+        this.isExtracting.set(false);
+        const errorMsg =
+          err?.error?.message ||
+          'No se pudieron extraer los metadatos del curso desde la URL provista. Verifica que el enlace sea accesible o completa los datos manualmente.';
+        this.autofillError.set(errorMsg);
+      },
+    });
   }
 
   isFieldInvalid(fieldName: string): boolean {

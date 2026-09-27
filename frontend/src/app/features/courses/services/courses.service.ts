@@ -6,6 +6,8 @@ import {
   Course,
   CoursesResponse,
   CreateCourseDto,
+  ExtractedCourseMetadata,
+  ExtractMetadataResponse,
   SingleCourseResponse,
   UpdateCourseDto,
 } from '../models/course.model';
@@ -21,6 +23,7 @@ export class CoursesService {
   readonly courses = signal<Course[]>([]);
   readonly isLoading = signal<boolean>(false);
   readonly isSaving = signal<boolean>(false);
+  readonly isExtractingMetadata = signal<boolean>(false);
   readonly error = signal<string | null>(null);
   readonly successMessage = signal<string | null>(null);
 
@@ -109,6 +112,31 @@ export class CoursesService {
         return throwError(() => err);
       })
     );
+  }
+
+  /**
+   * Extract course metadata from a DevTalles or partner course URL.
+   */
+  extractMetadata(url: string): Observable<ExtractedCourseMetadata> {
+    this.isExtractingMetadata.set(true);
+    this.error.set(null);
+
+    return this.http
+      .post<ExtractMetadataResponse>(`${this.apiUrl}/extract-metadata`, { url })
+      .pipe(
+        map((res) => res.data),
+        tap(() => {
+          this.isExtractingMetadata.set(false);
+        }),
+        catchError((err) => {
+          this.isExtractingMetadata.set(false);
+          const msg =
+            err.error?.message ||
+            'Error al extraer los metadatos de la URL. Verifica que sea un enlace válido.';
+          this.error.set(msg);
+          return throwError(() => err);
+        })
+      );
   }
 
   /**
