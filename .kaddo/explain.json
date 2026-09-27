@@ -28,12 +28,12 @@
     "hasSkills": true
   },
   "workItems": {
-    "total": 15,
+    "total": 19,
     "inProgress": 0,
     "done": 0,
     "cancelled": 0,
     "byState": {
-      "draft": 0,
+      "draft": 4,
       "ready": 0,
       "in-progress": 0,
       "blocked": 0,
@@ -42,7 +42,7 @@
     },
     "byType": {
       "chore": 3,
-      "feature": 11,
+      "feature": 15,
       "bugfix": 1
     },
     "initiatives": [
@@ -69,6 +69,17 @@
         }
       },
       {
+        "name": "Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
+          "archived": 0
+        }
+      },
+      {
         "name": "Catálogo Académico de DevTalles y Banco de Evaluación",
         "states": {
           "draft": 0,
@@ -87,6 +98,17 @@
           "in-progress": 0,
           "blocked": 0,
           "completed": 2,
+          "archived": 0
+        }
+      },
+      {
+        "name": "Extracción de Metadatos y Autollenado de Cursos de DevTalles",
+        "states": {
+          "draft": 2,
+          "ready": 0,
+          "in-progress": 0,
+          "blocked": 0,
+          "completed": 0,
           "archived": 0
         }
       },
@@ -394,12 +416,84 @@
           "id": "WI-015",
           "inferred": false
         }
+      },
+      {
+        "id": "WI-016",
+        "title": "Implementar autenticación federada con Google OAuth2 en Laravel y Angular",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-016",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-017",
+        "title": "Implementar roles de usuario y restricción del catálogo a usuarios autenticados",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Identidad y Acceso (Identity & Access)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-017",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-018",
+        "title": "Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Extracción de Metadatos y Autollenado de Cursos de DevTalles",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-018",
+          "inferred": false
+        }
+      },
+      {
+        "id": "WI-019",
+        "title": "Integrar autollenado interactivo por URL en el formulario de cursos en Angular",
+        "type": "feature",
+        "status": "draft",
+        "lifecycle": "draft",
+        "initiative": "Extracción de Metadatos y Autollenado de Cursos de DevTalles",
+        "knowledgeLevel": "K2",
+        "hasOwnership": true,
+        "domains": [
+          "Catálogo Académico (Course Catalog)"
+        ],
+        "source": {
+          "type": "roadmap",
+          "id": "WI-019",
+          "inferred": false
+        }
       }
     ]
   },
   "ownership": {
-    "workItemsTotal": 15,
-    "workItemsWithOwnership": 15,
+    "workItemsTotal": 19,
+    "workItemsWithOwnership": 19,
     "workItemsMissingOwnership": 0
   },
   "domains": [
@@ -520,18 +614,22 @@
         "WI-013-garantizar-persistencia-y-rehidratacion-de-sesion-de-discord-al-recargar-la-spa.md",
         "WI-014-implementar-endpoints-backend-para-creacion-y-edicion-de-cursos-de-devtalles.md",
         "WI-015-construir-interfaz-de-formulario-para-agregar-y-editar-cursos-en-angular.md",
+        "WI-016-implementar-autenticacion-federada-con-google-oauth2-en-laravel-y-angular.md",
+        "WI-017-implementar-roles-de-usuario-y-restriccion-del-catalogo-a-usuarios-autenticados.md",
+        "WI-018-desarrollar-servicio-y-endpoint-para-extraccion-automatica-de-metadatos-desde-urls-de-devtalles.md",
+        "WI-019-integrar-autollenado-interactivo-por-url-en-el-formulario-de-cursos-en-angular.md",
         "roadmap.md"
       ]
     }
   ],
   "roadmap": {
     "present": true,
-    "initiatives": 7,
-    "work_item_candidates": 15,
-    "materialized_work_items": 15,
+    "initiatives": 9,
+    "work_item_candidates": 19,
+    "materialized_work_items": 19,
     "remaining_work_item_candidates": 0,
-    "candidates": 15,
-    "materialized": 15,
+    "candidates": 19,
+    "materialized": 19,
     "remaining": 0
   },
   "missingKnowledge": [],
@@ -563,19 +661,21 @@
       "label": "This project uses the standard new-project Kaddo flow."
     },
     "nextStepRecommendation": {
-      "id": "plan-next",
-      "phase": "Maintenance",
-      "label": "Use the roadmap-agent to plan the next initiative.",
-      "agent": "roadmap-agent",
-      "reason": "No active Work Items and no remaining roadmap candidates."
+      "id": "refine-work-item",
+      "phase": "Active Delivery",
+      "label": "Refine the existing draft Work Item with the work-item-agent.",
+      "agent": "work-item-agent",
+      "skill": "work-item-refinement",
+      "reason": "There are 4 draft Work Items. Refine before defining roadmap candidates."
     }
   },
   "nextStepRecommendation": {
-    "id": "plan-next",
-    "phase": "Maintenance",
-    "label": "Use the roadmap-agent to plan the next initiative.",
-    "agent": "roadmap-agent",
-    "reason": "No active Work Items and no remaining roadmap candidates."
+    "id": "refine-work-item",
+    "phase": "Active Delivery",
+    "label": "Refine the existing draft Work Item with the work-item-agent.",
+    "agent": "work-item-agent",
+    "skill": "work-item-refinement",
+    "reason": "There are 4 draft Work Items. Refine before defining roadmap candidates."
   },
   "techDecisions": {
     "status": "accepted-adrs",
@@ -836,11 +936,11 @@
   },
   "roadmapQuality": {
     "initiatives": {
-      "total": 7,
-      "grounded": 7,
-      "with_related_domain": 7,
-      "with_related_capability": 7,
-      "with_source_signals": 7,
+      "total": 9,
+      "grounded": 9,
+      "with_related_domain": 9,
+      "with_related_capability": 9,
+      "with_source_signals": 9,
       "needs_refinement": false,
       "items": [
         {
@@ -898,12 +998,28 @@
           "hasRelatedCapability": true,
           "hasSourceSignals": true,
           "grounded": true
+        },
+        {
+          "id": "RM-008",
+          "title": "Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
+        },
+        {
+          "id": "RM-009",
+          "title": "Extracción de Metadatos y Autollenado de Cursos de DevTalles",
+          "hasRelatedDomain": true,
+          "hasRelatedCapability": true,
+          "hasSourceSignals": true,
+          "grounded": true
         }
       ]
     },
     "work_item_candidates": {
-      "total": 15,
-      "with_source_initiative": 15,
+      "total": 19,
+      "with_source_initiative": 19,
       "with_related_domain": 0,
       "with_related_capability": 0
     }
@@ -1084,7 +1200,7 @@
   "deliverySummary": {
     "completedWorkItems": 15,
     "archivedWorkItems": 0,
-    "activeWorkItems": 0,
+    "activeWorkItems": 4,
     "implementationCompleted": 0,
     "releaseBlocked": 0,
     "releaseReady": 0

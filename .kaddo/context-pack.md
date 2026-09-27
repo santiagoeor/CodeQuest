@@ -20,33 +20,35 @@
 
 ## Current Phase
 
-Phase: Maintenance
+Phase: Active Delivery
 
 Reason:
 
 - Roadmap available
-- 15 materialized work item(s)
+- 19 materialized work item(s)
+- draft: 4
 - Ownership coverage 100%
 
-Recommended next: roadmap-agent
+Recommended next: work-item-agent
 
-Next step: Use the roadmap-agent to plan the next initiative.
+Next step: Refine the existing draft Work Item with the work-item-agent.
 
 ## Delivery State
 
-- Phase: Maintenance
-- Draft Work Items: 0
+- Phase: Active Delivery
+- Draft Work Items: 4
 - Ready Work Items: 0
 - In-progress Work Items: 0
-- Ownership coverage: 15/15
+- Ownership coverage: 19/19
 - Remaining Work Item candidates: 0
 
 ## Next Step Recommendation
 
-- Use the roadmap-agent to plan the next initiative.
-  - id: plan-next
-  - reason: No active Work Items and no remaining roadmap candidates.
-  - agent: roadmap-agent
+- Refine the existing draft Work Item with the work-item-agent.
+  - id: refine-work-item
+  - reason: There are 4 draft Work Items. Refine before defining roadmap candidates.
+  - agent: work-item-agent
+  - skill: work-item-refinement
 
 ## Project Route
 
@@ -91,6 +93,10 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 - ✓ WI-013-garantizar-persistencia-y-rehidratacion-de-sesion-de-discord-al-recargar-la-spa.md
 - ✓ WI-014-implementar-endpoints-backend-para-creacion-y-edicion-de-cursos-de-devtalles.md
 - ✓ WI-015-construir-interfaz-de-formulario-para-agregar-y-editar-cursos-en-angular.md
+- ✓ WI-016-implementar-autenticacion-federada-con-google-oauth2-en-laravel-y-angular.md
+- ✓ WI-017-implementar-roles-de-usuario-y-restriccion-del-catalogo-a-usuarios-autenticados.md
+- ✓ WI-018-desarrollar-servicio-y-endpoint-para-extraccion-automatica-de-metadatos-desde-urls-de-devtalles.md
+- ✓ WI-019-integrar-autollenado-interactivo-por-url-en-el-formulario-de-cursos-en-angular.md
 - ✓ roadmap.md
 
 ## Technical Inventory
@@ -114,9 +120,9 @@ Knowledge maturity — Business: Consolidated · Product: Structured · Tech: St
 
 ## Roadmap Status
 
-- Initiatives: 7
-- Work Item candidates: 15
-- Materialized Work Items: 15
+- Initiatives: 9
+- Work Item candidates: 19
+- Materialized Work Items: 19
 - Remaining Work Item candidates: 0
 
 > Idioma del proyecto: **español**. Escribe este conocimiento en español. Mantén en inglés el código, los nombres de archivo, los comandos y las claves de configuración.
@@ -476,6 +482,101 @@ Eliminación física de cursos en cascada con borrado de progreso histórico de 
 
 ---
 
+### RM-008: Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles (RBAC)
+
+**Status:** candidate
+
+**Priority:** high
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Identidad y Acceso (Identity & Access)
+
+**Related capabilities:**
+- Autenticación e Identidad vía Discord OAuth2
+- Catálogo Estructurado de Cursos DevTalles
+
+**Source signals:**
+- Business Goal: Ampliar las opciones de acceso federado mediante Gmail/Google y restringir la administración del catálogo a usuarios autorizados.
+- Capability Gap: Ausencia de proveedor Google OAuth2 y falta de control de acceso basado en roles (RBAC) entre estudiantes y administradores.
+
+**Problem / opportunity:**
+Los usuarios solicitan poder acceder utilizando sus cuentas de Google/Gmail además de Discord. Asimismo, el catálogo de cursos no debe ser accesible de manera pública sin autenticación, y las operaciones de creación y edición deben estar restringidas exclusivamente a usuarios con rol administrador.
+
+**Expected value:**
+Inicio de sesión con Google OAuth2 funcional, visibilidad protegida del catálogo para usuarios autenticados y aislamiento seguro de permisos CRUD para administradores.
+
+**Risks:**
+- Configuración de credenciales de Google Cloud Console y redirecciones de URI.
+- Manejo de usuarios con el mismo correo electrónico en diferentes proveedores OAuth2 (linking de cuentas o resolución de colisiones).
+
+**Dependencies:**
+RM-003, RM-007
+
+**Suggested Work Items:**
+- WI-016: Implementar autenticación federada con Google OAuth2 en Laravel y Angular
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Flujo completo de login con Google en backend (Socialite) y botón en frontend emitiendo token Sanctum.
+  - notes: Migración para google_id en users, endpoints de redirect/callback y componente de login.
+- WI-017: Implementar roles de usuario y restricción del catálogo a usuarios autenticados
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Control de acceso RBAC ('student' | 'admin'), endpoints protegidos por Sanctum y protección visual de acciones administrativas.
+  - notes: Migración para columna role, middleware CheckRole/admin y authGuard en ruta /courses.
+
+**Not now:**
+Múltiples niveles jerárquicos de permisos o gestión de grupos empresariales.
+
+---
+
+### RM-009: Extracción de Metadatos y Autollenado de Cursos de DevTalles
+
+**Status:** candidate
+
+**Priority:** medium
+
+**Suggested Knowledge Level:** K2
+
+**Related domain:** Catálogo Académico (Course Catalog)
+
+**Related capabilities:**
+- Catálogo Estructurado de Cursos DevTalles
+- Visualización Interactiva de Ruta (Roadmap View)
+
+**Source signals:**
+- Operational Need: Agilizar la carga de cursos permitiendo al usuario pegar la URL de DevTalles para autollenar los campos antes de confirmar.
+- Capability Gap: Ausencia de servicio de extracción automática de metadatos desde URLs externas de DevTalles.
+
+**Problem / opportunity:**
+Registrar un curso manualmente requiere transcribir título, descripción, duración, imagen y tags. Permitir la extracción automática a partir de la URL de DevTalles ahorra tiempo y previene inconsistencias en la información.
+
+**Expected value:**
+Botón en el formulario que extrae automáticamente la información del curso mediante la URL de DevTalles y prellena el formulario para revisión y guardado del usuario.
+
+**Risks:**
+- Bloqueos de scraping, cambios en la estructura HTML de DevTalles o tiempos de espera elevados al consultar la URL.
+
+**Dependencies:**
+RM-007, RM-008
+
+**Suggested Work Items:**
+- WI-018: Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Endpoint `POST /api/courses/extract-metadata` que parsea Open Graph / metaetiquetas HTML de la URL y devuelve JSON estructurado.
+  - notes: Servicio en Laravel utilizando Http client y DOMDocument/Symfony Crawler.
+- WI-019: Integrar autollenado interactivo por URL en el formulario de cursos en Angular
+  - type: feature
+  - suggested knowledge level: K2
+  - expected value: Campo de URL con botón de extracción rápida que puebla los campos del formulario reactivo para posterior confirmación.
+  - notes: Retroalimentación de carga (spinner), manejo de errores de red y validación en vivo.
+
+**Not now:**
+Sincronización periódica automática por cron de todo el catálogo de DevTalles.
+
+---
+
 ## Suggested Execution Order
 
 1. **RM-001 (Configuración de Infraestructura y Monorepo):** Establece el entorno de trabajo, Docker y la base de los frameworks.
@@ -485,43 +586,58 @@ Eliminación física de cursos en cascada con borrado de progreso histórico de 
 5. **RM-005 (Gestión, Persistencia y Visualización de Rutas):** Permite guardar las rutas generadas y presentarlas visualmente como roadmaps.
 6. **RM-006 (Seguimiento de Progreso y Métricas de Completitud):** Añade la funcionalidad de tracking de avance y completitud de cursos.
 7. **RM-007 (Administración del Catálogo de Cursos y Resiliencia de Autenticación):** Resuelve la persistencia de sesión al recargar y habilita el alta y modificación interactiva de cursos.
+8. **RM-008 (Autenticación Multicanal con Google OAuth2 y Control de Acceso por Roles):** Añade inicio de sesión con Google y control de roles (Admin/Estudiante).
+9. **RM-009 (Extracción de Metadatos y Autollenado de Cursos de DevTalles):** Facilita la creación ágil de cursos mediante extracción por URL.
 
 ## Risks and Constraints
 
 - **Ventana de entrega estricta:** 28 de septiembre a las 10:00 AM (GMT-6). El alcance de los Work Items está acotado estrictamente a lo esencial para el MVP.
-- **Disponibilidad de servicios externos:** Discord OAuth2 es obligatorio; se recomienda implementar un modo de prueba local o mock durante el desarrollo.
+- **Disponibilidad de servicios externos:** Discord y Google OAuth2 requieren credenciales válidas; mantener modos mock para desarrollo local.
 - **Calidad de datos iniciales:** La curación del catálogo inicial de cursos debe ser precisa y fiel a DevTalles para asegurar recomendaciones realistas.
 
 ## Not Now
 
 - Pasarela de pagos o suscripciones de compra de cursos.
 - Reproductor de video propio dentro de la plataforma.
-- Proveedores de autenticación adicionales (GitHub, Google, Email/Password).
+- Proveedores de autenticación adicionales (GitHub, Email/Password tradicional).
 - Red social interna o sistema de comentarios entre estudiantes.
 - Generación de certificados o diplomas de finalización.
 
 ## Next Recommended Work Item
 
-- **WI-013:** Garantizar persistencia y rehidratación de sesión de Discord al recargar la SPA
+- **WI-016:** Implementar autenticación federada con Google OAuth2 en Laravel y Angular
 
 ## Roadmap Quality
 
 Initiatives:
-- Candidates evaluated: 7
-- Grounded: 7/7
-- With related domain: 7/7
-- With related capability: 7/7
-- With source signals: 7/7
+- Candidates evaluated: 9
+- Grounded: 9/9
+- With related domain: 9/9
+- With related capability: 9/9
+- With source signals: 9/9
 
 Work Item Candidates:
-- Candidates: 15
-- With source initiative: 15/15
-- With related domain: 0/15
-- With related capability: 0/15
+- Candidates: 19
+- With source initiative: 19/19
+- With related domain: 0/19
+- With related capability: 0/19
 
 ## Active Work Items
 
-No active work items found.
+- WI-016 [feature] [K2] (draft) — Implementar autenticación federada con Google OAuth2 en Laravel y Angular · domains: Identidad y Acceso (Identity & Access)
+  - Source: roadmap · WI-016
+- WI-017 [feature] [K2] (draft) — Implementar roles de usuario y restricción del catálogo a usuarios autenticados · domains: Identidad y Acceso (Identity & Access)
+  - Source: roadmap · WI-017
+- WI-018 [feature] [K2] (draft) — Desarrollar servicio y endpoint para extracción automática de metadatos desde URLs de DevTalles · domains: Catálogo Académico (Course Catalog)
+  - Source: roadmap · WI-018
+- WI-019 [feature] [K2] (draft) — Integrar autollenado interactivo por URL en el formulario de cursos en Angular · domains: Catálogo Académico (Course Catalog)
+  - Source: roadmap · WI-019
+
+## Delivery Mix
+
+Active Work Items by type:
+
+- Features: 4
 
 ## Artifacts and Ownership
 
@@ -540,6 +656,10 @@ No active work items found.
 - WI-013 [bugfix] owns: frontend/src/app/core/auth/**, frontend/src/app/core/guards/**
 - WI-014 [feature] owns: backend/app/Http/Controllers/CourseController.php, backend/app/Http/Requests/StoreCourseRequest.php, backend/app/Http/Requests/UpdateCourseRequest.php, backend/routes/api.php, backend/app/Models/Course.php, backend/tests/Feature/CourseAdminTest.php
 - WI-015 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/app.routes.ts, frontend/src/app/shared/components/navbar/navbar.component.ts, frontend/src/app/features/home/home.component.ts
+- WI-016 [feature] owns: backend/app/Http/Controllers/Auth/**, backend/routes/api.php, backend/config/services.php, frontend/src/app/core/auth/**, frontend/src/app/shared/components/navbar/navbar.component.ts
+- WI-017 [feature] owns: backend/app/Models/User.php, backend/database/migrations/**, backend/app/Http/Middleware/**, backend/routes/api.php, frontend/src/app/core/guards/**, frontend/src/app/features/courses/**
+- WI-018 [feature] owns: backend/app/Services/CourseMetadataExtractorService.php, backend/app/Http/Controllers/CourseController.php, backend/routes/api.php
+- WI-019 [feature] owns: frontend/src/app/features/courses/**, frontend/src/app/features/courses/services/**
 
 ## Knowledge Graph
 
@@ -586,15 +706,16 @@ _None — all expected context is present._
 
 ## Recommended Agent Handoff
 
-Recommended next for the **Maintenance** phase:
+Recommended next for the **Active Delivery** phase:
 
-1. roadmap-agent
+1. work-item-agent
 
 Next step:
 
-- Use the roadmap-agent to plan the next initiative.
+- Refine the existing draft Work Item with the work-item-agent.
 
 ## Instructions for the LLM
 
-- No active work.
-- Use the roadmap-agent to plan the next initiative.
+- Refine draft Work Items to ready.
+- Use the work-item-agent.
+- Do not implement unless the user explicitly asks.
