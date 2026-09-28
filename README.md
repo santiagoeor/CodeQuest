@@ -65,6 +65,19 @@ Plataforma web interactiva para la comunidad de DevTalles que genera rutas de ap
 
 ---
 
+## Credenciales de Acceso Preconfiguradas (Seeders)
+
+Para acceder a la plataforma con autenticación tradicional mediante el botón **"Iniciar Sesión"** en la barra de navegación, la base de datos incluye usuarios de prueba preconfigurados generados en los seeders ([`UserSeeder.php`](backend/database/seeders/UserSeeder.php)):
+
+| Rol | Correo Electrónico | Contraseña | Permisos y Uso |
+| :--- | :--- | :--- | :--- |
+| **Administrador** | `admin@codequest.dev` | `Admin1234!` | Gestión completa: creación, edición y administración de cursos en el catálogo. |
+| **Estudiante** | `estudiante@codequest.dev` | `Student1234!` | Perfil de estudiante para realizar diagnósticos, guardar rutas y registrar avance. |
+
+> **Nota:** También puedes iniciar sesión como estudiante utilizando autenticación federada con **Discord** o **Google**.
+
+---
+
 ## Metodología y Gobernanza
 
 Este proyecto utiliza **[Kaddo](https://github.com/kaddo-org)** para el Desarrollo Guiado por Conocimiento (KDD).
@@ -81,4 +94,4 @@ kaddo guard
 
 ## Licencia
 
-Este proyecto está bajo la Licencia **MIT** — consulta el archivo LICENSE para más detalles.
+Este proyecto está bajo la Licencia **MIT** — consulta el archivo [LICENSE.md](LICENSE.md) para más detalles.
